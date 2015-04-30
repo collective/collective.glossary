@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="collective.glossary">
+
+  <browser:resourceDirectory
+      name="collective.glossary"
+      directory="static"
+      layer="collective.glossary.interfaces.IBrowserLayer"
+      />
+
+  <browser:page
+      name="glossary-settings"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class="collective.glossary.controlpanel.GlossarySettingsControlPanel"
+      permission="cmf.ManagePortal"
+      />
+
+</configure>
