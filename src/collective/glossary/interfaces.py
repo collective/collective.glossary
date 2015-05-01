@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from plone.directives import form
 from collective.glossary import _
+from plone.directives import form
+from plone.namedfile.field import NamedBlobImage
 from zope import schema
 from zope.interface import Interface
 
@@ -18,4 +19,20 @@ class IGlossarySettings(form.Schema):
         title=_(u'Enable tooltip?'),
         description=_(u'Enable tooltip.'),
         default=True,
+    )
+
+
+class IGlossary(form.Schema):
+
+    """A Glossary is a container for Terms."""
+
+
+class ITerm(form.Schema):
+
+    """A Term."""
+
+    image = NamedBlobImage(
+        title=_(u'Image'),
+        description=_(u''),
+        required=False,
     )

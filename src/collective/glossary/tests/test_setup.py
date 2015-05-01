@@ -23,6 +23,20 @@ class InstallTestCase(unittest.TestCase):
         layers = [l.getName() for l in registered_layers()]
         self.assertIn('IBrowserLayer', layers)
 
+    def test_add_glossary_permission(self):
+        permission = 'collective.glossary: Add Glossary'
+        roles = self.portal.rolesOfPermission(permission)
+        roles = [r['name'] for r in roles if r['selected']]
+        expected = ['Contributor', 'Manager', 'Owner', 'Site Administrator']
+        self.assertListEqual(roles, expected)
+
+    def test_add_term_permission(self):
+        permission = 'collective.glossary: Add Term'
+        roles = self.portal.rolesOfPermission(permission)
+        roles = [r['name'] for r in roles if r['selected']]
+        expected = ['Contributor', 'Manager', 'Owner', 'Site Administrator']
+        self.assertListEqual(roles, expected)
+
 
 class UninstallTestCase(unittest.TestCase):
 
