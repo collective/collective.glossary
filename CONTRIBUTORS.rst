@@ -5,9 +5,9 @@ This package would not have been possible without the contribution of the follow
 
 - Héctor Velarde
 - Rodrigo Ferreira de Souza
-- Font Awesome (`icon`_)
+- Font Awesome (`icons`_)
 
 You can find an updated list of package contributors on `GitHub`_.
 
 .. _`GitHub`: https://github.com/collective/collective.glossary/contributors
-.. _`icon`: http://fontawesome.io/icon/book/
+.. _`icons`: http://fortawesome.github.io/Font-Awesome/icons/
