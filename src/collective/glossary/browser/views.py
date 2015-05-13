@@ -1,5 +1,15 @@
+from plone import api
+from plone.memoize import ram
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
+import json
+
+
+def _catalog_counter_cachekey(method, self):
+    """Return a cachekey based on catalog updates."""
+    catalog = api.portal.get_tool('portal_catalog')
+    return str(catalog.getCounter())
 
 
 class TermView(BrowserView):
@@ -7,9 +17,7 @@ class TermView(BrowserView):
     """
     term = ViewPageTemplateFile("templates/term.pt")
 
-    def __init__(self,
-                 context,
-                 request):
+    def __init__(self, context, request):
         self.context = context
         self.request = request
         self.populate()
@@ -34,9 +42,7 @@ class GlossaryView(BrowserView):
 
     glossary = ViewPageTemplateFile("templates/glossary.pt")
 
-    def __init__(self,
-                 context,
-                 request):
+    def __init__(self, context, request):
         self.context = context
         self.request = request
         self.populate()
@@ -68,3 +74,31 @@ class GlossaryView(BrowserView):
 
     def __call__(self):
         return self.glossary()
+
+
+class JsonView(BrowserView):
+    """ This does nothing so far
+    """
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+        self.data = self.populate()
+
+    @ram.cache(_catalog_counter_cachekey)
+    def populate(self):
+        catalog = api.portal.get_tool('portal_catalog')
+
+        data = []
+        for brain in catalog(portal_type='Term'):
+            data.append({
+                'term': brain.Title,
+                'description': brain.Description
+            })
+
+        return data
+
+    def __call__(self):
+        response = self.request.response
+        response.setHeader('content-type', 'application/json')
+        return response.setBody(json.dumps(self.data))

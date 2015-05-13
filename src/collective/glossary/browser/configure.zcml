@@ -32,4 +32,11 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      name="glossary"
+      for="*"
+      class=".views.JsonView"
+      permission="zope2.View"
+      />
+
 </configure>
