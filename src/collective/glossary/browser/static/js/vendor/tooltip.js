@@ -2,9 +2,7 @@
 // Author : http://osvaldas.info/elegant-css-and-jquery-tooltip-responsive-mobile-friendly
 //
 (function($, window, undefined){
-
   function ToolTip (){
-
     var targets = $( '.glossarizer_replaced' ),
     target  = false,
     tooltip = false,
@@ -77,9 +75,7 @@
       target.bind( 'mouseleave', remove_tooltip );
       tooltip.bind( 'click', remove_tooltip );
     });
-
   }
 
   return window.tooltip = ToolTip;
-
 })(jQuery, window)

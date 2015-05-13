@@ -22,6 +22,7 @@
       class=".views.GlossaryView"
       template="templates/glossary.pt"
       permission="zope2.View"
+      layer="collective.glossary.interfaces.IBrowserLayer"
       />
 
   <browser:page
@@ -30,6 +31,7 @@
       class=".views.TermView"
       template="templates/term.pt"
       permission="zope2.View"
+      layer="collective.glossary.interfaces.IBrowserLayer"
       />
 
   <browser:page
@@ -37,6 +39,7 @@
       for="*"
       class=".views.JsonView"
       permission="zope2.View"
+      layer="collective.glossary.interfaces.IBrowserLayer"
       />
 
 </configure>

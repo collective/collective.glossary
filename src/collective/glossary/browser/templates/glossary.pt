@@ -19,6 +19,8 @@
                   <div class="image"
                        tal:condition="item/image">
                     <img tal:attributes="src item/image/url;
+                                         width item/image/width;
+                                         height item/image/height;
                                          alt item/title" />
                   </div>
                   <div class="description-wrapper">
