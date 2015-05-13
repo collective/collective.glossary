@@ -16,4 +16,20 @@
       permission="cmf.ManagePortal"
       />
 
+  <browser:page
+      name="view"
+      for="collective.glossary.interfaces.IGlossary"
+      class=".views.GlossaryView"
+      template="templates/glossary.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="view"
+      for="collective.glossary.interfaces.ITerm"
+      class=".views.TermView"
+      template="templates/term.pt"
+      permission="zope2.View"
+      />
+
 </configure>
