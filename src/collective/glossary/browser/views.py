@@ -1,7 +1,6 @@
 from plone import api
 from plone.memoize import ram
 from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 import json
 
@@ -15,7 +14,6 @@ def _catalog_counter_cachekey(method, self):
 class TermView(BrowserView):
     """ This does nothing so far
     """
-    term = ViewPageTemplateFile("templates/term.pt")
 
     def __init__(self, context, request):
         self.context = context
@@ -32,15 +30,10 @@ class TermView(BrowserView):
         }
         self.item = item
 
-    def __call__(self):
-        return self.term()
-
 
 class GlossaryView(BrowserView):
     """ This does nothing so far
     """
-
-    glossary = ViewPageTemplateFile("templates/glossary.pt")
 
     def __init__(self, context, request):
         self.context = context
@@ -71,9 +64,6 @@ class GlossaryView(BrowserView):
 
     def terms(self, letter):
         return self.items[letter]
-
-    def __call__(self):
-        return self.glossary()
 
 
 class JsonView(BrowserView):
