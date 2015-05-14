@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from plone import api
 from collective.glossary.config import PROJECTNAME
+from plone import api
 
 
 def uninstall(portal, reinstall=False):

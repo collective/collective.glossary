@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from plone.app.registry.browser import controlpanel
 from collective.glossary import _
 from collective.glossary.interfaces import IGlossarySettings
+from plone.app.registry.browser import controlpanel
 
 
 class GlossarySettingsEditForm(controlpanel.RegistryEditForm):
