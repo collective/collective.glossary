@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from plone import api
 from plone.memoize import ram
 from Products.Five.browser import BrowserView
