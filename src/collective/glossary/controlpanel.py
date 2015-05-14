@@ -9,7 +9,7 @@ class GlossarySettingsEditForm(controlpanel.RegistryEditForm):
     """Control panel edit form."""
 
     schema = IGlossarySettings
-    label = _(u'Finger Pointing')
+    label = _(u'Glossary')
     description = _(u'Settings for the collective.glossary package')
 
 
