@@ -21,7 +21,7 @@ class InstallTestCase(unittest.TestCase):
 
     def test_addon_layer(self):
         layers = [l.getName() for l in registered_layers()]
-        self.assertIn('IBrowserLayer', layers)
+        self.assertIn('IGlossaryLayer', layers)
 
     def test_add_glossary_permission(self):
         permission = 'collective.glossary: Add Glossary'
@@ -54,4 +54,4 @@ class UninstallTestCase(unittest.TestCase):
 
     def test_addon_layer_removed(self):
         layers = [l.getName() for l in registered_layers()]
-        self.assertNotIn('IBrowserLayer', layers)
+        self.assertNotIn('IGlossaryLayer', layers)

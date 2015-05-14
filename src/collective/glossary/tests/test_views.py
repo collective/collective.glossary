@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective.glossary.interfaces import IBrowserLayer
+from collective.glossary.interfaces import IGlossaryLayer
 from collective.glossary.testing import INTEGRATION_TESTING
 from plone import api
 from zope.interface import alsoProvides
@@ -14,7 +14,7 @@ class BaseViewTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        alsoProvides(self.request, IBrowserLayer)
+        alsoProvides(self.request, IGlossaryLayer)
 
         with api.env.adopt_roles(['Manager']):
             self.g1 = api.content.create(

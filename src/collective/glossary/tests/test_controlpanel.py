@@ -2,7 +2,7 @@
 from collective.glossary.config import BASE_REGISTRY
 from collective.glossary.config import PROJECTNAME
 from collective.glossary.controlpanel import IGlossarySettings
-from collective.glossary.interfaces import IBrowserLayer
+from collective.glossary.interfaces import IGlossaryLayer
 from collective.glossary.testing import INTEGRATION_TESTING
 from plone import api
 from plone.app.testing import logout
@@ -20,7 +20,7 @@ class ControlPanelTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        alsoProvides(self.request, IBrowserLayer)
+        alsoProvides(self.request, IGlossaryLayer)
         self.controlpanel = self.portal['portal_controlpanel']
 
     def test_controlpanel_has_view(self):

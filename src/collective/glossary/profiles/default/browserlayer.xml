@@ -2,6 +2,6 @@
 <layers>
   <layer
       name="collective.glossary"
-      interface="collective.glossary.interfaces.IBrowserLayer"
+      interface="collective.glossary.interfaces.IGlossaryLayer"
       />
 </layers>
