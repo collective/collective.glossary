@@ -18,9 +18,9 @@ class TermView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self.populate()
+        self.item = self.prepare_item()
 
-    def populate(self):
+    def prepare_item(self):
         scales = self.context.restrictedTraverse('@@images')
         image = scales.scale('image', None)
         item = {
@@ -28,7 +28,7 @@ class TermView(BrowserView):
             'description': self.context.Description(),
             'image': image
         }
-        self.item = item
+        return item
 
 
 class GlossaryView(BrowserView):
@@ -38,26 +38,26 @@ class GlossaryView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self.populate()
+        self.items = self.prepare_items()
 
-    def populate(self):
+    def prepare_items(self):
         items = {}
 
         for brain in self.context.getFolderContents():
-            obj = brain.getObject()
             index = brain.Title[0].upper()
             if index not in items:
                 items[index] = []
+            obj = brain.getObject()
             scales = obj.restrictedTraverse('@@images')
             image = scales.scale('image', None)
             item = {
-                'title': obj.Title(),
-                'description': obj.Description(),
+                'title': brain.Title,
+                'description': brain.Description,
                 'image': image
             }
             items[index].append(item)
 
-        self.items = items
+        return items
 
     def letters(self):
         return set(self.items.keys())
@@ -73,22 +73,22 @@ class JsonView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self.data = self.populate()
+        self.items = self.prepare_items()
 
     @ram.cache(_catalog_counter_cachekey)
-    def populate(self):
+    def prepare_items(self):
         catalog = api.portal.get_tool('portal_catalog')
 
-        data = []
+        items = []
         for brain in catalog(portal_type='Term'):
-            data.append({
+            items.append({
                 'term': brain.Title,
                 'description': brain.Description
             })
 
-        return data
+        return items
 
     def __call__(self):
         response = self.request.response
         response.setHeader('content-type', 'application/json')
-        return response.setBody(json.dumps(self.data))
+        return response.setBody(json.dumps(self.items))

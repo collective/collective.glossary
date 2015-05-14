@@ -18,20 +18,20 @@ class BaseViewTestCase(unittest.TestCase):
 
         with api.env.adopt_roles(['Manager']):
             self.g1 = api.content.create(
-                self.portal, 'Glossary', 'g1'
+                self.portal, 'Glossary', 'g1',
+                title='Glossary',
+                description='Glossary Description'
             )
-            self.g1.setTitle('Glossary')
-            self.g1.setDescription('Glossary Description')
             self.t1 = api.content.create(
-                self.g1, 'Term', 't1'
+                self.g1, 'Term', 't1',
+                title='First Term',
+                description='First Term Description'
             )
-            self.t1.setTitle('First Term')
-            self.t1.setDescription('First Term Description')
             self.t2 = api.content.create(
-                self.g1, 'Term', 't2'
+                self.g1, 'Term', 't2',
+                title='Second Term',
+                description='Second Term Description'
             )
-            self.t2.setTitle('Second Term')
-            self.t2.setDescription('Second Term Description')
 
 
 class TermViewTestCase(BaseViewTestCase):
@@ -40,9 +40,9 @@ class TermViewTestCase(BaseViewTestCase):
         super(TermViewTestCase, self).setUp()
         self.view = api.content.get_view(u'view', self.t1, self.request)
 
-    def test_populate(self):
+    def test_prepare_item(self):
         self.assertEqual(
-            self.view.item,
+            self.view.prepare_item(),
             {'description': 'First Term Description', 'image': None, 'title': 'First Term'}
         )
 
@@ -53,14 +53,35 @@ class GlossaryViewTestCase(BaseViewTestCase):
         super(GlossaryViewTestCase, self).setUp()
         self.view = api.content.get_view(u'view', self.g1, self.request)
 
-    def test_populate(self):
-        self.assertEqual()
+    def test_prepare_items(self):
+        self.assertEqual(
+            self.view.prepare_items(),
+            {
+                'F': [{
+                    'image': None,
+                    'description': 'First Term Description',
+                    'title': 'First Term'
+                }],
+                'S': [{
+                    'image': None,
+                    'description': 'Second Term Description',
+                    'title': 'Second Term'
+                }]
+            }
+        )
 
     def test_letters(self):
-        self.assertEqual()
+        self.assertEqual(self.view.letters(), {'F', 'S'})
 
     def test_terms(self):
-        self.assertEqual()
+        self.assertEqual(
+            self.view.terms('F'),
+            [{'image': None, 'description': 'First Term Description', 'title': 'First Term'}]
+        )
+        self.assertEqual(
+            self.view.terms('S'),
+            [{'image': None, 'description': 'Second Term Description', 'title': 'Second Term'}]
+        )
 
 
 class JsonViewTestCase(BaseViewTestCase):
@@ -69,8 +90,9 @@ class JsonViewTestCase(BaseViewTestCase):
         super(JsonViewTestCase, self).setUp()
         self.view = api.content.get_view(u'glossary', self.portal, self.request)
 
-    def test_populate(self):
+    def test_get_items(self):
         self.assertEqual(
-            self.view.data,
-            [{'description': '', 'term': ''}, {'description': '', 'term': ''}]
+            self.view.prepare_items(),
+            [{'description': 'First Term Description', 'term': 'First Term'},
+             {'description': 'Second Term Description', 'term': 'Second Term'}]
         )
