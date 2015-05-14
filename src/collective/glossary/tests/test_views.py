@@ -2,7 +2,7 @@
 from collective.glossary.interfaces import IBrowserLayer
 from collective.glossary.testing import INTEGRATION_TESTING
 from plone import api
-from zope.interface import directlyProvides
+from zope.interface import alsoProvides
 
 import unittest
 
@@ -14,7 +14,7 @@ class BaseViewTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        directlyProvides(self.request, IBrowserLayer)
+        alsoProvides(self.request, IBrowserLayer)
 
         with api.env.adopt_roles(['Manager']):
             self.g1 = api.content.create(
@@ -34,37 +34,33 @@ class BaseViewTestCase(unittest.TestCase):
             self.t2.setDescription('Second Term Description')
 
 
-# class TermViewTestCase(BaseViewTestCase):
-#
-#     def setUp(self):
-#         super(TermViewTestCase, self).setUp()
-#         import debug
-#         self.view = api.content.get_view(u'view', self.t1, self.request)
-#
-#     def test_populate(self):
-#         self.assertEqual(
-#             self.view.item,
-#             {'description': 'First Term Description', 'image': None, 'title': 'First Term'}
-#         )
+class TermViewTestCase(BaseViewTestCase):
+
+    def setUp(self):
+        super(TermViewTestCase, self).setUp()
+        self.view = api.content.get_view(u'view', self.t1, self.request)
+
+    def test_populate(self):
+        self.assertEqual(
+            self.view.item,
+            {'description': 'First Term Description', 'image': None, 'title': 'First Term'}
+        )
 
 
-# class GlossaryViewTestCase(BaseViewTestCase):
-#
-#     def setUp(self):
-#         super(GlossaryViewTestCase, self).setUp()
-#         self.view = api.content.get_view(u'view', self.g1, self.request)
-#
-#     def test_populate(self):
-#         import debug
-#         self.assertEqual()
-#
-#     def test_letters(self):
-#         import debug
-#         self.assertEqual()
-#
-#     def test_terms(self):
-#         import debug
-#         self.assertEqual()
+class GlossaryViewTestCase(BaseViewTestCase):
+
+    def setUp(self):
+        super(GlossaryViewTestCase, self).setUp()
+        self.view = api.content.get_view(u'view', self.g1, self.request)
+
+    def test_populate(self):
+        self.assertEqual()
+
+    def test_letters(self):
+        self.assertEqual()
+
+    def test_terms(self):
+        self.assertEqual()
 
 
 class JsonViewTestCase(BaseViewTestCase):
