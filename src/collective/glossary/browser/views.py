@@ -22,11 +22,11 @@ class TermView(BrowserView):
         self.item = self.prepare_item()
 
     def prepare_item(self):
-        scales = self.context.restrictedTraverse('@@images')
+        scales = self.context.unrestrictedTraverse('@@images')
         image = scales.scale('image', None)
         item = {
-            'title': self.context.Title(),
-            'description': self.context.Description(),
+            'title': self.context.title,
+            'description': self.context.description,
             'image': image
         }
         return item
@@ -42,18 +42,21 @@ class GlossaryView(BrowserView):
         self.items = self.prepare_items()
 
     def prepare_items(self):
-        items = {}
+        catalog = api.portal.get_tool('portal_catalog')
+        path = '/'.join(self.context.getPhysicalPath())
+        query = dict(portal_type='Term', path={'query': path, 'depth': 1})
 
-        for brain in self.context.getFolderContents():
-            index = brain.Title[0].upper()
+        items = {}
+        for brain in catalog(**query):
+            obj = brain.getObject()
+            index = obj.title[0].upper()
             if index not in items:
                 items[index] = []
-            obj = brain.getObject()
-            scales = obj.restrictedTraverse('@@images')
+            scales = obj.unrestrictedTraverse('@@images')
             image = scales.scale('image', None)
             item = {
-                'title': brain.Title,
-                'description': brain.Description,
+                'title': obj.title,
+                'description': obj.description,
                 'image': image
             }
             items[index].append(item)
@@ -83,8 +86,8 @@ class JsonView(BrowserView):
         items = []
         for brain in catalog(portal_type='Term'):
             items.append({
-                'term': brain.Title,
-                'description': brain.Description
+                'term': brain.Title(),
+                'description': brain.Description(),
             })
 
         return items
