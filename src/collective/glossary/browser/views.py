@@ -86,8 +86,8 @@ class JsonView(BrowserView):
         items = []
         for brain in catalog(portal_type='Term'):
             items.append({
-                'term': brain.Title(),
-                'description': brain.Description(),
+                'term': brain.Title,
+                'description': brain.Description,
             })
 
         return items
