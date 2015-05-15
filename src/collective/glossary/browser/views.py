@@ -10,13 +10,14 @@ import json
 
 def _catalog_counter_cachekey(method, self):
     """Return a cachekey based on catalog updates."""
+
     catalog = api.portal.get_tool('portal_catalog')
     return str(catalog.getCounter())
 
 
 class TermView(BrowserView):
-    """ This does nothing so far
-    """
+
+    """Default view for Term type"""
 
     def __init__(self, context, request):
         self.context = context
@@ -24,6 +25,8 @@ class TermView(BrowserView):
         self.item = self.prepare_item()
 
     def prepare_item(self):
+        """Prepare term in the desired format"""
+
         scales = self.context.unrestrictedTraverse('@@images')
         image = scales.scale('image', None)
         item = {
@@ -35,8 +38,8 @@ class TermView(BrowserView):
 
 
 class GlossaryView(BrowserView):
-    """ This does nothing so far
-    """
+
+    """Default view of Glossary type"""
 
     def __init__(self, context, request):
         self.context = context
@@ -44,6 +47,8 @@ class GlossaryView(BrowserView):
         self.items = self.prepare_items()
 
     def prepare_items(self):
+        """Get glossary items and keep them in the desired format"""
+
         catalog = api.portal.get_tool('portal_catalog')
         path = '/'.join(self.context.getPhysicalPath())
         query = dict(portal_type='Term', path={'query': path, 'depth': 1})
@@ -73,14 +78,20 @@ class GlossaryView(BrowserView):
         return items
 
     def letters(self):
+        """Return all letters sorted"""
+
         return sorted(self.items.keys())
 
     def terms(self, letter):
+        """Return all terms of one letter"""
+
         return self.items[letter]
 
 
 class GlossaryStateView(BrowserView):
-    """ This does nothing so far
+    """Glossary State view used to enable or disable resources
+
+    This is called by JS and CSS resources registry
     """
 
     def __init__(self, context, request):
@@ -88,21 +99,23 @@ class GlossaryStateView(BrowserView):
         self.request = request
 
     def enable_tooltip(self):
-        """
-        """
+        """Check if glossary is enabled"""
+
         return api.portal.get_registry_record(
             'collective.glossary.interfaces.IGlossarySettings.enable_tooltip'
         )
 
     def is_edit_mode(self):
-        """
-        """
+        """Check if we are into edit tab"""
+
         action = self.request.getURL()
         action = action.split('/')[-1]
         return action in ['edit', 'atct_edit']
 
     def is_glossary_object(self):
-        real_context = self.request.PARENTS
+        """Check if the real context is """
+
+        real_context = self.request.get('PARENTS', [])
         if len(real_context) == 0:
             return False
         real_context = real_context[0]
@@ -113,7 +126,9 @@ class GlossaryStateView(BrowserView):
 
 
 class JsonView(BrowserView):
-    """ This does nothing so far
+    """Json view that return all glossary items in json format
+
+    This view is used into an ajax call for
     """
 
     def __init__(self, context, request):
@@ -123,6 +138,8 @@ class JsonView(BrowserView):
 
     @ram.cache(_catalog_counter_cachekey)
     def prepare_items(self):
+        """Get all itens and prepare in the desired format"""
+
         catalog = api.portal.get_tool('portal_catalog')
 
         items = []
