@@ -3,6 +3,7 @@ from collective.glossary.interfaces import IGlossaryLayer
 from collective.glossary.testing import INTEGRATION_TESTING
 from plone import api
 from zope.interface import alsoProvides
+from zope.publisher.browser import TestRequest
 
 import unittest
 
@@ -71,7 +72,7 @@ class GlossaryViewTestCase(BaseViewTestCase):
         )
 
     def test_letters(self):
-        self.assertEqual(self.view.letters(), {'F', 'S'})
+        self.assertEqual(self.view.letters(), [u'F', u'S'])
 
     def test_terms(self):
         self.assertEqual(
@@ -82,6 +83,62 @@ class GlossaryViewTestCase(BaseViewTestCase):
             self.view.terms('S'),
             [{'image': None, 'description': 'Second Term Description', 'title': 'Second Term'}]
         )
+
+
+class GlossaryStateViewTestCase(BaseViewTestCase):
+
+    def setUp(self):
+        super(GlossaryStateViewTestCase, self).setUp()
+        self.view = api.content.get_view(u'glossary_state', self.portal, self.request)
+
+    def test_enable_tooltip(self):
+        api.portal.set_registry_record(
+            'collective.glossary.interfaces.IGlossarySettings.enable_tooltip',
+            True
+        )
+        self.assertTrue(self.view.enable_tooltip())
+
+        api.portal.set_registry_record(
+            'collective.glossary.interfaces.IGlossarySettings.enable_tooltip',
+            False
+        )
+        self.assertFalse(self.view.enable_tooltip())
+
+    def test_is_edit_mode(self):
+        self.assertFalse(self.view.is_edit_mode())
+
+        self.view.request = TestRequest(environ={
+            'SERVER_URL': 'http://nohost/edit'
+        })
+        self.assertTrue(self.view.is_edit_mode())
+
+        self.view.request = TestRequest(environ={
+            'SERVER_URL': 'http://nohost/anything'
+        })
+        self.assertFalse(self.view.is_edit_mode())
+
+        self.view.request = TestRequest(environ={
+            'SERVER_URL': 'http://nohost/atct_edit'
+        })
+        self.assertTrue(self.view.is_edit_mode())
+
+    def test_is_glossary_object(self):
+        self.assertFalse(self.view.is_glossary_object())
+
+        self.view.request = TestRequest(environ={
+            'PARENTS': [self.g1]
+        })
+        self.assertTrue(self.view.is_glossary_object())
+
+        self.view.request = TestRequest(environ={
+            'PARENTS': [self.portal]
+        })
+        self.assertFalse(self.view.is_glossary_object())
+
+        self.view.request = TestRequest(environ={
+            'PARENTS': [self.t1]
+        })
+        self.assertTrue(self.view.is_glossary_object())
 
 
 class JsonViewTestCase(BaseViewTestCase):
