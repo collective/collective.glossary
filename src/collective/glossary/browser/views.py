@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from collective.glossary.interfaces import IGlossary
+from collective.glossary.interfaces import ITerm
 from plone import api
 from plone.memoize import ram
 from Products.Five.browser import BrowserView
@@ -58,13 +60,53 @@ class GlossaryView(BrowserView):
             }
             items[index].append(item)
 
+        keys = items.keys()
+        for k in keys:
+            items[k] = sorted(
+                items[k],
+                key=lambda term: term['title']
+            )
+
         return items
 
     def letters(self):
-        return set(self.items.keys())
+        return sorted(self.items.keys())
 
     def terms(self, letter):
         return self.items[letter]
+
+
+class GlossaryStateView(BrowserView):
+    """ This does nothing so far
+    """
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def enable_tooltip(self):
+        """
+        """
+        return api.portal.get_registry_record(
+            'collective.glossary.interfaces.IGlossarySettings.enable_tooltip'
+        )
+
+    def is_edit_mode(self):
+        """
+        """
+        action = self.request.getURL()
+        action = action.split('/')[-1]
+        return action in ['edit', 'atct_edit']
+
+    def is_glossary_object(self):
+        real_context = self.request.PARENTS
+        if len(real_context) == 0:
+            return False
+        real_context = real_context[0]
+        return IGlossary.providedBy(real_context) or ITerm.providedBy(real_context)
+
+    def __call__(self):
+        return self.enable_tooltip() and not self.is_edit_mode() and not self.is_glossary_object()
 
 
 class JsonView(BrowserView):

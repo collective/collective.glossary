@@ -36,6 +36,14 @@
       />
 
   <browser:page
+      name="glossary_state"
+      for="*"
+      class=".views.GlossaryStateView"
+      permission="zope2.View"
+      layer="collective.glossary.interfaces.IGlossaryLayer"
+      />
+
+  <browser:page
       name="glossary"
       for="*"
       class=".views.JsonView"
