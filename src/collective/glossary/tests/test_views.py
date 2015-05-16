@@ -13,6 +13,7 @@ class BaseViewTestCase(unittest.TestCase):
     layer = INTEGRATION_TESTING
 
     def setUp(self):
+        self.app = self.layer['app']
         self.portal = self.layer['portal']
         self.request = self.layer['request']
         alsoProvides(self.request, IGlossaryLayer)
@@ -91,6 +92,24 @@ class GlossaryStateViewTestCase(BaseViewTestCase):
         super(GlossaryStateViewTestCase, self).setUp()
         self.view = api.content.get_view(u'glossary_state', self.portal, self.request)
 
+    def test_get_real_context(self):
+        self.assertEqual(self.view.get_real_context(), self.app)
+
+        self.view.request = TestRequest(environ={
+            'PARENTS': [self.g1]
+        })
+        self.assertEqual(self.view.get_real_context(), self.g1)
+
+        self.view.request = TestRequest(environ={
+            'PARENTS': [self.portal]
+        })
+        self.assertEqual(self.view.get_real_context(), self.portal)
+
+        self.view.request = TestRequest(environ={
+            'PARENTS': [self.t1]
+        })
+        self.assertEqual(self.view.get_real_context(), self.t1)
+
     def test_enable_tooltip(self):
         api.portal.set_registry_record(
             'collective.glossary.interfaces.IGlossarySettings.enable_tooltip',
@@ -104,23 +123,32 @@ class GlossaryStateViewTestCase(BaseViewTestCase):
         )
         self.assertFalse(self.view.enable_tooltip())
 
-    def test_is_edit_mode(self):
-        self.assertFalse(self.view.is_edit_mode())
+    def test_is_view_action(self):
+        self.assertTrue(self.view.is_view_action())
 
         self.view.request = TestRequest(environ={
-            'SERVER_URL': 'http://nohost/edit'
+            'PARENTS': [self.portal],
+            'SERVER_URL': 'http://nohost',
+            'PATH_INFO': '/folder_contents'
         })
-        self.assertTrue(self.view.is_edit_mode())
+        self.view.request.base = 'http://nohost/plone'
+        self.assertFalse(self.view.is_view_action())
 
         self.view.request = TestRequest(environ={
-            'SERVER_URL': 'http://nohost/anything'
+            'PARENTS': [self.g1],
+            'SERVER_URL': 'http://nohost/plone/g1',
+            'PATH_INFO': '/g1'
         })
-        self.assertFalse(self.view.is_edit_mode())
+        self.view.request.base = 'http://nohost/plone'
+        self.assertTrue(self.view.is_view_action())
 
         self.view.request = TestRequest(environ={
-            'SERVER_URL': 'http://nohost/atct_edit'
+            'PARENTS': [self.g1],
+            'SERVER_URL': 'http://nohost/plone/g1',
+            'PATH_INFO': '/g1/edit'
         })
-        self.assertTrue(self.view.is_edit_mode())
+        self.view.request.base = 'http://nohost/plone'
+        self.assertFalse(self.view.is_view_action())
 
     def test_is_glossary_object(self):
         self.assertFalse(self.view.is_glossary_object())

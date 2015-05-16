@@ -98,6 +98,14 @@ class GlossaryStateView(BrowserView):
         self.context = context
         self.request = request
 
+    def get_real_context(self):
+        """Return the real context of the request"""
+        context = self.context
+        parents = self.request.get('PARENTS', [])
+        if len(parents) == 0:
+            return context
+        return parents[0]
+
     def enable_tooltip(self):
         """Check if glossary is enabled"""
 
@@ -105,24 +113,25 @@ class GlossaryStateView(BrowserView):
             'collective.glossary.interfaces.IGlossarySettings.enable_tooltip'
         )
 
-    def is_edit_mode(self):
-        """Check if we are into edit tab"""
+    def is_view_action(self):
+        """Check if we are into the view action"""
 
-        action = self.request.getURL()
-        action = action.split('/')[-1]
-        return action in ['edit', 'atct_edit']
+        context = self.get_real_context()
+        context_url = context.absolute_url()
+        request_url = self.request.base + self.request.get('PATH_INFO', '')
+        if context_url == request_url:
+            return True
+        # Default view
+        return context_url.startswith(request_url) and len(context_url) > len(request_url)
 
     def is_glossary_object(self):
         """Check if the real context is """
 
-        real_context = self.request.get('PARENTS', [])
-        if len(real_context) == 0:
-            return False
-        real_context = real_context[0]
-        return IGlossary.providedBy(real_context) or ITerm.providedBy(real_context)
+        context = self.get_real_context()
+        return IGlossary.providedBy(context) or ITerm.providedBy(context)
 
     def __call__(self):
-        return self.enable_tooltip() and not self.is_edit_mode() and not self.is_glossary_object()
+        return self.enable_tooltip() and self.is_view_action() and not self.is_glossary_object()
 
 
 class JsonView(BrowserView):
