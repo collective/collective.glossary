@@ -24,6 +24,11 @@ class GlossaryTypeTestCase(unittest.TestCase):
     def test_adding(self):
         self.assertTrue(ITerm.providedBy(self.t1))
 
+    def test_adding_outside_glossary(self):
+        from plone.api.exc import InvalidParameterError
+        with self.assertRaises(InvalidParameterError):
+            api.content.create(self.portal, 'Term', 'test')
+
     def test_fti(self):
         fti = queryUtility(IDexterityFTI, name='Term')
         self.assertIsNotNone(fti)

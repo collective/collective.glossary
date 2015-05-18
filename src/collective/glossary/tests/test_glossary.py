@@ -40,3 +40,8 @@ class GlossaryTypeTestCase(unittest.TestCase):
     def test_is_selectable_as_folder_default_view(self):
         self.portal.setDefaultPage('g1')
         self.assertEqual(self.portal.default_page, 'g1')
+
+    def test_not_allowed_content_types(self):
+        from plone.api.exc import InvalidParameterError
+        with self.assertRaises(InvalidParameterError):
+            api.content.create(self.g1, 'Document', 'test')
