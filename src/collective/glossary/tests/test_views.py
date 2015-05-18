@@ -92,50 +92,31 @@ class GlossaryStateViewTestCase(BaseViewTestCase):
         super(GlossaryStateViewTestCase, self).setUp()
         self.view = api.content.get_view(u'glossary_state', self.portal, self.request)
 
-    def test_get_real_context(self):
-        self.assertEqual(self.view.get_real_context(), self.app)
-
-        self.view.request = TestRequest(environ={
-            'PARENTS': [self.g1]
-        })
-        self.assertEqual(self.view.get_real_context(), self.g1)
-
-        self.view.request = TestRequest(environ={
-            'PARENTS': [self.portal]
-        })
-        self.assertEqual(self.view.get_real_context(), self.portal)
-
-        self.view.request = TestRequest(environ={
-            'PARENTS': [self.t1]
-        })
-        self.assertEqual(self.view.get_real_context(), self.t1)
-
-    def test_enable_tooltip(self):
+    def test_tooltip_is_enabled(self):
         api.portal.set_registry_record(
             'collective.glossary.interfaces.IGlossarySettings.enable_tooltip',
             True
         )
-        self.assertTrue(self.view.enable_tooltip())
+        self.assertTrue(self.view.tooltip_is_enabled())
 
         api.portal.set_registry_record(
             'collective.glossary.interfaces.IGlossarySettings.enable_tooltip',
             False
         )
-        self.assertFalse(self.view.enable_tooltip())
+        self.assertFalse(self.view.tooltip_is_enabled())
 
     def test_is_view_action(self):
         self.assertTrue(self.view.is_view_action())
 
         self.view.request = TestRequest(environ={
-            'PARENTS': [self.portal],
             'SERVER_URL': 'http://nohost',
             'PATH_INFO': '/folder_contents'
         })
         self.view.request.base = 'http://nohost/plone'
         self.assertFalse(self.view.is_view_action())
 
+        self.view.context = self.g1
         self.view.request = TestRequest(environ={
-            'PARENTS': [self.g1],
             'SERVER_URL': 'http://nohost/plone/g1',
             'PATH_INFO': '/g1'
         })
@@ -143,7 +124,6 @@ class GlossaryStateViewTestCase(BaseViewTestCase):
         self.assertTrue(self.view.is_view_action())
 
         self.view.request = TestRequest(environ={
-            'PARENTS': [self.g1],
             'SERVER_URL': 'http://nohost/plone/g1',
             'PATH_INFO': '/g1/edit'
         })
@@ -153,19 +133,14 @@ class GlossaryStateViewTestCase(BaseViewTestCase):
     def test_is_glossary_object(self):
         self.assertFalse(self.view.is_glossary_object())
 
-        self.view.request = TestRequest(environ={
-            'PARENTS': [self.g1]
-        })
+        self.view.context = self.g1
+        self.view.request = TestRequest()
         self.assertTrue(self.view.is_glossary_object())
 
-        self.view.request = TestRequest(environ={
-            'PARENTS': [self.portal]
-        })
+        self.view.context = self.portal
         self.assertFalse(self.view.is_glossary_object())
 
-        self.view.request = TestRequest(environ={
-            'PARENTS': [self.t1]
-        })
+        self.view.context = self.t1
         self.assertTrue(self.view.is_glossary_object())
 
 

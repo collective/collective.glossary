@@ -98,15 +98,7 @@ class GlossaryStateView(BrowserView):
         self.context = context
         self.request = request
 
-    def get_real_context(self):
-        """Return the real context of the request"""
-        context = self.context
-        parents = self.request.get('PARENTS', [])
-        if len(parents) == 0:
-            return context
-        return parents[0]
-
-    def enable_tooltip(self):
+    def tooltip_is_enabled(self):
         """Check if glossary is enabled"""
 
         return api.portal.get_registry_record(
@@ -116,7 +108,7 @@ class GlossaryStateView(BrowserView):
     def is_view_action(self):
         """Check if we are into the view action"""
 
-        context = self.get_real_context()
+        context = self.context
         context_url = context.absolute_url()
         request_url = self.request.base + self.request.get('PATH_INFO', '')
         if context_url == request_url:
@@ -127,11 +119,11 @@ class GlossaryStateView(BrowserView):
     def is_glossary_object(self):
         """Check if the real context is """
 
-        context = self.get_real_context()
+        context = self.context
         return IGlossary.providedBy(context) or ITerm.providedBy(context)
 
     def __call__(self):
-        return self.enable_tooltip() and self.is_view_action() and not self.is_glossary_object()
+        return self.tooltip_is_enabled() and self.is_view_action() and not self.is_glossary_object()
 
 
 class JsonView(BrowserView):

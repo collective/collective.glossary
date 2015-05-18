@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <object name="portal_javascripts">
   <javascript id="++resource++collective.glossary/tooltip.js"
-              expression="python:portal.restrictedTraverse('@@glossary_state')()"
+              expression="python:context.restrictedTraverse('@@glossary_state')()"
               insert-after="*" />
   <javascript id="++resource++collective.glossary/jquery.glossarize.js"
-              expression="python:portal.restrictedTraverse('@@glossary_state')()"
+              expression="python:context.restrictedTraverse('@@glossary_state')()"
               insert-after="*" />
   <javascript id="++resource++collective.glossary/main.js"
-              expression="python:portal.restrictedTraverse('@@glossary_state')()"
+              expression="python:context.restrictedTraverse('@@glossary_state')()"
               insert-after="*" />
 </object>
