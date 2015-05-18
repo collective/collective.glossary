@@ -107,9 +107,8 @@ class GlossaryStateView(BrowserView):
             return context
         return parents[0]
 
-    def enable_tooltip(self):
-        """Check if glossary is enabled"""
-
+    def tooltip_is_enabled(self):
+        """Check if term tooltip is enabled."""
         return api.portal.get_registry_record(
             IGlossarySettings.__identifier__ + '.enable_tooltip'
         )
@@ -132,7 +131,7 @@ class GlossaryStateView(BrowserView):
         return IGlossary.providedBy(context) or ITerm.providedBy(context)
 
     def __call__(self):
-        return self.enable_tooltip() and self.is_view_action() and not self.is_glossary_object()
+        return self.tooltip_is_enabled() and self.is_view_action() and not self.is_glossary_object()
 
 
 class JsonView(BrowserView):

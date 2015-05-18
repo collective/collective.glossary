@@ -111,18 +111,18 @@ class GlossaryStateViewTestCase(BaseViewTestCase):
         })
         self.assertEqual(self.view.get_real_context(), self.t1)
 
-    def test_enable_tooltip(self):
+    def test_tooltip_is_enabled(self):
         api.portal.set_registry_record(
             IGlossarySettings.__identifier__ + '.enable_tooltip',
             True
         )
-        self.assertTrue(self.view.enable_tooltip())
+        self.assertTrue(self.view.tooltip_is_enabled())
 
         api.portal.set_registry_record(
             IGlossarySettings.__identifier__ + '.enable_tooltip',
             False
         )
-        self.assertFalse(self.view.enable_tooltip())
+        self.assertFalse(self.view.tooltip_is_enabled())
 
     def test_is_view_action(self):
         self.assertTrue(self.view.is_view_action())
