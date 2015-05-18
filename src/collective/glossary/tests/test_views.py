@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.glossary.interfaces import IGlossaryLayer
+from collective.glossary.interfaces import IGlossarySettings
 from collective.glossary.testing import INTEGRATION_TESTING
 from plone import api
 from zope.interface import alsoProvides
@@ -94,13 +95,13 @@ class GlossaryStateViewTestCase(BaseViewTestCase):
 
     def test_tooltip_is_enabled(self):
         api.portal.set_registry_record(
-            'collective.glossary.interfaces.IGlossarySettings.enable_tooltip',
+            IGlossarySettings.__identifier__ + '.enable_tooltip',
             True
         )
         self.assertTrue(self.view.tooltip_is_enabled())
 
         api.portal.set_registry_record(
-            'collective.glossary.interfaces.IGlossarySettings.enable_tooltip',
+            IGlossarySettings.__identifier__ + '.enable_tooltip',
             False
         )
         self.assertFalse(self.view.tooltip_is_enabled())

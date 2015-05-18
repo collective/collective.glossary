@@ -18,9 +18,13 @@ Test CRUD
     Enable Autologin as  Site Administrator
     Go to Homepage
 
-    Create  Glossary  A glosary
-    Update  Glossary  A glossary
-    Delete
+    Create Glossary  The Beatles
+    Create Term  The Beatles  John
+    Create Term  The Beatles  Paul
+    Create Term  The Beatles  George
+    Create Term  The Beatles  Ringo
+    Check Terms  The Beatles  John  Paul  George  Ringo
+    Delete Glossary  The Beatles
 
 *** Keywords ***
 
@@ -29,25 +33,39 @@ Click Add Glossary
     Click Link  css=a#glossary
     Page Should Contain  Add Glossary
 
-Create
-    [arguments]  ${title}  ${description}
+Click Add Term
+    Open Add New Menu
+    Click Link  css=a#term
+    Page Should Contain  Add Term
+
+Create Glossary
+    [arguments]  ${title}
 
     Click Add Glossary
     Input Text  css=${title_selector}  ${title}
-    Input Text  css=${description_selector}  ${description}
     Click Button  Save
     Page Should Contain  Item created
 
-Update
-    [arguments]  ${title}  ${description}
+Create Term
+    [arguments]  ${glossary}  ${title}
 
-    Click Link  link=Edit
+    Click Link  ${glossary}
+    Click Add Term
     Input Text  css=${title_selector}  ${title}
-    Input Text  css=${description_selector}  ${description}
     Click Button  Save
-    Page Should Contain  Changes saved
+    Page Should Contain  Item created
 
-Delete
+Check Terms
+    [arguments]  ${glossary}  @{terms}
+
+    Click Link  ${glossary}
+    :FOR  ${term}  IN  @{terms}
+    \   Page Should Contain  ${term}
+
+Delete Glossary
+    [arguments]  ${glossary}
+
+    Click Link  ${glossary}
     Open Action Menu
     Click Link  css=a#plone-contentmenu-actions-delete
     Click Button  Delete

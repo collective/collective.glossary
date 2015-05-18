@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.glossary.interfaces import IGlossary
+from collective.glossary.interfaces import IGlossarySettings
 from collective.glossary.interfaces import ITerm
 from plone import api
 from plone.memoize import ram
@@ -99,10 +100,9 @@ class GlossaryStateView(BrowserView):
         self.request = request
 
     def tooltip_is_enabled(self):
-        """Check if glossary is enabled"""
-
+        """Check if term tooltip is enabled."""
         return api.portal.get_registry_record(
-            'collective.glossary.interfaces.IGlossarySettings.enable_tooltip'
+            IGlossarySettings.__identifier__ + '.enable_tooltip'
         )
 
     def is_view_action(self):
@@ -117,7 +117,7 @@ class GlossaryStateView(BrowserView):
         return context_url.startswith(request_url) and len(context_url) > len(request_url)
 
     def is_glossary_object(self):
-        """Check if the real context is """
+        """Check if we are in the context of a Glossary or a Term."""
 
         context = self.context
         return IGlossary.providedBy(context) or ITerm.providedBy(context)

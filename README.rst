@@ -57,3 +57,35 @@ Usage
 -----
 
 TBD.
+
+
+Screenshots
+-----------
+
+.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/glossary.png
+    :align: center
+    :height: 640px
+    :width: 768px
+
+    Create a Glossary.
+
+.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/usage.png
+    :align: center
+    :height: 640px
+    :width: 768px
+
+    Use it!
+
+.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/controlpanel.png
+    :align: center
+    :height: 400px
+    :width: 768px
+
+    The tooltip can be disabled in the control panel configlet.
+
+Developer Notes
+---------------
+
+The terms are loaded in a page using an AJAX call to a browser view that returns them as a JSON object.
+
+The tooltips will only be available in the default view of a content type instance.
