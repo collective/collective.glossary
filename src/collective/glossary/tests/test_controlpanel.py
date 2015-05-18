@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from collective.glossary.config import BASE_REGISTRY
 from collective.glossary.config import PROJECTNAME
 from collective.glossary.controlpanel import IGlossarySettings
 from collective.glossary.interfaces import IGlossaryLayer
@@ -70,7 +69,7 @@ class RegistryTestCase(unittest.TestCase):
             qi.uninstallProducts(products=[PROJECTNAME])
 
         records = [
-            BASE_REGISTRY + 'enable_tooltip',
+            IGlossarySettings.__identifier__ + 'enable_tooltip',
         ]
 
         for r in records:
