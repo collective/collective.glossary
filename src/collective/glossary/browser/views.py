@@ -125,7 +125,7 @@ class GlossaryStateView(BrowserView):
         return context_url.startswith(request_url) and len(context_url) > len(request_url)
 
     def is_glossary_object(self):
-        """Check if the real context is """
+        """Check if we are in the context of a Glossary or a Term."""
 
         context = self.get_real_context()
         return IGlossary.providedBy(context) or ITerm.providedBy(context)
