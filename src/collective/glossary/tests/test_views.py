@@ -43,10 +43,12 @@ class TermViewTestCase(BaseViewTestCase):
         super(TermViewTestCase, self).setUp()
         self.view = api.content.get_view(u'view', self.t1, self.request)
 
-    def test_prepare_item(self):
+    def test_get_item(self):
         self.assertEqual(
-            self.view.prepare_item(),
-            {'description': 'First Term Description', 'image': None, 'title': 'First Term'}
+            self.view.get_item(),
+            {'description': 'First Term Description',
+             'image': None,
+             'title': 'First Term'}
         )
 
 
@@ -56,9 +58,9 @@ class GlossaryViewTestCase(BaseViewTestCase):
         super(GlossaryViewTestCase, self).setUp()
         self.view = api.content.get_view(u'view', self.g1, self.request)
 
-    def test_prepare_items(self):
+    def test_get_items(self):
         self.assertEqual(
-            self.view.prepare_items(),
+            self.view.get_items(),
             {
                 'F': [{
                     'image': None,
@@ -79,11 +81,15 @@ class GlossaryViewTestCase(BaseViewTestCase):
     def test_terms(self):
         self.assertEqual(
             self.view.terms('F'),
-            [{'image': None, 'description': 'First Term Description', 'title': 'First Term'}]
+            [{'image': None,
+              'description': 'First Term Description',
+              'title': 'First Term'}]
         )
         self.assertEqual(
             self.view.terms('S'),
-            [{'image': None, 'description': 'Second Term Description', 'title': 'Second Term'}]
+            [{'image': None,
+              'description': 'Second Term Description',
+              'title': 'Second Term'}]
         )
 
 
@@ -149,11 +155,13 @@ class JsonViewTestCase(BaseViewTestCase):
 
     def setUp(self):
         super(JsonViewTestCase, self).setUp()
-        self.view = api.content.get_view(u'glossary', self.portal, self.request)
+        self.view = api.content.get_view(u'glossary',
+                                         self.portal,
+                                         self.request)
 
-    def test_get_items(self):
+    def test_get_json_items(self):
         self.assertEqual(
-            self.view.prepare_items(),
+            self.view.get_json_items(),
             [{'description': 'First Term Description', 'term': 'First Term'},
              {'description': 'Second Term Description', 'term': 'Second Term'}]
         )
