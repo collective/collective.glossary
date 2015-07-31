@@ -1,0 +1,49 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: ./../profiles/default/types/Glossary.xml
+msgid "A Glossary"
+msgstr "Ein Glossar"
+
+#: ./../profiles/default/types/Term.xml
+msgid "A Term"
+msgstr "Ein Glossareintrag"
+
+#: ./../interfaces.py:20
+msgid "Enable tooltip."
+msgstr "Tooltip einschalten."
+
+#: ./../interfaces.py:19
+msgid "Enable tooltip?"
+msgstr "Tooltip einschalten?"
+
+#: ./../controlpanel.py:12
+#: ./../profiles/default/controlpanel.xml
+#: ./../profiles/default/types/Glossary.xml
+msgid "Glossary"
+msgstr "Glossar"
+
+#: ./../interfaces.py:35
+msgid "Image"
+msgstr "Bild"
+
+#: ./../controlpanel.py:13
+msgid "Settings for the collective.glossary package"
+msgstr "Einstellungen für die collective.glossary Erweiterung"
+
+#: ./../profiles/default/types/Term.xml
+msgid "Term"
+msgstr "Glossareintrag"
