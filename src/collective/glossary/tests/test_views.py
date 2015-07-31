@@ -7,6 +7,7 @@ from zope.interface import alsoProvides
 from zope.publisher.browser import TestRequest
 
 import unittest
+import json
 
 
 class BaseViewTestCase(unittest.TestCase):
@@ -43,9 +44,9 @@ class TermViewTestCase(BaseViewTestCase):
         super(TermViewTestCase, self).setUp()
         self.view = api.content.get_view(u'view', self.t1, self.request)
 
-    def test_get_item(self):
+    def test_get_entry(self):
         self.assertEqual(
-            self.view.get_item(),
+            self.view.get_entry(),
             {'description': 'First Term Description',
              'image': None,
              'title': 'First Term'}
@@ -58,9 +59,9 @@ class GlossaryViewTestCase(BaseViewTestCase):
         super(GlossaryViewTestCase, self).setUp()
         self.view = api.content.get_view(u'view', self.g1, self.request)
 
-    def test_get_items(self):
+    def test_get_entries(self):
         self.assertEqual(
-            self.view.get_items(),
+            self.view.get_entries(),
             {
                 'F': [{
                     'image': None,
@@ -159,9 +160,18 @@ class JsonViewTestCase(BaseViewTestCase):
                                          self.portal,
                                          self.request)
 
-    def test_get_json_items(self):
+    def test_get_json_entries(self):
         self.assertEqual(
-            self.view.get_json_items(),
+            self.view.get_json_entries(),
+            [{'description': 'First Term Description', 'term': 'First Term'},
+             {'description': 'Second Term Description', 'term': 'Second Term'}]
+        )
+
+    def test__call__(self):
+        self.view()
+        result = self.view.request.response.getBody()
+        self.assertEqual(
+            json.loads(result),
             [{'description': 'First Term Description', 'term': 'First Term'},
              {'description': 'Second Term Description', 'term': 'Second Term'}]
         )

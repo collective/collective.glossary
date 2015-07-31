@@ -25,7 +25,7 @@ class TermView(BrowserView):
         self.context = context
         self.request = request
 
-    def get_item(self):
+    def get_entry(self):
         """get term in the desired format"""
 
         scales = self.context.unrestrictedTraverse('@@images')
@@ -47,8 +47,8 @@ class GlossaryView(BrowserView):
         self.request = request
 
     @ram.cache(_catalog_counter_cachekey)
-    def get_items(self):
-        """Get glossary items and keep them in the desired format"""
+    def get_entries(self):
+        """Get glossary entries and keep them in the desired format"""
 
         catalog = api.portal.get_tool('portal_catalog')
         path = '/'.join(self.context.getPhysicalPath())
@@ -80,11 +80,11 @@ class GlossaryView(BrowserView):
 
     def letters(self):
         """Return all letters sorted"""
-        return sorted(self.get_items().keys())
+        return sorted(self.get_entries().keys())
 
     def terms(self, letter):
         """Return all terms of one letter"""
-        return self.get_items()[letter]
+        return self.get_entries()[letter]
 
 
 class GlossaryStateView(BrowserView):
@@ -138,9 +138,9 @@ class JsonView(BrowserView):
         self.request = request
 
     @ram.cache(_catalog_counter_cachekey)
-    def get_json_items(self):
+    def get_json_entries(self):
         """Get all itens and prepare in the desired format.
-        Note: do not name it get_items, otherwise caching is broken. """
+        Note: do not name it get_entries, otherwise caching is broken. """
 
         catalog = api.portal.get_tool('portal_catalog')
 
@@ -157,4 +157,4 @@ class JsonView(BrowserView):
         response = self.request.response
         response.setHeader('content-type', 'application/json')
 
-        return response.setBody(json.dumps(self.get_json_items()))
+        return response.setBody(json.dumps(self.get_json_entries()))
