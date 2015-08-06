@@ -7,7 +7,6 @@ from zope.interface import alsoProvides
 from zope.publisher.browser import TestRequest
 
 import unittest
-import json
 
 
 class BaseViewTestCase(unittest.TestCase):
@@ -156,9 +155,11 @@ class JsonViewTestCase(BaseViewTestCase):
 
     def setUp(self):
         super(JsonViewTestCase, self).setUp()
-        self.view = api.content.get_view(u'glossary',
-                                         self.portal,
-                                         self.request)
+        self.view = api.content.get_view(
+            u'glossary',
+            self.portal,
+            self.request
+        )
 
     def test_get_json_entries(self):
         self.assertEqual(
@@ -168,6 +169,8 @@ class JsonViewTestCase(BaseViewTestCase):
         )
 
     def test__call__(self):
+        import json
+
         self.view()
         result = self.view.request.response.getBody()
         self.assertEqual(

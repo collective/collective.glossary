@@ -4,7 +4,6 @@ from collective.glossary.interfaces import IGlossarySettings
 from collective.glossary.interfaces import ITerm
 from plone import api
 from plone.memoize import ram
-
 from Products.Five.browser import BrowserView
 
 import json
@@ -26,7 +25,7 @@ class TermView(BrowserView):
         self.request = request
 
     def get_entry(self):
-        """get term in the desired format"""
+        """Get term in the desired format"""
 
         scales = self.context.unrestrictedTraverse('@@images')
         image = scales.scale('image', None)
