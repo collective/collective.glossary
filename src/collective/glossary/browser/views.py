@@ -23,10 +23,9 @@ class TermView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self.item = self.prepare_item()
 
-    def prepare_item(self):
-        """Prepare term in the desired format"""
+    def get_entry(self):
+        """Get term in the desired format"""
 
         scales = self.context.unrestrictedTraverse('@@images')
         image = scales.scale('image', None)
@@ -45,10 +44,10 @@ class GlossaryView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self.items = self.prepare_items()
 
-    def prepare_items(self):
-        """Get glossary items and keep them in the desired format"""
+    @ram.cache(_catalog_counter_cachekey)
+    def get_entries(self):
+        """Get glossary entries and keep them in the desired format"""
 
         catalog = api.portal.get_tool('portal_catalog')
         path = '/'.join(self.context.getPhysicalPath())
@@ -80,13 +79,11 @@ class GlossaryView(BrowserView):
 
     def letters(self):
         """Return all letters sorted"""
-
-        return sorted(self.items.keys())
+        return sorted(self.get_entries().keys())
 
     def terms(self, letter):
         """Return all terms of one letter"""
-
-        return self.items[letter]
+        return self.get_entries()[letter]
 
 
 class GlossaryStateView(BrowserView):
@@ -113,8 +110,10 @@ class GlossaryStateView(BrowserView):
         request_url = self.request.base + self.request.get('PATH_INFO', '')
         if context_url == request_url:
             return True
+
         # Default view
-        return context_url.startswith(request_url) and len(context_url) > len(request_url)
+        return context_url.startswith(request_url) and \
+            len(context_url) > len(request_url)
 
     def is_glossary_object(self):
         """Check if we are in the context of a Glossary or a Term."""
@@ -123,7 +122,8 @@ class GlossaryStateView(BrowserView):
         return IGlossary.providedBy(context) or ITerm.providedBy(context)
 
     def __call__(self):
-        return self.tooltip_is_enabled() and self.is_view_action() and not self.is_glossary_object()
+        return self.tooltip_is_enabled() and \
+            self.is_view_action() and not self.is_glossary_object()
 
 
 class JsonView(BrowserView):
@@ -135,11 +135,11 @@ class JsonView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self.items = self.prepare_items()
 
     @ram.cache(_catalog_counter_cachekey)
-    def prepare_items(self):
-        """Get all itens and prepare in the desired format"""
+    def get_json_entries(self):
+        """Get all itens and prepare in the desired format.
+        Note: do not name it get_entries, otherwise caching is broken. """
 
         catalog = api.portal.get_tool('portal_catalog')
 
@@ -155,4 +155,5 @@ class JsonView(BrowserView):
     def __call__(self):
         response = self.request.response
         response.setHeader('content-type', 'application/json')
-        return response.setBody(json.dumps(self.items))
+
+        return response.setBody(json.dumps(self.get_json_entries()))
