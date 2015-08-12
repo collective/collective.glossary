@@ -4,7 +4,10 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
+- Review method `is_view_action` to work with Virtual Host configuration.
+  [rodfersou]
 - Terms should only be added inside a Glossary (closes `#8`_).
+  [hvelarde]
 
 
 1.0a1 (2015-05-18)

@@ -107,7 +107,10 @@ class GlossaryStateView(BrowserView):
 
         context = self.context
         context_url = context.absolute_url()
-        request_url = self.request.base + self.request.get('PATH_INFO', '')
+        # Check if use Virtual Host configuration (ex.: Nginx)
+        request_url = self.request.get('VIRTUAL_URL', None)
+        if request_url is None:
+            request_url = self.request.base + self.request.get('PATH_INFO', '')
         if context_url == request_url:
             return True
 
