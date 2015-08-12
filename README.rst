@@ -16,17 +16,14 @@ This package is inspired in `PloneGlossary`_.
 Mostly Harmless
 ===============
 
-.. image:: https://secure.travis-ci.org/collective/collective.glossary.png?branch=master
-    :alt: Travis CI badge
+.. image:: http://img.shields.io/pypi/v/collective.glossary.svg
+    :target: https://pypi.python.org/pypi/collective.glossary
+
+.. image:: https://img.shields.io/travis/collective/collective.glossary/master.svg
     :target: http://travis-ci.org/collective/collective.glossary
 
-.. image:: https://coveralls.io/repos/collective/collective.glossary/badge.png?branch=master
-    :alt: Coveralls badge
+.. image:: https://img.shields.io/coveralls/collective/collective.glossary/master.svg
     :target: https://coveralls.io/r/collective/collective.glossary
-
-.. image:: https://pypip.in/d/collective.glossary/badge.png
-    :alt: Downloads
-    :target: https://pypi.python.org/pypi/collective.glossary/
 
 Got an idea? Found a bug? Let us know by `opening a support ticket`_.
 
