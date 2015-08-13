@@ -4,6 +4,8 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
+- Apply Glossary just to #content-core. (closes `#12`_).
+  [rodfersou]
 - Review method `is_view_action` to work with Virtual Host configuration.
   [rodfersou]
 - Terms should only be added inside a Glossary (closes `#8`_).
@@ -16,3 +18,4 @@ Changelog
 - Initial release.
 
 .. _`#8`: https://github.com/collective/collective.cover/issues/8
+.. _`#12`: https://github.com/collective/collective.cover/issues/12
