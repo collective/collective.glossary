@@ -35,6 +35,11 @@ class BaseViewTestCase(unittest.TestCase):
                 title='Second Term',
                 description='Second Term Description'
             )
+            self.d1 = api.content.create(
+                self.portal, 'Document', 'd1',
+                title='Document',
+                description='Document Description'
+            )
 
 
 class TermViewTestCase(BaseViewTestCase):
@@ -104,23 +109,32 @@ class GlossaryStateViewTestCase(BaseViewTestCase):
             IGlossarySettings.__identifier__ + '.enable_tooltip',
             True
         )
-        self.assertTrue(self.view.tooltip_is_enabled())
+        self.assertTrue(self.view.tooltip_is_enabled)
 
         api.portal.set_registry_record(
             IGlossarySettings.__identifier__ + '.enable_tooltip',
             False
         )
-        self.assertFalse(self.view.tooltip_is_enabled())
+        self.assertFalse(self.view.tooltip_is_enabled)
+
+    def test_content_type_is_enabled(self):
+        self.assertFalse(self.view.content_type_is_enabled)
+
+        self.view.context = self.d1
+        self.assertTrue(self.view.content_type_is_enabled)
+
+        self.view.context = self.g1
+        self.assertFalse(self.view.content_type_is_enabled)
 
     def test_is_view_action(self):
-        self.assertTrue(self.view.is_view_action())
+        self.assertTrue(self.view.is_view_action)
 
         self.view.request = TestRequest(environ={
             'SERVER_URL': 'http://nohost',
             'PATH_INFO': '/folder_contents'
         })
         self.view.request.base = 'http://nohost/plone'
-        self.assertFalse(self.view.is_view_action())
+        self.assertFalse(self.view.is_view_action)
 
         self.view.context = self.g1
         self.view.request = TestRequest(environ={
@@ -128,27 +142,14 @@ class GlossaryStateViewTestCase(BaseViewTestCase):
             'PATH_INFO': '/g1'
         })
         self.view.request.base = 'http://nohost/plone'
-        self.assertTrue(self.view.is_view_action())
+        self.assertTrue(self.view.is_view_action)
 
         self.view.request = TestRequest(environ={
             'SERVER_URL': 'http://nohost/plone/g1',
             'PATH_INFO': '/g1/edit'
         })
         self.view.request.base = 'http://nohost/plone'
-        self.assertFalse(self.view.is_view_action())
-
-    def test_is_glossary_object(self):
-        self.assertFalse(self.view.is_glossary_object())
-
-        self.view.context = self.g1
-        self.view.request = TestRequest()
-        self.assertTrue(self.view.is_glossary_object())
-
-        self.view.context = self.portal
-        self.assertFalse(self.view.is_glossary_object())
-
-        self.view.context = self.t1
-        self.assertTrue(self.view.is_glossary_object())
+        self.assertFalse(self.view.is_view_action)
 
 
 class JsonViewTestCase(BaseViewTestCase):

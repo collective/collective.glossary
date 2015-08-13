@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective.glossary.interfaces import IGlossary
 from collective.glossary.interfaces import IGlossarySettings
-from collective.glossary.interfaces import ITerm
 from plone import api
 from plone.memoize import ram
 from Products.Five.browser import BrowserView
@@ -96,21 +94,30 @@ class GlossaryStateView(BrowserView):
         self.context = context
         self.request = request
 
+    @property
     def tooltip_is_enabled(self):
         """Check if term tooltip is enabled."""
         return api.portal.get_registry_record(
-            IGlossarySettings.__identifier__ + '.enable_tooltip'
-        )
+            IGlossarySettings.__identifier__ + '.enable_tooltip')
 
+    @property
+    def content_type_is_enabled(self):
+        """Check if we must show the tooltip in this context."""
+        portal_type = getattr(self.context, 'portal_type', None)
+        enabled_content_types = api.portal.get_registry_record(
+            IGlossarySettings.__identifier__ + '.enabled_content_types')
+        return portal_type in enabled_content_types
+
+    @property
     def is_view_action(self):
-        """Check if we are into the view action"""
-
-        context = self.context
-        context_url = context.absolute_url()
+        """Check if we are into the view action."""
+        context_url = self.context.absolute_url()
         # Check if use Virtual Host configuration (ex.: Nginx)
         request_url = self.request.get('VIRTUAL_URL', None)
+
         if request_url is None:
             request_url = self.request.base + self.request.get('PATH_INFO', '')
+
         if context_url == request_url:
             return True
 
@@ -118,15 +125,9 @@ class GlossaryStateView(BrowserView):
         return context_url.startswith(request_url) and \
             len(context_url) > len(request_url)
 
-    def is_glossary_object(self):
-        """Check if we are in the context of a Glossary or a Term."""
-
-        context = self.context
-        return IGlossary.providedBy(context) or ITerm.providedBy(context)
-
     def __call__(self):
-        return self.tooltip_is_enabled() and \
-            self.is_view_action() and not self.is_glossary_object()
+        return self.tooltip_is_enabled and \
+            self.content_type_is_enabled and self.is_view_action
 
 
 class JsonView(BrowserView):

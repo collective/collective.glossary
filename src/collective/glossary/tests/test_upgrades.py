@@ -47,7 +47,7 @@ class Upgrade1to2TestCase(UpgradeTestCaseBase):
     def test_upgrade_to_2_registrations(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
         self.assertGreaterEqual(int(version), int(self.to_version))
-        self.assertEqual(self.total_steps, 3)
+        self.assertEqual(self.total_steps, 4)
 
     def test_update_resource_conditions(self):
         # check if the upgrade step is registered
