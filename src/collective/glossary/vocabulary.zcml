@@ -1,0 +1,9 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <utility
+      provides="zope.schema.interfaces.IVocabularyFactory"
+      component=".vocabulary.PortalTypesVocabularyFactory"
+      name="collective.glossary.PortalTypes"
+      />
+
+</configure>

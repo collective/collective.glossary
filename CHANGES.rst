@@ -4,6 +4,9 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
+- Add option to select content types that will display glossary terms (closes `#14`_).
+  [rodfersou]
+
 - Add upgrade step to deal with change on conditions to include CSS and JS resources (closes `#11`_).
   [rodfersou]
 
@@ -25,3 +28,4 @@ Changelog
 .. _`#8`: https://github.com/collective/collective.cover/issues/8
 .. _`#11`: https://github.com/collective/collective.cover/issues/11
 .. _`#12`: https://github.com/collective/collective.cover/issues/12
+.. _`#14`: https://github.com/collective/collective.cover/issues/14

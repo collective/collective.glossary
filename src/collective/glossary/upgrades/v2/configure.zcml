@@ -3,16 +3,16 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="collective.glossary">
 
-    <genericsetup:upgradeSteps
-        source="1"
-        destination="2"
-        profile="collective.glossary:default">
+  <genericsetup:upgradeSteps
+      source="1"
+      destination="2"
+      profile="collective.glossary:default">
 
-      <genericsetup:upgradeStep
-          title="Update resource conditions"
-          description="Conditions to include package resources were changed."
-          handler=".update_resource_conditions"
-          />
+    <genericsetup:upgradeStep
+        title="Update resource conditions"
+        description="Conditions to include package resources were changed."
+        handler=".update_resource_conditions"
+        />
 
     <genericsetup:upgradeStep
         title="Cook CSS resources"
@@ -26,6 +26,12 @@
         handler="..cook_javascript_resources"
         />
 
-    </genericsetup:upgradeSteps>
+    <genericsetup:upgradeStep
+        title="Update control panel options"
+        description="Add option to select the content type to use glossary."
+        handler=".update_controlpanel_options"
+        />
+
+  </genericsetup:upgradeSteps>
 
 </configure>

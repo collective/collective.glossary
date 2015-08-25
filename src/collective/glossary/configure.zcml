@@ -24,5 +24,6 @@
   <include package=".browser" />
 
   <include file="profiles.zcml" />
+  <include file="vocabulary.zcml" />
 
 </configure>
