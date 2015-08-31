@@ -54,7 +54,7 @@ class GlossaryView(BrowserView):
         items = {}
         for brain in catalog(**query):
             obj = brain.getObject()
-            index = obj.title[0].upper()
+            index = obj.id[0].upper()
             if index not in items:
                 items[index] = []
             scales = obj.unrestrictedTraverse('@@images')
