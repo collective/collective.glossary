@@ -4,6 +4,9 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
+- A new rich text field was added to the Glossary content type.
+  [hvelarde]
+
 - Normalize glossary index (closes `#18`_).
   [rodfersou]
 
