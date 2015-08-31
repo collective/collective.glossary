@@ -4,6 +4,9 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
+- Normalize glossary index (closes `#18`_).
+  [rodfersou]
+
 - Add option to select content types that will display glossary terms (closes `#14`_).
   [rodfersou]
 
@@ -29,3 +32,4 @@ Changelog
 .. _`#11`: https://github.com/collective/collective.cover/issues/11
 .. _`#12`: https://github.com/collective/collective.cover/issues/12
 .. _`#14`: https://github.com/collective/collective.cover/issues/14
+.. _`#18`: https://github.com/collective/collective.cover/issues/18
