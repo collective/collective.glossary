@@ -83,6 +83,19 @@ class GlossaryViewTestCase(BaseViewTestCase):
     def test_letters(self):
         self.assertEqual(self.view.letters(), [u'F', u'S'])
 
+        with api.env.adopt_roles(['Manager']):
+            self.ta1 = api.content.create(
+                self.g1, 'Term', 'ta1',
+                title='American',
+                description='American Term Description'
+            )
+            self.ta2 = api.content.create(
+                self.g1, 'Term', 'ta2',
+                title='Ásia',
+                description='Ásia Term Description'
+            )
+        self.assertEqual(self.view.letters(), [u'A', u'F', u'S'])
+
     def test_terms(self):
         self.assertEqual(
             self.view.terms('F'),

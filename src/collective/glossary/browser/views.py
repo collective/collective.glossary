@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.glossary.interfaces import IGlossarySettings
 from plone import api
+from plone.i18n.normalizer.base import baseNormalize
 from plone.memoize import ram
 from Products.Five.browser import BrowserView
 
@@ -54,7 +55,7 @@ class GlossaryView(BrowserView):
         items = {}
         for brain in catalog(**query):
             obj = brain.getObject()
-            index = obj.id[0].upper()
+            index = baseNormalize(obj.title)[0].upper()
             if index not in items:
                 items[index] = []
             scales = obj.unrestrictedTraverse('@@images')
