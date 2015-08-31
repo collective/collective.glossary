@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.glossary import _
 from collective.glossary.config import DEFAULT_ENABLED_CONTENT_TYPES
+from plone.app.textfield import RichText
 from plone.directives import form
 from plone.namedfile.field import NamedBlobImage
 from zope import schema
@@ -36,6 +37,12 @@ class IGlossarySettings(form.Schema):
 class IGlossary(form.Schema):
 
     """A Glossary is a container for Terms."""
+
+    text = RichText(
+        title=_(u'Body text'),
+        description=_(u''),
+        required=False,
+    )
 
 
 class ITerm(form.Schema):

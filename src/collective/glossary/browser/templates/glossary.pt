@@ -6,8 +6,21 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="collective.glossary">
   <body>
-    <metal:content-core fill-slot="content-core">
+    <metal:content-core fill-slot="content-core"
+        tal:define="text context/text/output | nothing">
       <metal:content-core define-macro="content-core">
+        <p tal:define="is_editable context/@@plone_context_state/is_editable"
+           tal:condition="python:not text and is_editable"
+           i18n:domain="plone"
+           i18n:translate="no_body_text"
+           class="discreet">
+            This item does not have any body text, click the edit tab to change it.
+        </p>
+
+        <div tal:condition="text">
+          <div tal:content="structure text">The body</div>
+        </div>
+
         <tal:repeat repeat="letter view/letters">
           <div class="letter">
             <div class="header">
