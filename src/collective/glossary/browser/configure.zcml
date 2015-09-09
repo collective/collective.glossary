@@ -45,7 +45,7 @@
 
   <browser:page
       name="glossary"
-      for="*"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
       class=".views.JsonView"
       permission="zope2.View"
       layer="collective.glossary.interfaces.IGlossaryLayer"
