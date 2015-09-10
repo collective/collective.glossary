@@ -4,6 +4,9 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
+- Change glossary to always call json view from the portal url (closes `#22`).
+  [rodfersou]
+
 - A new rich text field was added to the Glossary content type.
   [hvelarde]
 
@@ -36,3 +39,4 @@ Changelog
 .. _`#12`: https://github.com/collective/collective.cover/issues/12
 .. _`#14`: https://github.com/collective/collective.cover/issues/14
 .. _`#18`: https://github.com/collective/collective.cover/issues/18
+.. _`#22`: https://github.com/collective/collective.cover/issues/22
