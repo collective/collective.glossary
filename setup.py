@@ -46,7 +46,6 @@ setup(
         'plone.directives.form',
         'plone.namedfile',
         'Products.CMFPlone >=4.3',
-        'Products.CMFQuickInstallerTool',
         'Products.GenericSetup',
         'setuptools',
         'zope.globalrequest',

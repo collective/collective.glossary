@@ -26,6 +26,5 @@
   <include package=".upgrades" />
 
   <utility factory=".setuphandlers.HiddenProfiles" name="collective.glossary" />
-  <utility factory=".setuphandlers.HiddenProducts" name="collective.glossary" />
 
 </configure>

@@ -4,7 +4,10 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
-- Change glossary to always call json view from the portal url (closes `#22`).
+- Remove dependency on Products.CMFQuickInstallerTool.
+  [hvelarde]
+
+- Change glossary to always call JSON view from the portal URL (closes `#22`).
   [rodfersou]
 
 - A new rich text field was added to the Glossary content type.
