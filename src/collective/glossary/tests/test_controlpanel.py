@@ -62,6 +62,11 @@ class RegistryTestCase(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'enable_tooltip'))
         self.assertEqual(self.settings.enable_tooltip, True)
 
+    def test_enabled_content_types_record_in_registry(self):
+        from collective.glossary.config import DEFAULT_ENABLED_CONTENT_TYPES
+        self.assertTrue(hasattr(self.settings, 'enabled_content_types'))
+        self.assertEqual(self.settings.enabled_content_types, DEFAULT_ENABLED_CONTENT_TYPES)
+
     def test_records_removed_on_uninstall(self):
         qi = self.portal['portal_quickinstaller']
 
@@ -69,7 +74,8 @@ class RegistryTestCase(unittest.TestCase):
             qi.uninstallProducts(products=[PROJECTNAME])
 
         records = [
-            IGlossarySettings.__identifier__ + 'enable_tooltip',
+            IGlossarySettings.__identifier__ + '.enable_tooltip',
+            IGlossarySettings.__identifier__ + '.enabled_content_types'
         ]
 
         for r in records:
