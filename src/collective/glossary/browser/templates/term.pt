@@ -6,30 +6,21 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="collective.glossary">
   <body>
-    <metal:content-core fill-slot="content-core">
-      <metal:content-core define-macro="content-core">
-        <div class="term"
-             tal:define="item view/get_entry">
-          <div class="image"
-               tal:condition="item/image">
-            <img tal:attributes="src item/image/url;
-                                 width item/image/width;
-                                 height item/image/height;
-                                 alt item/title" />
-          </div>
-          <div class="description-wrapper">
-            <div class="description">
-              <span class="title"
-                    tal:content="item/title">
-              </span>
-              -
-              <span class="description"
-                    tal:replace="item/description">
-              </span>
-            </div>
-          </div>
-        </div>
-      </metal:content-core>
-    </metal:content-core>
+    <metal:main fill-slot="main">
+
+      <div tal:define="image nocall:context/image" tal:condition="nocall:image">
+        <img tal:replace="structure context/@@images/image/preview" />
+      </div>
+
+      <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+      <h1 class="documentFirstHeading"
+          tal:content="context/title">Title</h1>
+
+      <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+      <div class="documentDescription"
+          tal:content="context/description">Description</div>
+    </metal:main>
   </body>
 </html>
