@@ -56,7 +56,7 @@ class RegistryTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.registry = getUtility(IRegistry)
-        self.settings = self.registry.forInterface(IGlossarySettings)
+        self.settings = self.registry.forInterface(IGlossarySettings)  # noqa: P001
 
     def test_enable_tooltip_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'enable_tooltip'))
