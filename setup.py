@@ -44,7 +44,6 @@ setup(
         'plone.app.dexterity',
         'plone.app.registry',
         'plone.dexterity',
-        'plone.directives.form',
         'plone.namedfile',
         'Products.CMFPlone >=4.3',
         'Products.GenericSetup',
