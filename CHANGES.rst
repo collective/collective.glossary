@@ -4,6 +4,9 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
+- Fix ``ReferenceError`` on JavaScript code (Plone 5 does not include global variables anymore).
+  [hvelarde]
+
 - Remove dependency on Products.CMFQuickInstallerTool.
   [hvelarde]
 
