@@ -2,7 +2,6 @@
 from collective.glossary import _
 from collective.glossary.config import DEFAULT_ENABLED_CONTENT_TYPES
 from plone.app.textfield import RichText
-from plone.directives import form
 from plone.namedfile.field import NamedBlobImage
 from zope import schema
 from zope.interface import Interface
@@ -13,7 +12,7 @@ class IGlossaryLayer(Interface):
     """A layer specific for this add-on product."""
 
 
-class IGlossarySettings(form.Schema):
+class IGlossarySettings(Interface):
 
     """Schema for the control panel form."""
 
@@ -34,7 +33,7 @@ class IGlossarySettings(form.Schema):
     )
 
 
-class IGlossary(form.Schema):
+class IGlossary(Interface):
 
     """A Glossary is a container for Terms."""
 
@@ -45,7 +44,7 @@ class IGlossary(form.Schema):
     )
 
 
-class ITerm(form.Schema):
+class ITerm(Interface):
 
     """A Term."""
 

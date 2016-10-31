@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.glossary.testing import INTEGRATION_TESTING
+from collective.glossary.testing import IS_PLONE_5
 from plone import api
 
 import unittest
@@ -49,6 +50,7 @@ class Upgrade1to2TestCase(UpgradeTestCaseBase):
         self.assertGreaterEqual(int(version), int(self.to_version))
         self.assertEqual(self.total_steps, 4)
 
+    @unittest.skipIf(IS_PLONE_5, 'Upgrade step not supported under Plone 5')
     def test_update_resource_conditions(self):
         # check if the upgrade step is registered
         title = u'Update resource conditions'

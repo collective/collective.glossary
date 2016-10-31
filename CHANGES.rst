@@ -4,6 +4,9 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
+- Remove dependency on five.grok.
+  [hvelarde]
+
 - Fix ``ReferenceError`` on JavaScript code (Plone 5 does not include global variables anymore).
   [hvelarde]
 
