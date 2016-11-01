@@ -11,10 +11,6 @@ env:
 - PLONE_VERSION=5.1
 matrix:
   fast_finish: true
-before_install:
-- npm install csslint jshint
-- which csslint
-- which jshint
 install:
 - sed -ie "s#test-4.3#test-$PLONE_VERSION#" buildout.cfg
 - python bootstrap.py
