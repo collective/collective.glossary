@@ -106,23 +106,6 @@ body.portaltype-glossary .letter .terms .term
     width: 100%;
     margin-top: .5rem;
 }
-body.portaltype-glossary .letter .terms .image
-{
-    float: left;
-
-    -webkit-box-flex: 0;
-       -moz-box-flex: 0;
-            box-flex: 0;
-    -webkit-flex: 0 0 auto;
-       -moz-flex: 0 0 auto;
-        -ms-flex: 0 0 auto;
-            flex: 0 0 auto;
-}
-body.portaltype-glossary .letter .terms .image img
-{
-    max-width: 60px;
-    max-height: 60px;
-}
 body.portaltype-glossary .letter .terms .description-wrapper
 {
     display: -webkit-box;

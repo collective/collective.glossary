@@ -29,13 +29,9 @@
             <div class="terms">
               <tal:repeat repeat="item python:view.terms(letter)">
                 <div class="term">
-                  <div class="image"
-                       tal:condition="item/image">
-                    <img tal:attributes="src item/image/url;
-                                         width item/image/width;
-                                         height item/image/height;
-                                         alt item/title" />
-                  </div>
+                  <img tal:define="image item/image"
+                      tal:condition="nocall:image"
+                      tal:replace="structure image/tag" />
                   <div class="description-wrapper">
                     <div class="description">
                       <span class="title"
