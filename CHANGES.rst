@@ -4,6 +4,9 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
+- Glossary can't access portal_url variable in production (fixes `#33`_).
+  [rodfersou]
+
 - Remove dependency on five.grok.
   [hvelarde]
 
@@ -49,3 +52,4 @@ Changelog
 .. _`#14`: https://github.com/collective/collective.cover/issues/14
 .. _`#18`: https://github.com/collective/collective.cover/issues/18
 .. _`#22`: https://github.com/collective/collective.cover/issues/22
+.. _`#33`: https://github.com/collective/collective.cover/issues/33
