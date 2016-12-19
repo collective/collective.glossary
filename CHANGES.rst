@@ -4,6 +4,9 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
+- Glossary terms now use ``tile`` scales (closes `#5`_).
+  [hvelarde]
+
 - Remove dependency on five.grok.
   [hvelarde]
 
@@ -40,6 +43,7 @@ Changelog
 
 - Initial release.
 
+.. _`#5`: https://github.com/collective/collective.cover/issues/5
 .. _`#8`: https://github.com/collective/collective.cover/issues/8
 .. _`#12`: https://github.com/collective/collective.cover/issues/12
 .. _`#14`: https://github.com/collective/collective.cover/issues/14

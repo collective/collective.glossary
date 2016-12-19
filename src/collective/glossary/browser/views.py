@@ -59,7 +59,7 @@ class GlossaryView(BrowserView):
             if index not in items:
                 items[index] = []
             scales = obj.unrestrictedTraverse('@@images')
-            image = scales.scale('image', None)
+            image = scales.scale('image', scale='tile')  # 64x64
             item = {
                 'title': obj.title,
                 'description': obj.description,
