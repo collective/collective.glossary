@@ -4,6 +4,9 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
+- Term template was refactored to avoid duplicated definitions (closes `#26`_)
+  [hvelarde]
+
 - Glossary terms now use ``tile`` scales (closes `#5`_).
   [hvelarde]
 
@@ -49,3 +52,4 @@ Changelog
 .. _`#14`: https://github.com/collective/collective.cover/issues/14
 .. _`#18`: https://github.com/collective/collective.cover/issues/18
 .. _`#22`: https://github.com/collective/collective.cover/issues/22
+.. _`#26`: https://github.com/collective/collective.cover/issues/26
