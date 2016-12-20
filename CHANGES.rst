@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0a2 (unreleased)
+1.0b1 (2016-12-19)
 ------------------
 
 - Term template was refactored to avoid duplicated definitions (closes `#26`_)

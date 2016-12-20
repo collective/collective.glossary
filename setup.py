@@ -2,7 +2,7 @@
 from setuptools import find_packages
 from setuptools import setup
 
-version = '1.0a2.dev0'
+version = '1.0b1'
 description = 'A Dexterity-based content type to define a glossary and its terms.'
 long_description = (
     open('README.rst').read() + '\n' +
