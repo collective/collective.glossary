@@ -67,20 +67,20 @@ class Upgrade1to2TestCase(UpgradeTestCaseBase):
         CSS_IDS = ('++resource++collective.glossary/tooltip.css',)
 
         # simulate state on previous version
-        for id in JS_IDS:
-            js = js_tool.getResource(id)
+        for id_ in JS_IDS:
+            js = js_tool.getResource(id_)
             js.setExpression("python:portal.restrictedTraverse('@@glossary_state')()")
-        for id in CSS_IDS:
-            css = css_tool.getResource(id)
+        for id_ in CSS_IDS:
+            css = css_tool.getResource(id_)
             css.setExpression("python:portal.restrictedTraverse('@@glossary_state')()")
 
         # run the upgrade step to validate the update
         self.execute_upgrade_step(step)
 
         # Check expected expression
-        for id in JS_IDS:
-            js = js_tool.getResource(id)
+        for id_ in JS_IDS:
+            js = js_tool.getResource(id_)
             self.assertEqual(js.getExpression(), 'context/@@glossary_state')
-        for id in CSS_IDS:
-            css = css_tool.getResource(id)
+        for id_ in CSS_IDS:
+            css = css_tool.getResource(id_)
             self.assertEqual(css.getExpression(), 'context/@@glossary_state')

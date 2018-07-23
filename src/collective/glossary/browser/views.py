@@ -19,10 +19,6 @@ class TermView(BrowserView):
 
     """Default view for Term type"""
 
-    def __init__(self, context, request):
-        self.context = context
-        self.request = request
-
     def get_entry(self):
         """Get term in the desired format"""
 
@@ -39,10 +35,6 @@ class TermView(BrowserView):
 class GlossaryView(BrowserView):
 
     """Default view of Glossary type"""
-
-    def __init__(self, context, request):
-        self.context = context
-        self.request = request
 
     @ram.cache(_catalog_counter_cachekey)
     def get_entries(self):
@@ -87,10 +79,6 @@ class GlossaryStateView(BrowserView):
     This is called by JS and CSS resources registry
     """
 
-    def __init__(self, context, request):
-        self.context = context
-        self.request = request
-
     @property
     def tooltip_is_enabled(self):
         """Check if term tooltip is enabled."""
@@ -132,10 +120,6 @@ class JsonView(BrowserView):
 
     This view is used into an ajax call for
     """
-
-    def __init__(self, context, request):
-        self.context = context
-        self.request = request
 
     @ram.cache(_catalog_counter_cachekey)
     def get_json_entries(self):
