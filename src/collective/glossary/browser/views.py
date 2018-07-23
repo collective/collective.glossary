@@ -99,18 +99,19 @@ class GlossaryStateView(BrowserView):
 
 
 class JsonView(BrowserView):
-    """View that returns all glossary items in JSON format.
-
-    This view is used into an AJAX call to create the tooltips.
+    """View that returns all glossary items in JSON format. It is used
+    to create the tooltips.
     """
 
-    def get_json_entries(self):
-        """Return a dictionary of glossary entries.
+    def is_safe_method(self):
+        """Check if the request was made using a safe method."""
+        safe_methods = ('GET', 'HEAD')
+        return self.request.get('REQUEST_METHOD', 'GET').upper() in safe_methods
 
-        Note: do not name it get_entries, otherwise caching is broken. """
-
+    @staticmethod
+    def get_entries(self):
+        """Return a dictionary of glossary entries."""
         catalog = api.portal.get_tool('portal_catalog')
-
         items = []
         for brain in catalog(portal_type='Term'):
             items.append({
@@ -121,7 +122,19 @@ class JsonView(BrowserView):
         return items
 
     def __call__(self):
-        response = self.request.response
-        response.setHeader('content-type', 'application/json')
+        """Return a dictionary of all glossary entries in JSON format.
 
-        return response.setBody(json.dumps(self.get_json_entries()))
+        Make use of HTTP caching headers to decrease server usage:
+        results are not cached on browsers and are cached 120 seconds
+        on intermediate caches.
+
+        More information: https://httpwg.org/specs/rfc7234.html
+        """
+        response = self.request.response
+        if not self.is_safe_method():
+            response.setStatus(412)  # Precondition Failed
+            return ''
+
+        response.setHeader('Cache-Control', 'max-age=0, s-maxage=120')
+        response.setHeader('Content-Type', 'application/json')
+        return response.setBody(json.dumps(self.get_entries()))

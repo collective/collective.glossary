@@ -158,12 +158,12 @@ class JsonViewTestCase(BaseViewTestCase):
         self.view = api.content.get_view(
             u'glossary', self.portal, self.request)
 
-    def test_get_json_entries(self):
+    def test_get_entries(self):
         expected = [
             {'description': 'First Term Description', 'term': 'First Term'},
             {'description': 'Second Term Description', 'term': 'Second Term'},
         ]
-        self.assertEqual(self.view.get_json_entries(), expected)
+        self.assertEqual(self.view.get_entries(), expected)
 
     def test__call__(self):
         import json
@@ -175,3 +175,17 @@ class JsonViewTestCase(BaseViewTestCase):
             {'description': 'Second Term Description', 'term': 'Second Term'},
         ]
         self.assertEqual(json.loads(result), expected)
+
+    def test_headers(self):
+        self.view()
+
+        headers = self.request.response.headers
+        self.assertEqual(self.request.response.getStatus(), 200)
+        self.assertEqual(headers['cache-control'], 'max-age=0, s-maxage=120')
+        self.assertEqual(headers['content-type'], 'application/json')
+
+    def test_non_safe_method(self):
+        self.request.environ['REQUEST_METHOD'] = 'PUT'
+        self.view()
+
+        self.assertEqual(self.request.response.getStatus(), 412)
