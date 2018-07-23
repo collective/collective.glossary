@@ -11,6 +11,7 @@ class Glossary(Container):
     """A Glossary is a container for Terms."""
 
     def get_entries(self):
+        """Return a list of terms in the glossary."""
         filter_ = {'portal_type': 'Term'}
         return self.listFolderContents(filter_)
 

@@ -26,7 +26,7 @@ class GlossaryView(BrowserView):
     """Default view of Glossary type"""
 
     def get_entries(self):
-        """Return a dictionary of glossary entries."""
+        """Return information of terms in the glossary."""
         entries = self.context.get_entries()
         items = {}
         for obj in entries:
@@ -48,7 +48,7 @@ class GlossaryView(BrowserView):
         return items
 
     def letters(self):
-        """Return an index of initial letter of all terms."""
+        """Return an index of initial letters of all terms."""
         return sorted(self.get_entries())
 
     def terms(self, letter):
@@ -59,7 +59,7 @@ class GlossaryView(BrowserView):
 class GlossaryStateView(BrowserView):
     """Glossary State view used to enable or disable resources
 
-    This is called by JS and CSS resources registry
+    This is called by JS and CSS resources registry.
     """
 
     @property
@@ -110,7 +110,7 @@ class JsonView(BrowserView):
 
     @staticmethod
     def get_entries(self):
-        """Return a dictionary of glossary entries."""
+        """Return information of all terms."""
         catalog = api.portal.get_tool('portal_catalog')
         items = []
         for brain in catalog(portal_type='Term'):
@@ -122,7 +122,7 @@ class JsonView(BrowserView):
         return items
 
     def __call__(self):
-        """Return a dictionary of all glossary entries in JSON format.
+        """Return information of all terms in JSON format.
 
         Make use of HTTP caching headers to decrease server usage:
         results are not cached on browsers and are cached 120 seconds
