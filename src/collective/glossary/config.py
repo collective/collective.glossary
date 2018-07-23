@@ -8,5 +8,5 @@ DEFAULT_ENABLED_CONTENT_TYPES = [
     'File',
     'Image',
     'Link',
-    'News Item'
+    'News Item',
 ]
