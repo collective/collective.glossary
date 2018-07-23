@@ -4,9 +4,10 @@ from zope.interface import implementer
 
 
 @implementer(INonInstallable)
-class HiddenProfiles(object):
+class HiddenProfiles(object):  # pragma: no cover
 
-    def getNonInstallableProfiles(self):
+    @staticmethod
+    def getNonInstallableProfiles():
         """Do not show on Plone's list of installable profiles."""
         return [
             u'collective.glossary:uninstall',
