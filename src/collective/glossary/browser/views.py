@@ -67,15 +67,14 @@ class GlossaryView(BrowserView):
             }
             items[index].append(item)
 
-        keys = items.keys()
-        for k in keys:
+        for k in items:
             items[k] = sorted(items[k], key=lambda term: term['title'])
 
         return items
 
     def letters(self):
         """Return all letters sorted"""
-        return sorted(self.get_entries().keys())
+        return sorted(self.get_entries())
 
     def terms(self, letter):
         """Return all terms of one letter"""
