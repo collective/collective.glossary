@@ -75,7 +75,7 @@ class RegistryTestCase(unittest.TestCase):
 
         records = [
             IGlossarySettings.__identifier__ + '.enable_tooltip',
-            IGlossarySettings.__identifier__ + '.enabled_content_types'
+            IGlossarySettings.__identifier__ + '.enabled_content_types',
         ]
 
         for r in records:

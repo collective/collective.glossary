@@ -31,7 +31,7 @@ class TermView(BrowserView):
         item = {
             'title': self.context.title,
             'description': self.context.description,
-            'image': image
+            'image': image,
         }
         return item
 
@@ -63,16 +63,13 @@ class GlossaryView(BrowserView):
             item = {
                 'title': obj.title,
                 'description': obj.description,
-                'image': image
+                'image': image,
             }
             items[index].append(item)
 
         keys = items.keys()
         for k in keys:
-            items[k] = sorted(
-                items[k],
-                key=lambda term: term['title']
-            )
+            items[k] = sorted(items[k], key=lambda term: term['title'])
 
         return items
 
