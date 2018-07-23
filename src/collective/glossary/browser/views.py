@@ -109,7 +109,7 @@ class JsonView(BrowserView):
         return self.request.get('REQUEST_METHOD', 'GET').upper() in safe_methods
 
     @staticmethod
-    def get_entries(self):
+    def get_entries():
         """Return information of all terms."""
         catalog = api.portal.get_tool('portal_catalog')
         items = []
