@@ -8,12 +8,10 @@ import json
 
 
 class TermView(BrowserView):
-
     """Default view for Term type"""
 
     def get_entry(self):
-        """Get term in the desired format"""
-
+        """Return term information."""
         scales = self.context.unrestrictedTraverse('@@images')
         image = scales.scale('image', None)
         item = {
@@ -25,19 +23,13 @@ class TermView(BrowserView):
 
 
 class GlossaryView(BrowserView):
-
     """Default view of Glossary type"""
 
     def get_entries(self):
-        """Get glossary entries and keep them in the desired format"""
-
-        catalog = api.portal.get_tool('portal_catalog')
-        path = '/'.join(self.context.getPhysicalPath())
-        query = dict(portal_type='Term', path={'query': path, 'depth': 1})
-
+        """Return a dictionary of glossary entries."""
+        entries = self.context.get_entries()
         items = {}
-        for brain in catalog(**query):
-            obj = brain.getObject()
+        for obj in entries:
             index = baseNormalize(obj.title)[0].upper()
             if index not in items:
                 items[index] = []
@@ -56,11 +48,11 @@ class GlossaryView(BrowserView):
         return items
 
     def letters(self):
-        """Return all letters sorted"""
+        """Return an index of initial letter of all terms."""
         return sorted(self.get_entries())
 
     def terms(self, letter):
-        """Return all terms of one letter"""
+        """Return all terms starting with a letter."""
         return self.get_entries()[letter]
 
 
@@ -107,13 +99,14 @@ class GlossaryStateView(BrowserView):
 
 
 class JsonView(BrowserView):
-    """Json view that return all glossary items in json format
+    """View that returns all glossary items in JSON format.
 
-    This view is used into an ajax call for
+    This view is used into an AJAX call to create the tooltips.
     """
 
     def get_json_entries(self):
-        """Get all itens and prepare in the desired format.
+        """Return a dictionary of glossary entries.
+
         Note: do not name it get_entries, otherwise caching is broken. """
 
         catalog = api.portal.get_tool('portal_catalog')
