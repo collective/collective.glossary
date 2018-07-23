@@ -4,6 +4,12 @@ Changelog
 1.0b2 (unreleased)
 ------------------
 
+- Add HTTP caching headers to ``@@glossary`` view (fixes `#24 <https://github.com/collective/collective.glossary/issues/24>`_).
+  [hvelarde]
+
+- Code clean up to remove useless memoizer and reduce memory consumption (closes `#37 <https://github.com/collective/collective.glossary/issues/37>`_).
+  [hvelarde]
+
 - Drop support for Plone 5.0.
   [hvelarde]
 
