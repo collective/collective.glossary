@@ -35,5 +35,9 @@ after_success:
 # Coveralls
 - pip install coveralls
 - coveralls
+# Codacy
+- coverage xml
+- pip install codacy-coverage
+- python-codacy-coverage -r coverage.xml
 notifications:
   irc: irc.freenode.org#plone-testing
