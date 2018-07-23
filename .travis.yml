@@ -28,14 +28,12 @@ before_script:
 script:
 - bin/code-analysis
 - bin/test
+- bin/pylint --py3k --disable=no-absolute-import src/collective/glossary
 after_success:
-- bin/createcoverage
+- pip install coverage
+- coverage run bin/test --layer=\!Robot
+# Coveralls
 - pip install coveralls
 - coveralls
-after_script:
-# Firefox complains: GConf-WARNING **: Got Disconnected from DBus.
-# And then it keeps hanging, causing a failed job after 30-50 minutes.
-# So we just kill Firefox.
-- pkill -9 firefox
 notifications:
   irc: irc.freenode.org#plone-testing
