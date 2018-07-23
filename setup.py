@@ -20,7 +20,6 @@ setup(
         'Environment :: Web Environment',
         'Framework :: Plone',
         'Framework :: Plone :: 4.3',
-        'Framework :: Plone :: 5.0',
         'Framework :: Plone :: 5.1',
         'Intended Audience :: Education',
         'Intended Audience :: End Users/Desktop',
@@ -57,7 +56,7 @@ setup(
         'test': [
             'AccessControl',
             'plone.app.robotframework',
-            'plone.app.testing [robot] >=4.2.2',
+            'plone.app.testing [robot]',
             'plone.browserlayer',
             'plone.registry',
             'plone.testing',
