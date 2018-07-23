@@ -2,17 +2,9 @@
 from collective.glossary.interfaces import IGlossarySettings
 from plone import api
 from plone.i18n.normalizer.base import baseNormalize
-from plone.memoize import ram
 from Products.Five.browser import BrowserView
 
 import json
-
-
-def _catalog_counter_cachekey(method, self):
-    """Return a cachekey based on catalog updates."""
-
-    catalog = api.portal.get_tool('portal_catalog')
-    return str(catalog.getCounter())
 
 
 class TermView(BrowserView):
@@ -36,7 +28,6 @@ class GlossaryView(BrowserView):
 
     """Default view of Glossary type"""
 
-    @ram.cache(_catalog_counter_cachekey)
     def get_entries(self):
         """Get glossary entries and keep them in the desired format"""
 
@@ -121,7 +112,6 @@ class JsonView(BrowserView):
     This view is used into an ajax call for
     """
 
-    @ram.cache(_catalog_counter_cachekey)
     def get_json_entries(self):
         """Get all itens and prepare in the desired format.
         Note: do not name it get_entries, otherwise caching is broken. """
