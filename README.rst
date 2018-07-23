@@ -1,6 +1,6 @@
-***************
+********
 Glossary
-***************
+********
 
 .. contents:: Table of Contents
 
@@ -28,6 +28,11 @@ Mostly Harmless
 Got an idea? Found a bug? Let us know by `opening a support ticket`_.
 
 .. _`opening a support ticket`: https://github.com/collective/collective.glossary/issues
+
+Known issues
+------------
+
+See the `complete list of bugs on GitHub <https://github.com/collective/collective.glossary/labels/bug>`_.
 
 Don't Panic
 ===========
