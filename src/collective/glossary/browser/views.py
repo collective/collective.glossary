@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from collective.glossary.interfaces import IGlossarySettings
-from zope.component import getMultiAdapter
-import zope.ucol
 from plone import api
 from plone.i18n.normalizer.base import baseNormalize
 from plone.memoize import ram
-from Products.Five.browser import BrowserView
 from Products.CMFPlone.utils import safe_unicode
+from Products.Five.browser import BrowserView
+from zope.component import getMultiAdapter
 
 import json
+import zope.ucol
 
 
 def _catalog_counter_cachekey(method, self):
