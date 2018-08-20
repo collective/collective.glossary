@@ -8,7 +8,6 @@ from plone.memoize import ram
 from Products.Five.browser import BrowserView
 from Products.CMFPlone.utils import safe_unicode
 
-import operator
 import json
 
 
@@ -72,8 +71,7 @@ class GlossaryView(BrowserView):
             }
             items[index].append(item)
 
-        language = self.language()
-        collator = zope.ucol.Collator('language')
+        collator = zope.ucol.Collator(self.language())
 
         for k in items:
             items[k] = sorted(items[k], key=lambda term: collator.key(safe_unicode(term['title'])))
