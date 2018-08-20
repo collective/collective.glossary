@@ -71,7 +71,7 @@ class GlossaryView(BrowserView):
             }
             items[index].append(item)
 
-        collator = zope.ucol.Collator(self.language())
+        collator = zope.ucol.Collator(str(self.language()))
 
         for k in items:
             items[k] = sorted(items[k], key=lambda term: collator.key(safe_unicode(term['title'])))
