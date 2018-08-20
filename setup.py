@@ -51,6 +51,7 @@ setup(
         'zope.i18nmessageid',
         'zope.interface',
         'zope.schema',
+        'zope.ucol'
     ],
     extras_require={
         'test': [
