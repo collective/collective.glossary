@@ -7,6 +7,8 @@ Changelog
 - Drop support for Plone 5.0.
   [hvelarde]
 
+- language specific sorting of terms with the same later using zope.ucol
+  [ajung]
 
 1.0b1 (2016-12-19)
 ------------------

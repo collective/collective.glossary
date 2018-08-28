@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
+
 from collective.glossary.interfaces import IGlossarySettings
 from plone import api
 from plone.i18n.normalizer.base import baseNormalize
 from plone.memoize import ram
+from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 
 import json
+import zope.ucol
 
 
 def _catalog_counter_cachekey(method, self):
@@ -59,8 +62,11 @@ class GlossaryView(BrowserView):
             }
             items[index].append(item)
 
+        language = api.portal.get_current_language()
+        collator = zope.ucol.Collator(str(language))
+
         for k in items:
-            items[k] = sorted(items[k], key=lambda term: term['title'])
+            items[k] = sorted(items[k], key=lambda term: collator.key(safe_unicode(term['title'])))
 
         return items
 
