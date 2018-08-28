@@ -6,10 +6,8 @@ from plone.i18n.normalizer.base import baseNormalize
 from plone.memoize import ram
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
-from zope.component import getMultiAdapter
 
 import json
-import plone.api
 import zope.ucol
 
 
