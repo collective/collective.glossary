@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from collective.glossary.interfaces import IGlossarySettings
 from plone import api
 from plone.i18n.normalizer.base import baseNormalize
@@ -8,6 +9,7 @@ from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
 
 import json
+import plone.api
 import zope.ucol
 
 
@@ -39,15 +41,6 @@ class GlossaryView(BrowserView):
 
     """Default view of Glossary type"""
 
-    def language(self):
-        """
-        @return: Two-letter string, the active language code
-        """
-        context = self.context.aq_inner
-        portal_state = getMultiAdapter((context, self.request), name=u'plone_portal_state')
-        current_language = portal_state.language()
-        return current_language
-
     @ram.cache(_catalog_counter_cachekey)
     def get_entries(self):
         """Get glossary entries and keep them in the desired format"""
@@ -71,7 +64,8 @@ class GlossaryView(BrowserView):
             }
             items[index].append(item)
 
-        collator = zope.ucol.Collator(str(self.language()))
+        language = api.portal.get_current_language()
+        collator = zope.ucol.Collator(str(language))
 
         for k in items:
             items[k] = sorted(items[k], key=lambda term: collator.key(safe_unicode(term['title'])))
