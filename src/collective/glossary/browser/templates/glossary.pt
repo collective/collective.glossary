@@ -21,7 +21,7 @@
           <div tal:content="structure text">The body</div>
         </div>
 
-        <tal:repeat repeat="letter view/letters">
+        <tal:repeat repeat="letter view/letters" tal:define ="use_rich_text view/use_rich_text">
           <div class="letter">
             <div class="header">
               <div class="title" tal:content="letter"></div>
@@ -39,8 +39,11 @@
                       </span>
                       -
                       <span class="description"
-                            tal:content="item/description">
-                      </span>
+                           tal:condition="python: use_rich_text"
+                           tal:content="structure item/text">Rich description</span>
+                      <span class="description"
+                           tal:condition="not: use_rich_text"
+                           tal:content="item/description">Description</span>
                     </div>
                   </div>
                 </div>

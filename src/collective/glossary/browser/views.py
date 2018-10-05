@@ -34,6 +34,13 @@ class TermView(BrowserView):
         }
         return item
 
+    @property
+    def use_rich_text(self):
+        """"""
+
+        return api.portal.get_registry_record(
+            IGlossarySettings.__identifier__ + '.enable_rich_text_description')
+
 
 class GlossaryView(BrowserView):
 
@@ -55,10 +62,12 @@ class GlossaryView(BrowserView):
                 items[index] = []
             scales = obj.unrestrictedTraverse('@@images')
             image = scales.scale('image', scale='tile')  # 64x64
+            text = obj.text.output if getattr(obj, 'text', None) else ''
             item = {
                 'title': obj.title,
                 'description': obj.description,
                 'image': image,
+                'text': text,
             }
             items[index].append(item)
 
@@ -77,6 +86,13 @@ class GlossaryView(BrowserView):
     def terms(self, letter):
         """Return all terms of one letter"""
         return self.get_entries()[letter]
+
+    @property
+    def use_rich_text(self):
+        """"""
+
+        return api.portal.get_registry_record(
+            IGlossarySettings.__identifier__ + '.enable_rich_text_description')
 
 
 class GlossaryStateView(BrowserView):
