@@ -1,4 +1,46 @@
 <?xml version="1.0"?>
 <registry>
   <records interface="collective.glossary.interfaces.IGlossarySettings" />
+
+    <records prefix="plone.resources/collective-glossary-tooltip"
+             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="css">
+        <element>++resource++collective.glossary/tooltip.css</element>
+      </value>
+      <value key="js">++resource++collective.glossary/tooltip.js</value>
+    </records>
+
+    <records prefix="plone.resources/collective-glossary-jquery-glossarize"
+             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="js">++resource++collective.glossary/jquery.glossarize.js</value>
+    </records>
+
+    <records prefix="plone.resources/collective-glossary-bundle"
+             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="js">++resource++collective.glossary/bundle.js</value>
+    </records>
+
+    <records prefix="plone.resources/collective-glossary-main"
+             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="css">
+        <element>++resource++collective.glossary/main.css</element>
+      </value>
+      <value key="js">++resource++collective.glossary/main.js</value>
+    </records>
+
+
+  <records prefix="plone.bundles/collective.glossary"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources">
+      <element>collective-glossary-tooltip</element>
+      <element>collective-glossary-main</element>
+      <element>collective-glossary-bundle</element>
+    </value>
+    <value key="enabled">True</value>
+    <value key="expression">context/@@glossary_state</value>
+    <value key="jscompilation">++resource++collective.glossary/glossary.min.js</value>
+    <value key="csscompilation">++resource++collective.glossary/glossary.min.css</value>
+    <value key="last_compilation">2016-10-08 11:14:32</value>
+  </records>
+
 </registry>

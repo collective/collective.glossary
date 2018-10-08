@@ -24,3 +24,6 @@ define('collective-glossary-main', [
     });
 
 });
+
+define("/home/daggelpop/projects/apef/buildout.apef.tutorat/src/collective.glossary/src/collective/glossary/browser/static/main.js", function(){});
+
