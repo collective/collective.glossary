@@ -379,8 +379,6 @@ define('collective-glossary-main', [
 
     'use strict';
 
-    debugger;
-
     var portal_url;
 
     $(function () {
