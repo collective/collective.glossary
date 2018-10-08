@@ -22,6 +22,7 @@ class TermView(BrowserView):
 
     """Default view for Term type"""
 
+    # TODO: remove, it's not used anymore
     def get_entry(self):
         """Get term in the desired format"""
 
@@ -79,9 +80,16 @@ class GlossaryView(BrowserView):
 
         return items
 
-    def letters(self):
+    def letters(self, filtered=False):
         """Return all letters sorted"""
-        return sorted(self.get_entries())
+        entries = self.get_entries()
+
+        if self.enable_letter_filtering and filtered:
+            filtering_letter = self.request.form.get('letter', None)
+            if filtering_letter in entries:
+                return [filtering_letter]
+
+        return sorted(entries)
 
     def terms(self, letter):
         """Return all terms of one letter"""
@@ -93,6 +101,12 @@ class GlossaryView(BrowserView):
 
         return api.portal.get_registry_record(
             IGlossarySettings.__identifier__ + '.enable_rich_text_description')
+
+    @property
+    def enable_letter_filtering(self):
+        return api.portal.get_registry_record(
+            IGlossarySettings.__identifier__ + '.enable_letter_filtering',
+            default=False)
 
 
 class GlossaryStateView(BrowserView):

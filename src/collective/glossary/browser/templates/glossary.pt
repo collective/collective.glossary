@@ -21,7 +21,18 @@
           <div tal:content="structure text">The body</div>
         </div>
 
-        <tal:repeat repeat="letter view/letters" tal:define ="use_rich_text view/use_rich_text">
+        <ul class="letter-filtering" tal:condition="view/enable_letter_filtering">
+            <li>
+                <a href="" tal:attributes="href context/absolute_url">All</a>
+            </li>
+            <tal:repeat tal:repeat="letter view/letters">
+                <li>
+                    <a href="" tal:attributes="href string: ${context/absolute_url}?letter=${letter}" tal:content="letter"></a>
+                </li>
+            </tal:repeat>
+        </ul>
+
+        <tal:repeat repeat="letter python: view.letters(filtered=True)" tal:define="use_rich_text view/use_rich_text">
           <div class="letter">
             <div class="header">
               <div class="title" tal:content="letter"></div>
