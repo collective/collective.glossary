@@ -2,7 +2,7 @@
 from setuptools import find_packages
 from setuptools import setup
 
-version = '1.0b2.dev0'
+version = '2.1.dev0'
 description = 'A Dexterity-based content type to define a glossary and its terms.'
 long_description = (
     open('README.rst').read() + '\n' +
@@ -19,7 +19,6 @@ setup(
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Framework :: Plone',
-        'Framework :: Plone :: 4.3',
         'Framework :: Plone :: 5.1',
         'Intended Audience :: Education',
         'Intended Audience :: End Users/Desktop',
@@ -44,7 +43,7 @@ setup(
         'plone.app.registry',
         'plone.dexterity',
         'plone.namedfile',
-        'Products.CMFPlone >=4.3',
+        'Products.CMFPlone >=5.1',
         'Products.GenericSetup',
         'setuptools',
         'zope.globalrequest',
