@@ -1,3 +1,16 @@
 <configure xmlns="http://namespaces.zope.org/zope">
   <include package=".v2" />
+
+    <genericsetup:upgradeSteps
+      source="*"
+      destination="4"
+      profile="collective.glossary:default">
+    <genericsetup:upgradeDepends
+        title="Reload profile to register new control panel option"
+        description="New control panel option: Rich text description"
+        import_profile="collective.glossary:default"
+        import_steps="plone.app.registry"
+        run_deps="false"
+        />
+  </genericsetup:upgradeSteps>
 </configure>
