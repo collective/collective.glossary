@@ -32,10 +32,18 @@
       </value>
     </records>
 
+    <records prefix="plone.resources/collective-glossary-letter-filtering"
+             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="css">
+        <element>++resource++collective.glossary/letter-filtering.css</element>
+      </value>
+    </records>
+
   <records prefix="plone.bundles/collective-glossary-global"
             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
     <value key="resources">
       <element>collective-glossary-global</element>
+      <element>collective-glossary-letter-filtering</element>
     </value>
     <value key="enabled">True</value>
     <value key="compile">True</value>
