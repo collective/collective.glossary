@@ -22,14 +22,28 @@
 
     <records prefix="plone.resources/collective-glossary-main"
              interface='Products.CMFPlone.interfaces.IResourceRegistry'>
-      <value key="css">
-        <element>++resource++collective.glossary/main.css</element>
-      </value>
       <value key="js">++resource++collective.glossary/main.js</value>
     </records>
 
+    <records prefix="plone.resources/collective-glossary-global"
+             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="css">
+        <element>++resource++collective.glossary/global.css</element>
+      </value>
+    </records>
 
-  <records prefix="plone.bundles/collective.glossary"
+  <records prefix="plone.bundles/collective-glossary-global"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources">
+      <element>collective-glossary-global</element>
+    </value>
+    <value key="enabled">True</value>
+    <value key="compile">True</value>
+    <value key="csscompilation">++resource++collective.glossary/global.min.css</value>
+    <value key="last_compilation">2018-10-16 13:14:32</value>
+  </records>
+
+  <records prefix="plone.bundles/collective-glossary-tooltip"
             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
     <value key="resources">
       <element>collective-glossary-tooltip</element>
@@ -38,9 +52,9 @@
     </value>
     <value key="enabled">True</value>
     <value key="expression">context/@@glossary_state</value>
-    <value key="jscompilation">++resource++collective.glossary/glossary.min.js</value>
-    <value key="csscompilation">++resource++collective.glossary/glossary.min.css</value>
-    <value key="last_compilation">2016-10-08 11:14:32</value>
+    <value key="jscompilation">++resource++collective.glossary/glossary-tooltip.min.js</value>
+    <value key="csscompilation">++resource++collective.glossary/glossary-tooltip.min.css</value>
+    <value key="last_compilation">2018-10-08 11:14:32</value>
   </records>
 
 </registry>
