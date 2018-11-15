@@ -9,80 +9,80 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"Language-Code: fr\n"
+"Language-Name: French\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: collective.glossary\n"
 
 #: ../profiles.zcml:15
 msgid "A Dexterity-based content type to define a glossary and its terms."
-msgstr ""
+msgstr "Un type de contenu pour définir un glossaire, rempli de termes."
 
 #: ../profiles/default/types/Glossary.xml
 msgid "A Glossary"
-msgstr ""
+msgstr "Un glossaire"
 
 #: ../profiles/default/types/Term.xml
 msgid "A Term"
-msgstr ""
+msgstr "Un terme"
 
 #: ../interfaces.py:53
 msgid "Body text"
-msgstr ""
+msgstr "Corps du texte"
 
 #: ../interfaces.py:43
 msgid "Display a list of letters on top of the glossary."
-msgstr ""
+msgstr "Afficher une liste de lettres au-dessus du glossaire."
 
 #: ../interfaces.py:42
 msgid "Enable filtering by letter?"
-msgstr ""
+msgstr "Activer le filtre par lettre ?"
 
 #: ../interfaces.py:36
 msgid "Enable rich text description?"
-msgstr ""
+msgstr "Activer la description enrichie ?"
 
 #: ../interfaces.py:21
 msgid "Enable tooltip."
-msgstr ""
+msgstr "Activer les info-bulles."
 
 #: ../interfaces.py:20
 msgid "Enable tooltip?"
-msgstr ""
+msgstr "Activer les info-bulles ?"
 
 #: ../interfaces.py:26
 msgid "Enabled Content Types"
-msgstr ""
+msgstr "Types de contenu affectés"
 
 #: ../controlpanel.py:12
 #: ../profiles.zcml:15
 #: ../profiles/default/controlpanel.xml
 msgid "Glossary"
-msgstr ""
+msgstr "Glossaire"
 
 #: ../interfaces.py:37
 msgid "If enabled, use the rich text description in glossary view."
-msgstr ""
+msgstr "Utiliser les descriptions enrichies dans la vue glossaire."
 
 #: ../interfaces.py:64
 msgid "Image"
-msgstr ""
+msgstr "Image"
 
 #: ../interfaces.py:70
 msgid "Long description"
-msgstr ""
+msgstr "Description longue"
 
 #: ../interfaces.py:27
 msgid "Only objects of these content types will display glossary terms."
-msgstr ""
+msgstr "Les termes du glossaire seront affichés uniquement dans ces types de contenu."
 
 #: ../controlpanel.py:13
 msgid "Settings for the collective.glossary package"
-msgstr ""
+msgstr "Paramètres pour le paquet collective.glossary"
 
 #: ../profiles/default/types/Term.xml
 msgid "Term"
-msgstr ""
+msgstr "Terme"
 
 #: ../profiles.zcml:24
 msgid "Uninstall collective.glossary."

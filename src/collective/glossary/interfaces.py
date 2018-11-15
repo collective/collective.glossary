@@ -34,7 +34,7 @@ class IGlossarySettings(Interface):
 
     enable_rich_text_description = schema.Bool(
         title=_(u'Enable rich text description?'),
-        description=_(u'If Rich Text behavior is enabled on Term, use it as description in glossary view.'),
+        description=_(u'If enabled, use the rich text description in glossary view.'),
         default=False,
     )
 
