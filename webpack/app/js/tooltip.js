@@ -10,7 +10,7 @@
 
     targets.bind( 'mouseenter', function() {
       target  = $( this );
-      tip     = target.attr( 'title' );
+      var tip = target.attr( 'title' );
       tooltip = $( '<div id="tooltip"></div>' );
 
       if( !tip || tip == '' )

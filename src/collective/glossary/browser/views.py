@@ -2,6 +2,7 @@
 
 from collective.glossary.interfaces import IGlossarySettings
 from plone import api
+from plone.app.layout.viewlets import ViewletBase
 from plone.i18n.normalizer.base import baseNormalize
 from plone.memoize import ram
 from Products.CMFPlone.utils import safe_unicode
@@ -148,3 +149,7 @@ class JsonView(BrowserView):
         response.setHeader('content-type', 'application/json')
 
         return response.setBody(json.dumps(self.get_json_entries()))
+
+
+class ResourcesViewlet(ViewletBase):
+    """This viewlet inserts static resources on page header."""

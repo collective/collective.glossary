@@ -1,0 +1,5 @@
+<link rel="stylesheet" tal:attributes="href string:${view/site_url}/++resource++collective.glossary/main.css" />
+<tal:if tal:condition="context/@@glossary_state">
+  <link rel="stylesheet" tal:attributes="href string:${view/site_url}/++resource++collective.glossary/glossary-a85a929.css" />
+  <script defer tal:attributes="src string:${view/site_url}/++resource++collective.glossary/glossary-a85a929.js"></script>
+</tal:if>
