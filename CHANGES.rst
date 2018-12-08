@@ -1,8 +1,12 @@
 Changelog
 =========
 
-1.0b2 (unreleased)
+1.1b1 (unreleased)
 ------------------
+
+- Deprecate resource registries; instead, we now use a viewlet in plone.htmlhead to load JavaScript code.
+  This simplifies maintainance of the add-on among multiple Plone versions.
+  [daggelpop]
 
 - Drop support for Plone 5.0.
   [hvelarde]

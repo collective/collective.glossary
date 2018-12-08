@@ -58,6 +58,6 @@
       template="static/resources.pt"
       permission="zope2.Public"
       layer="collective.glossary.interfaces.IGlossaryLayer"
-  />
+      />
 
 </configure>
