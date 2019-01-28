@@ -51,7 +51,7 @@ setup(
         'zope.i18nmessageid',
         'zope.interface',
         'zope.schema',
-        'zope.ucol'
+        'PyICU'
     ],
     extras_require={
         'test': [
