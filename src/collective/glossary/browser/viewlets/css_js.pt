@@ -8,9 +8,9 @@
         window.define = undefined;
         window.require = undefined;
     </script>
-    <script type="text/javascript" tal:attributes="src string:$portal_url/++resource++onkopedia.glossary/tooltip.js"></script>
-    <script type="text/javascript" tal:attributes="src string:$portal_url/++resource++onkopedia.glossary/jquery.glossarize.js"></script>
-    <script type="text/javascript" tal:attributes="src string:$portal_url/++resource++onkopedia.glossary/main.js"></script>
+    <script type="text/javascript" tal:attributes="src string:$portal_url/++resource++collective.glossary/tooltip.js"></script>
+    <script type="text/javascript" tal:attributes="src string:$portal_url/++resource++collective.glossary/jquery.glossarize.js"></script>
+    <script type="text/javascript" tal:attributes="src string:$portal_url/++resource++collective.glossary/main.js"></script>
     <script>
         window.define = window.__define;
         window.require = window.__require;
