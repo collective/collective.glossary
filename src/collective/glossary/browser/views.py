@@ -8,7 +8,7 @@ from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 
 import json
-import zope.ucol
+import icu
 
 
 def _catalog_counter_cachekey(method, self):
@@ -63,10 +63,10 @@ class GlossaryView(BrowserView):
             items[index].append(item)
 
         language = api.portal.get_current_language()
-        collator = zope.ucol.Collator(str(language))
+        collator = icu.Collator.createInstance(icu.Locale(str(language)))
 
         for k in items:
-            items[k] = sorted(items[k], key=lambda term: collator.key(safe_unicode(term['title'])))
+            items[k] = sorted(items[k], key=lambda term: collator.getSortKey(safe_unicode(term['title'])))
 
         return items
 

@@ -1,0 +1,20 @@
+<tal:def define="portal_url view/portal_url">
+    <link rel="stylesheet" tal:attributes="href string:$portal_url/++resource++collective.glossary/main.css"/>
+    <link rel="stylesheet" tal:attributes="href string:$portal_url/++resource++collective.glossary/tooltip.css"/>
+
+    <script>
+        window.__define = window.define;
+        window.__require = window.require;
+        window.define = undefined;
+        window.require = undefined;
+    </script>
+    <script type="text/javascript" tal:attributes="src string:$portal_url/++resource++onkopedia.glossary/tooltip.js"></script>
+    <script type="text/javascript" tal:attributes="src string:$portal_url/++resource++onkopedia.glossary/jquery.glossarize.js"></script>
+    <script type="text/javascript" tal:attributes="src string:$portal_url/++resource++onkopedia.glossary/main.js"></script>
+    <script>
+        window.define = window.__define;
+        window.require = window.__require;
+        window.__define = undefined;
+        window.__require = undefined;
+    </script> 
+</tal:def>
