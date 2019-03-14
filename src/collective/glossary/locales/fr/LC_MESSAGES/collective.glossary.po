@@ -26,6 +26,10 @@ msgstr "Un glossaire"
 msgid "A Term"
 msgstr "Un terme"
 
+#: ../browser/templates/glossary.pt:26
+msgid "All"
+msgstr "Tout"
+
 #: ../interfaces.py:53
 msgid "Body text"
 msgstr "Corps du texte"

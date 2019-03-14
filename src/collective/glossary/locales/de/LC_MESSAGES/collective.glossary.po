@@ -26,6 +26,10 @@ msgstr "Ein Glossar"
 msgid "A Term"
 msgstr "Ein Glossareintrag"
 
+#: ../browser/templates/glossary.pt:26
+msgid "All"
+msgstr ""
+
 #: ../interfaces.py:53
 msgid "Body text"
 msgstr ""

@@ -23,7 +23,7 @@
 
         <ul class="letter-filtering" tal:condition="view/enable_letter_filtering">
             <li>
-                <a href="" tal:attributes="href context/absolute_url">All</a>
+                <a href="" tal:attributes="href context/absolute_url" i18n:translate="">All</a>
             </li>
             <tal:repeat tal:repeat="letter view/letters">
                 <li>
