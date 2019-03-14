@@ -19,8 +19,15 @@
 
       <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-      <div class="documentDescription"
-          tal:content="context/description">Description</div>
+      <tal:condition
+        tal:define ="use_rich_text view/use_rich_text">
+          <div class="documentDescription"
+                   tal:condition="python: use_rich_text and getattr(context, 'text', None)"
+                   tal:content="structure context/text/output">Rich description</div>
+          <div class="documentDescription"
+               tal:condition="not: use_rich_text"
+               tal:content="context/description">Description</div>
+      </tal:condition>
     </metal:main>
   </body>
 </html>

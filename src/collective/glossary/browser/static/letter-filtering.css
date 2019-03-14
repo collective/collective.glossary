@@ -1,0 +1,29 @@
+.letter-filtering {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: flex-start;
+}
+
+.letter-filtering li {
+    flex-grow: 1;
+    margin: 3px;
+}
+
+.letter-filtering li a {
+    background-color: #033b7a;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

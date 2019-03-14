@@ -85,3 +85,6 @@ define('collective-glossary-tooltip', [
 
   return ToolTip;
 });
+
+define("/home/daggelpop/projects/apef/buildout.apef.tutorat/src/collective.glossary/src/collective/glossary/browser/static/tooltip.js", function(){});
+

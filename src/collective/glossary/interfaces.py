@@ -32,6 +32,18 @@ class IGlossarySettings(Interface):
             vocabulary=u'collective.glossary.PortalTypes'),
     )
 
+    enable_rich_text_description = schema.Bool(
+        title=_(u'Enable rich text description?'),
+        description=_(u'If enabled, use the rich text description in glossary view.'),
+        default=False,
+    )
+
+    enable_letter_filtering = schema.Bool(
+        title=_(u'Enable filtering by letter?'),
+        description=_(u'Display a list of letters on top of the glossary.'),
+        default=False,
+    )
+
 
 class IGlossary(Interface):
 
@@ -50,6 +62,12 @@ class ITerm(Interface):
 
     image = NamedBlobImage(
         title=_(u'Image'),
+        description=_(u''),
+        required=False,
+    )
+
+    text = RichText(
+        title=_(u'Long description'),
         description=_(u''),
         required=False,
     )

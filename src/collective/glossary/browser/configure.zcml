@@ -6,7 +6,6 @@
   <browser:resourceDirectory
       name="collective.glossary"
       directory="static"
-      layer="collective.glossary.interfaces.IGlossaryLayer"
       />
 
   <browser:page
