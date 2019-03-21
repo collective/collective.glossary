@@ -2,6 +2,7 @@
 
 from collective.glossary.interfaces import IGlossarySettings
 from plone import api
+from plone.app.layout.viewlets import ViewletBase
 from plone.i18n.normalizer.base import baseNormalize
 from plone.memoize import ram
 from Products.CMFPlone.utils import safe_unicode
@@ -94,31 +95,22 @@ class GlossaryStateView(BrowserView):
     @property
     def content_type_is_enabled(self):
         """Check if we must show the tooltip in this context."""
-        portal_type = getattr(self.context, 'portal_type', None)
+        context = self.context
+        if context.id != context.default_page:
+            context = context.get(context.default_page)
+        portal_type = getattr(context, 'portal_type', None)
         enabled_content_types = api.portal.get_registry_record(
             IGlossarySettings.__identifier__ + '.enabled_content_types')
         return portal_type in enabled_content_types
 
-    @property
-    def is_view_action(self):
-        """Check if we are into the view action."""
-        context_url = self.context.absolute_url()
-        # Check if use Virtual Host configuration (ex.: Nginx)
-        request_url = self.request.get('VIRTUAL_URL', None)
-
-        if request_url is None:
-            request_url = self.request.base + self.request.get('PATH_INFO', '')
-
-        if context_url == request_url:
-            return True
-
-        # Default view
-        return context_url.startswith(request_url) and \
-            len(context_url) > len(request_url)
-
     def __call__(self):
-        return self.tooltip_is_enabled and \
-            self.content_type_is_enabled and self.is_view_action
+        response = self.request.response
+        response.setHeader('content-type', 'application/json')
+
+        data = {
+            'enabled': self.tooltip_is_enabled and self.content_type_is_enabled,
+        }
+        return response.setBody(json.dumps(data))
 
 
 class JsonView(BrowserView):
@@ -148,3 +140,7 @@ class JsonView(BrowserView):
         response.setHeader('content-type', 'application/json')
 
         return response.setBody(json.dumps(self.get_json_entries()))
+
+
+class ResourcesViewlet(ViewletBase):
+    """This viewlet inserts static resources on page header."""

@@ -1,0 +1,30 @@
+{
+  "name": "glossary",
+  "version": "0.0.1",
+  "main": "app/glossary.js",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack -p",
+    "debug": "NODE_ENV=debug ./node_modules/.bin/webpack --watch",
+    "watch": "./node_modules/.bin/webpack -p --watch",
+    "test": "NODE_ENV=testing ./node_modules/.bin/karma start --single-run"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "last 3 versions"
+            ]
+          }
+        }
+      ]
+    ]
+  },
+  "repository": {},
+  "license": "GPL-2.0",
+  "dependencies": {
+    "sc-recipe-staticresources": "collective/sc.recipe.staticresources#1.1b5"
+  }
+}

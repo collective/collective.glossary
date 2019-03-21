@@ -51,4 +51,13 @@
       layer="collective.glossary.interfaces.IGlossaryLayer"
       />
 
+  <browser:viewlet
+      name="collective.glossary.resources"
+      manager="plone.app.layout.viewlets.interfaces.IPortalTop"
+      class=".views.ResourcesViewlet"
+      template="static/resources.pt"
+      permission="zope2.Public"
+      layer="collective.glossary.interfaces.IGlossaryLayer"
+      />
+
 </configure>

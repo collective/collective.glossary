@@ -3,14 +3,14 @@
 //
 (function($, window, undefined){
   function ToolTip (){
-    var targets = $( '.glossarizer_replaced' ),
+    let targets = $( '.glossarizer_replaced' ),
     target  = false,
     tooltip = false,
     title   = false;
 
     targets.bind( 'mouseenter', function() {
       target  = $( this );
-      tip     = target.attr( 'title' );
+      let tip = target.attr( 'title' );
       tooltip = $( '<div id="tooltip"></div>' );
 
       if( !tip || tip == '' )
@@ -21,14 +21,14 @@
         .html( tip )
         .appendTo( 'body' );
 
-      var init_tooltip = function()
+      let init_tooltip = function()
       {
         if( $( window ).width() < tooltip.outerWidth() * 1.5 )
           tooltip.css( 'max-width', $( window ).width() / 2 );
         else
           tooltip.css( 'max-width', 340 );
 
-        var pos_left = target.offset().left + ( target.outerWidth() / 2 ) - ( tooltip.outerWidth() / 2 ),
+        let pos_left = target.offset().left + ( target.outerWidth() / 2 ) - ( tooltip.outerWidth() / 2 ),
         pos_top  = target.offset().top - tooltip.outerHeight() - 20;
 
         if( pos_left < 0 )
@@ -49,7 +49,7 @@
 
         if( pos_top < 0 )
         {
-          var pos_top  = target.offset().top + target.outerHeight();
+          let pos_top  = target.offset().top + target.outerHeight();
           tooltip.addClass( 'top' );
         }
         else
@@ -62,7 +62,7 @@
       init_tooltip();
       $( window ).resize( init_tooltip );
 
-      var remove_tooltip = function()
+      let remove_tooltip = function()
       {
         tooltip.animate( { top: '-=10', opacity: 0 }, 50, function()
                          {
