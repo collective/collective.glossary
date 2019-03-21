@@ -6,7 +6,7 @@
   <!-- Basic metadata -->
   <property name="title" i18n:translate="">Glossary</property>
   <property name="description" i18n:translate="">A Glossary</property>
-  <property name="content_icon">++resource++collective.glossary/glossary-icon.png</property>
+  <property name="content_icon">++resource++collective.glossary/img/glossary-icon.png</property>
   <property name="allow_discussion">False</property>
   <property name="global_allow">True</property>
   <property name="filter_content_types">True</property>
