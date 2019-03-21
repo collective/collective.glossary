@@ -18,6 +18,7 @@ module.exports = makeConfig(
   (config, options) => {
     config.entry.unshift(
       './app/img/glossary-icon.png',
+      './app/img/term-icon.png',
     );
   },
 );
