@@ -1,5 +1,0 @@
-exclude_paths:
-- bootstrap.py
-- setup.py
-- src/collective/glossary/browser/static/jquery.glossarize.js
-- src/collective/glossary/browser/static/tooltip.js

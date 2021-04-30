@@ -19,8 +19,8 @@ Mostly Harmless
 .. image:: http://img.shields.io/pypi/v/collective.glossary.svg
     :target: https://pypi.python.org/pypi/collective.glossary
 
-.. image:: https://img.shields.io/travis/collective/collective.glossary/master.svg
-    :target: http://travis-ci.org/collective/collective.glossary
+.. image:: https://github.com/collective/collective.glossary/actions/workflows/main.yml/badge.svg
+    :alt: Github workflow status badge
 
 .. image:: https://img.shields.io/coveralls/collective/collective.glossary/master.svg
     :target: https://coveralls.io/r/collective/collective.glossary
