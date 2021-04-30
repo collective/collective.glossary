@@ -40,6 +40,10 @@ Don't Panic
 Installation
 ------------
 
+Preparation: 
+
+PyICU https://pypi.org/project/PyICU/
+
 To enable this package in a buildout-based installation:
 
 #. Edit your buildout.cfg and add add the following to it::
