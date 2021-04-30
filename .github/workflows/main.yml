@@ -64,12 +64,12 @@ jobs:
           echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
     - name: bootstrap buildout
       run: |
-        ./bootstrap.sh -c test-${{ matrix.plone-version }}.x.cfg
+        ./bootstrap.sh -c test_plone${{ matrix.plone-version }}.cfg
         bin/pip install zest.pocompile
         bin/pocompile
     - name: buildout
       run: |
-        bin/buildout -t 10 -Nc test-${{ matrix.plone-version }}.x.cfg
+        bin/buildout -t 10 -Nc test_plone${{ matrix.plone-version }}.cfg
     - name: test
       run: |
           export DISPLAY=:99.0
