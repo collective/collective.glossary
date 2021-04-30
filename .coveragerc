@@ -1,2 +1,6 @@
 [report]
-include = src/collective/glossary/*
+include =
+    src/collective/*
+omit =
+    */test*
+    */upgrades/*
