@@ -43,7 +43,7 @@ jobs:
       run: |
         sudo apt-get install libxml2-dev libxslt-dev
         pip install virtualenv wheel
-        sudo apt-get install python3-icu
+        sudo apt-get install pkg-config libicu-dev
         pip install --no-binary=:pyicu: pyicu
     - uses: nanasess/setup-chromedriver@master
     - name: Cache multiple paths
