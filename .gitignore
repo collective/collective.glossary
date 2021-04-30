@@ -26,3 +26,5 @@ requirements.txt
 pyvenv.cfg
 annotate.txt
 requirements.txt
+.vscode/settings.json
+.vscode/vs-recipe-generated-settings.json
