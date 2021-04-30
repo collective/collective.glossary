@@ -64,7 +64,7 @@ jobs:
           echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
     - name: bootstrap buildout
       run: |
-        ./bootstrap.sh -c test_plone${{ matrix.plone-version }}.cfg
+        ./bootstrap.sh test_plone${{ matrix.plone-version }}.cfg
         bin/pip install zest.pocompile
         bin/pocompile
     - name: buildout
