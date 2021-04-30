@@ -42,8 +42,9 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install libxml2-dev libxslt-dev
-        sudo apt-get install python3-icu
         pip install virtualenv wheel
+        sudo apt-get install python3-icu
+        pip install --no-binary=:pyicu: pyicu
     - uses: nanasess/setup-chromedriver@master
     - name: Cache multiple paths
       uses: actions/cache@v2
