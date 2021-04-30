@@ -22,3 +22,6 @@ parts/
 src/collective.*
 src/plone.*
 var/
+requirements.txt
+pyvenv.cfg
+annotate.txt
