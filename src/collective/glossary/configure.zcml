@@ -20,6 +20,7 @@
       />
 
   <include package=".browser" />
+  <include package=".behaviors" />
 
   <include file="profiles.zcml" />
   <include file="vocabulary.zcml" />
