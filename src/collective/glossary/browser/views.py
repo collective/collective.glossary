@@ -7,8 +7,8 @@ from plone.memoize import ram
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 
-import json
 import icu
+import json
 
 
 def _catalog_counter_cachekey(method, self):
