@@ -28,3 +28,5 @@ annotate.txt
 requirements.txt
 .vscode/settings.json
 .vscode/vs-recipe-generated-settings.json
+htmlcov/
+.vscode/.env
