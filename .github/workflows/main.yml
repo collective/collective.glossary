@@ -79,7 +79,7 @@ jobs:
           sleep 3
           bin/test --all
       - name: code-analysis
-        run: echo "${{ matrix.plone-version }}" | grep 5.1 || bin/code-analysis
+        run: echo "${{ matrix.plone-version }}" | grep ${{ matrix.plone-version }} || bin/code-analysis
       - name: Robot Ran
         id: check_files
         uses: andstor/file-existence-action@v1
