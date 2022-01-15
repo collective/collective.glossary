@@ -10,10 +10,13 @@ def updateRichtextDefinition(setup_tool):
     brains = api.content.find(portal_type="Term")
     for brain in brains:
         obj = brain.getObject()
-        obj.definition = RichTextValue(
-            f"<p>{obj.description}</p>",
-            mimeType="text/html",
-            outputMimeType="text/html",
-        )
+        if not obj.definition:
+            obj.definition = RichTextValue(
+                f"<p>{obj.description}</p>",
+                mimeType="text/html",
+                outputMimeType="text/html",
+            )
+        else:
+            logger.info("found term definition. Do not overwrite. " + obj.definition.raw)
         obj.reindexObject()
     logger.info("Fill new definition field with old description field.")

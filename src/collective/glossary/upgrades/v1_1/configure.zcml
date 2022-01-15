@@ -4,7 +4,7 @@
     i18n_domain="collective.glossary">
 
   <genericsetup:upgradeSteps
-      source="2"
+      source="3"
       destination="3"
       profile="collective.glossary:default">
 

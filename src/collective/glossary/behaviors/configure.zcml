@@ -12,7 +12,7 @@
     <plone:behavior
         name="collective.glossary.term_variations"
         title="Glossary: Term with variations and rich text definition"
-        description="Add field for variations and add field for rich text definition."
+        description="Add field for variations and add field for rich text definition. Run upgrade step if existing description shall be copied to rich text definition."
         provides=".term_variations.ITermVariations"
         factory=".term_variations.TermVariations"
         marker=".term_variations.ITermVariationsMarker"
