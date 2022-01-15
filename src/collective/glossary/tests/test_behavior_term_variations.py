@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.glossary.behaviors.term_variations import ITermVariationsMarker
-from collective.glossary.testing import COLLECTIVE_GLOSSARY_INTEGRATION_TESTING  # noqa
+from collective.glossary.testing import INTEGRATION_TESTING  # noqa
 from plone.app.testing import setRoles, TEST_USER_ID
 from plone.behavior.interfaces import IBehavior
 from zope.component import getUtility
@@ -10,7 +10,7 @@ import unittest
 
 class TermVariationsIntegrationTest(unittest.TestCase):
 
-    layer = COLLECTIVE_GLOSSARY_INTEGRATION_TESTING
+    layer = INTEGRATION_TESTING
 
     def setUp(self):
         """Custom shared utility setup for tests."""
