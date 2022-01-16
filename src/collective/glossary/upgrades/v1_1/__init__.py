@@ -12,7 +12,7 @@ def updateRichtextDefinition(setup_tool):
     brains = api.content.find(portal_type="Term")
     for brain in brains:
         obj = brain.getObject()
-        if not obj.definition:
+        if not obj.get("definition"):
             logger.info("Intitialize " + obj.id + " " + obj.description)
             obj.definition = RichTextValue(
                 f"<p>{obj.description}</p>",
