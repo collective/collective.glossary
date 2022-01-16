@@ -3,7 +3,6 @@
 from collective.glossary import _
 from plone import schema
 from plone.app.textfield import RichText
-from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from Products.CMFPlone.utils import safe_hasattr
@@ -19,9 +18,8 @@ class ITermVariationsMarker(Interface):
 class ITermVariations(model.Schema):
     """ """
 
-    # form.widget("variations", cols=25, rows=10)
     variations = schema.Tuple(
-        title=_(u"variations"),
+        title=_(u"Variations"),
         description=_(u"Enter the variations of the term, one per line."),
         required=False,
         value_type=schema.TextLine(),
