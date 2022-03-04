@@ -7,14 +7,14 @@ from plone.memoize import ram
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 
+import icu
 import json
-import zope.ucol
 
 
 def _catalog_counter_cachekey(method, self):
     """Return a cachekey based on catalog updates."""
 
-    catalog = api.portal.get_tool('portal_catalog')
+    catalog = api.portal.get_tool("portal_catalog")
     return str(catalog.getCounter())
 
 
@@ -25,12 +25,12 @@ class TermView(BrowserView):
     def get_entry(self):
         """Get term in the desired format"""
 
-        scales = self.context.unrestrictedTraverse('@@images')
-        image = scales.scale('image', None)
+        scales = self.context.unrestrictedTraverse("@@images")
+        image = scales.scale("image", None)
         item = {
-            'title': self.context.title,
-            'description': self.context.description,
-            'image': image,
+            "title": self.context.title,
+            "description": self.context.description,
+            "image": image,
         }
         return item
 
@@ -43,9 +43,9 @@ class GlossaryView(BrowserView):
     def get_entries(self):
         """Get glossary entries and keep them in the desired format"""
 
-        catalog = api.portal.get_tool('portal_catalog')
-        path = '/'.join(self.context.getPhysicalPath())
-        query = dict(portal_type='Term', path={'query': path, 'depth': 1})
+        catalog = api.portal.get_tool("portal_catalog")
+        path = "/".join(self.context.getPhysicalPath())
+        query = dict(portal_type="Term", path={"query": path, "depth": 1})
 
         items = {}
         for brain in catalog(**query):
@@ -53,20 +53,23 @@ class GlossaryView(BrowserView):
             index = baseNormalize(obj.title)[0].upper()
             if index not in items:
                 items[index] = []
-            scales = obj.unrestrictedTraverse('@@images')
-            image = scales.scale('image', scale='tile')  # 64x64
+            scales = obj.unrestrictedTraverse("@@images")
+            image = scales.scale("image", scale="tile")  # 64x64
             item = {
-                'title': obj.title,
-                'description': obj.description,
-                'image': image,
+                "title": obj.title,
+                "description": obj.description,
+                "image": image,
             }
             items[index].append(item)
 
         language = api.portal.get_current_language()
-        collator = zope.ucol.Collator(str(language))
+        collator = icu.Collator.createInstance(icu.Locale(str(language)))
 
         for k in items:
-            items[k] = sorted(items[k], key=lambda term: collator.key(safe_unicode(term['title'])))
+            items[k] = sorted(
+                items[k],
+                key=lambda term: collator.getSortKey(safe_unicode(term["title"])),
+            )
 
         return items
 
@@ -89,14 +92,16 @@ class GlossaryStateView(BrowserView):
     def tooltip_is_enabled(self):
         """Check if term tooltip is enabled."""
         return api.portal.get_registry_record(
-            IGlossarySettings.__identifier__ + '.enable_tooltip')
+            IGlossarySettings.__identifier__ + ".enable_tooltip"
+        )
 
     @property
     def content_type_is_enabled(self):
         """Check if we must show the tooltip in this context."""
-        portal_type = getattr(self.context, 'portal_type', None)
+        portal_type = getattr(self.context, "portal_type", None)
         enabled_content_types = api.portal.get_registry_record(
-            IGlossarySettings.__identifier__ + '.enabled_content_types')
+            IGlossarySettings.__identifier__ + ".enabled_content_types"
+        )
         return portal_type in enabled_content_types
 
     @property
@@ -104,21 +109,25 @@ class GlossaryStateView(BrowserView):
         """Check if we are into the view action."""
         context_url = self.context.absolute_url()
         # Check if use Virtual Host configuration (ex.: Nginx)
-        request_url = self.request.get('VIRTUAL_URL', None)
+        request_url = self.request.get("VIRTUAL_URL", None)
 
         if request_url is None:
-            request_url = self.request.base + self.request.get('PATH_INFO', '')
+            request_url = self.request.base + self.request.get("PATH_INFO", "")
 
         if context_url == request_url:
             return True
 
         # Default view
-        return context_url.startswith(request_url) and \
-            len(context_url) > len(request_url)
+        return context_url.startswith(request_url) and len(context_url) > len(
+            request_url
+        )
 
     def __call__(self):
-        return self.tooltip_is_enabled and \
-            self.content_type_is_enabled and self.is_view_action
+        return (
+            self.tooltip_is_enabled
+            and self.content_type_is_enabled
+            and self.is_view_action
+        )
 
 
 class JsonView(BrowserView):
@@ -130,21 +139,23 @@ class JsonView(BrowserView):
     @ram.cache(_catalog_counter_cachekey)
     def get_json_entries(self):
         """Get all itens and prepare in the desired format.
-        Note: do not name it get_entries, otherwise caching is broken. """
+        Note: do not name it get_entries, otherwise caching is broken."""
 
-        catalog = api.portal.get_tool('portal_catalog')
+        catalog = api.portal.get_tool("portal_catalog")
 
         items = []
-        for brain in catalog(portal_type='Term'):
-            items.append({
-                'term': brain.Title,
-                'description': brain.Description,
-            })
+        for brain in catalog(portal_type="Term"):
+            items.append(
+                {
+                    "term": brain.Title,
+                    "description": brain.Description,
+                }
+            )
 
         return items
 
     def __call__(self):
         response = self.request.response
-        response.setHeader('content-type', 'application/json')
+        response.setHeader("content-type", "application/json")
 
         return response.setBody(json.dumps(self.get_json_entries()))

@@ -9,8 +9,8 @@ class GlossarySettingsEditForm(controlpanel.RegistryEditForm):
     """Control panel edit form."""
 
     schema = IGlossarySettings
-    label = _(u'Glossary')
-    description = _(u'Settings for the collective.glossary package')
+    label = _("Glossary")
+    description = _("Settings for the collective.glossary package")
 
 
 class GlossarySettingsControlPanel(controlpanel.ControlPanelFormWrapper):

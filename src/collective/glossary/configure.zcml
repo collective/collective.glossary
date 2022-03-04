@@ -8,6 +8,11 @@
   <i18n:registerTranslations directory="locales" />
 
   <include package="plone.app.dexterity" />
+  
+  <include package=".browser" />
+
+  <include file="profiles.zcml" />
+  <include file="vocabulary.zcml" />
 
   <permission
       id="collective.glossary.AddGlossary"
@@ -19,9 +24,5 @@
       title="collective.glossary: Add Term"
       />
 
-  <include package=".browser" />
-
-  <include file="profiles.zcml" />
-  <include file="vocabulary.zcml" />
 
 </configure>
