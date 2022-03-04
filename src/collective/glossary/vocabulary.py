@@ -10,7 +10,8 @@ class PortalTypesVocabulary(ReallyUserFriendlyTypesVocabulary):
 
     def __call__(self, context):
         items = super(PortalTypesVocabulary, self).__call__(context)
-        items = [i for i in items if i.token not in ('Glossary', 'Term')]
+        items = [i for i in items if i.token not in ("Glossary", "Term")]
         return SimpleVocabulary(items)
+
 
 PortalTypesVocabularyFactory = PortalTypesVocabulary()

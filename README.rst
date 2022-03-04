@@ -1,64 +1,73 @@
-********
-Glossary
-********
+.. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
+   If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
+   This text does not appear on pypi or github. It is a comment.
 
-.. contents:: Table of Contents
-
-Life, the Universe, and Everything
-==================================
-
-A Dexterity-based content type to define a glossary and its terms.
-
-This package is inspired in `PloneGlossary`_.
-
-.. _`PloneGlossary`: https://pypi.python.org/pypi/Products.PloneGlossary
-
-Mostly Harmless
-===============
 
 .. image:: http://img.shields.io/pypi/v/collective.glossary.svg
     :target: https://pypi.python.org/pypi/collective.glossary
 
-.. image:: https://img.shields.io/travis/collective/collective.glossary/master.svg
-    :target: http://travis-ci.org/collective/collective.glossary
+.. image:: https://github.com/collective/collective.glossary/actions/workflows/main.yml/badge.svg
+    :alt: Github workflow status badge
 
 .. image:: https://img.shields.io/coveralls/collective/collective.glossary/master.svg
     :target: https://coveralls.io/r/collective/collective.glossary
 
-Got an idea? Found a bug? Let us know by `opening a support ticket`_.
 
-.. _`opening a support ticket`: https://github.com/collective/collective.glossary/issues
+===================
+collective.glossary
+===================
 
-Known issues
+A Dexterity-based content type to define a glossary and its terms.
+
+
+Translations
 ------------
 
-See the `complete list of bugs on GitHub <https://github.com/collective/collective.glossary/labels/bug>`_.
+This product has been translated into
 
-Don't Panic
-===========
+- german
+
 
 Installation
 ------------
 
-To enable this package in a buildout-based installation:
+Preparation: 
 
-#. Edit your buildout.cfg and add add the following to it::
+PyICU https://pypi.org/project/PyICU/
+
+Install collective.glossary by adding it to your buildout::
 
     [buildout]
+
     ...
+
     eggs =
         collective.glossary
 
-After updating the configuration you need to run ''bin/buildout'', which will take care of updating your system.
 
-Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.
+and then running ``bin/buildout``
 
-Check the box next to ``collective.glossary`` and click the 'Activate' button.
 
-Usage
------
+Contribute
+----------
 
-TBD.
+- Issue Tracker: https://github.com/collective/collective.glossary/issues
+- Source Code: https://github.com/collective/collective.glossary
+- Documentation: https://docs.plone.org/foo/bar
+
+
+Support
+-------
+
+If you are having issues, please let us know.
+We have a mailing list located at: project@example.com
+
+
+License
+-------
+
+The project is licensed under the GPLv2.
+
 
 
 Screenshots

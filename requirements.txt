@@ -1,0 +1,4 @@
+# Use constraints from the newest Plone version we support.
+-c constraints.txt
+setuptools
+zc.buildout
