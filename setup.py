@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """Installer for the collective.glossary package."""
 
-from setuptools import find_packages
-from setuptools import setup
+from setuptools import find_packages, setup
 
 
 long_description = "\n\n".join(
