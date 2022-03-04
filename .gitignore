@@ -24,3 +24,4 @@ src/collective.*
 src/plone.*
 var/
 pyvenv.cfg
+reports/
