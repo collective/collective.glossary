@@ -52,7 +52,7 @@ jobs:
           firefox-version: "92.0"
       - name: Xvfb
         run: Xvfb :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
-      - name: Black-Check
+      - name: black-check
         run: |
           tox -r -e black-check
       - name: lint
@@ -74,4 +74,4 @@ jobs:
       - name: "Upload coverage to Codecov"
         uses: "codecov/codecov-action@v2"
         with:
-          fail_ci_if_error: true
+          fail_ci_if_error: false
