@@ -73,11 +73,13 @@ body.portaltype-glossary .letter .terms .title
 {
     font-weight: bold;
 }
+
+abbr[title] {
+    text-decoration: none;
+}
 #content .glossarizer_replaced
 {
     display: inline;
-
     cursor: help;
-
     border-bottom: 1px #333 dotted;
 }
