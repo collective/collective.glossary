@@ -1,72 +1,79 @@
 # -*- coding: utf-8 -*-
+"""Installer for the collective.glossary package."""
+
 from setuptools import find_packages
 from setuptools import setup
 
-version = '1.0b2.dev0'
-description = 'A Dexterity-based content type to define a glossary and its terms.'
-long_description = (
-    open('README.rst').read() + '\n' +
-    open('CONTRIBUTORS.rst').read() + '\n' +
-    open('CHANGES.rst').read()
+
+long_description = "\n\n".join(
+    [
+        open("README.rst").read(),
+        open("CONTRIBUTORS.rst").read(),
+        open("CHANGES.rst").read(),
+    ]
 )
 
+
 setup(
-    name='collective.glossary',
-    version=version,
-    description=description,
+    name="collective.glossary",
+    version="2.0.0.dev0",
+    description="A Dexterity-based content type to define a glossary and its terms.",
     long_description=long_description,
+    # Get more from https://pypi.org/classifiers/
     classifiers=[
-        'Development Status :: 4 - Beta',
-        'Environment :: Web Environment',
-        'Framework :: Plone',
-        'Framework :: Plone :: 4.3',
-        'Framework :: Plone :: 5.1',
-        'Intended Audience :: Education',
-        'Intended Audience :: End Users/Desktop',
-        'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
-        'Topic :: Software Development :: Libraries :: Python Modules',
+        "Environment :: Web Environment",
+        "Framework :: Plone",
+        "Framework :: Plone :: Addon",
+        "Framework :: Plone :: 5.2",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Operating System :: OS Independent",
+        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     ],
-    keywords='plone glossary',
-    author='Simples Consultoria',
-    author_email='products@simplesconsultoria.com.br',
-    url='https://github.com/collective/collective.glossary',
-    packages=find_packages('src'),
-    package_dir={'': 'src'},
-    namespace_packages=['collective'],
+    keywords="Python Plone CMS",
+    author="Simples Consultoria",
+    author_email="products@simplesconsultoria.com.br",
+    url="https://github.com/collective/collective.glossary",
+    project_urls={
+        "PyPI": "https://pypi.python.org/pypi/collective.glossary",
+        "Source": "https://github.com/collective/collective.glossary",
+        "Tracker": "https://github.com/collective/collective.glossary/issues",
+        # 'Documentation': 'https://collective.glossary.readthedocs.io/en/latest/',
+    },
+    license="GPL version 2",
+    packages=find_packages("src", exclude=["ez_setup"]),
+    namespace_packages=["collective"],
+    package_dir={"": "src"},
     include_package_data=True,
     zip_safe=False,
+    python_requires=">=3.6",
     install_requires=[
-        'plone.api',
-        'plone.app.dexterity',
-        'plone.app.registry',
-        'plone.dexterity',
-        'plone.namedfile',
-        'Products.CMFPlone >=4.3',
-        'Products.GenericSetup',
-        'setuptools',
-        'zope.globalrequest',
-        'zope.i18nmessageid',
-        'zope.interface',
-        'zope.schema',
-        'zope.ucol'
+        "setuptools",
+        # -*- Extra requirements: -*-
+        "z3c.jbot",
+        "plone.api>=1.8.4",
+        "plone.restapi",
+        "plone.app.dexterity",
+        "PyICU",
     ],
     extras_require={
-        'test': [
-            'AccessControl',
-            'plone.app.robotframework',
-            'plone.app.testing [robot]',
-            'plone.browserlayer',
-            'plone.registry',
-            'plone.testing',
-            'robotsuite',
-            'zope.component',
+        "test": [
+            "plone.app.testing",
+            # Plone KGS does not use this version, because it would break
+            # Remove if your package shall be part of coredev.
+            # plone_coredev tests as of 2016-04-01.
+            "plone.testing>=5.0.0",
+            "plone.app.contenttypes",
+            "plone.app.robotframework[debug]",
         ],
     },
     entry_points="""
     [z3c.autoinclude.plugin]
     target = plone
+    [console_scripts]
+    update_locale = collective.glossary.locales.update:update_locale
     """,
 )
