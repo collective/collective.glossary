@@ -14,37 +14,60 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./../profiles/default/types/Glossary.xml
+#: ../profiles.zcml:15
+msgid "A Dexterity-based content type to define a glossary and its terms."
+msgstr ""
+
+#: ../profiles/default/types/Glossary.xml
 msgid "A Glossary"
 msgstr ""
 
-#: ./../profiles/default/types/Term.xml
+#: ../profiles/default/types/Term.xml
 msgid "A Term"
 msgstr ""
 
-#: ./../interfaces.py:20
+#: ../interfaces.py:41
+msgid "Body text"
+msgstr ""
+
+#: ../interfaces.py:21
 msgid "Enable tooltip."
 msgstr ""
 
-#: ./../interfaces.py:19
+#: ../interfaces.py:20
 msgid "Enable tooltip?"
 msgstr ""
 
-#: ./../controlpanel.py:12
-#: ./../profiles/default/controlpanel.xml
-#: ./../profiles/default/types/Glossary.xml
+#: ../interfaces.py:26
+msgid "Enabled Content Types"
+msgstr ""
+
+#: ../controlpanel.py:12
+#: ../profiles.zcml:15
+#: ../profiles/default/controlpanel.xml
 msgid "Glossary"
 msgstr ""
 
-#: ./../interfaces.py:35
+#: ../interfaces.py:52
 msgid "Image"
 msgstr ""
 
-#: ./../controlpanel.py:13
+#: ../interfaces.py:27
+msgid "Only objects of these content types will display glossary terms."
+msgstr "Only objects of these content types will display tooltips."
+
+#: ../controlpanel.py:13
 msgid "Settings for the collective.glossary package"
 msgstr ""
 
-#: ./../profiles/default/types/Term.xml
+#: ../profiles/default/types/Term.xml
 msgid "Term"
 msgstr ""
 
+#: ../profiles.zcml:24
+msgid "Uninstall collective.glossary."
+msgstr ""
+
+#: ../profiles.zcml:24
+msgid "collective.glossary: uninstall"
+msgstr ""
