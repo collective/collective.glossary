@@ -3,6 +3,8 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="collective.glossary">
 
+  <include package=".viewlets" />
+
   <browser:resourceDirectory
       name="collective.glossary"
       directory="static"
