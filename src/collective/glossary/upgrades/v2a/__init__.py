@@ -21,6 +21,11 @@ def updateRichtextDefinition(setup_tool):
             )
             obj.description = ""
         else:
-            logger.info("Found term definition for " + obj.id + ". Do not overwrite. " + obj.definition.raw)
+            logger.info(
+                "Found term definition for "
+                + obj.id
+                + ". Do not overwrite. "
+                + obj.definition.raw
+            )
         obj.reindexObject()
     logger.info("Glossary term definitions initialized.")

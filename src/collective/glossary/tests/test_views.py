@@ -27,7 +27,7 @@ class BaseViewTestCase(unittest.TestCase):
                     "<p>Glossary Description</p>",
                     mimeType="text/html",
                     outputMimeType="text/html",
-                )
+                ),
             )
             self.t1 = api.content.create(
                 self.g1,
@@ -39,7 +39,7 @@ class BaseViewTestCase(unittest.TestCase):
                     "<p>First Term Description</p>",
                     mimeType="text/html",
                     outputMimeType="text/html",
-                )
+                ),
             )
             self.t2 = api.content.create(
                 self.g1,
@@ -51,7 +51,7 @@ class BaseViewTestCase(unittest.TestCase):
                     "<p>Second Term Description</p>",
                     mimeType="text/html",
                     outputMimeType="text/html",
-                )
+                ),
             )
             self.d1 = api.content.create(
                 self.portal,
@@ -62,7 +62,7 @@ class BaseViewTestCase(unittest.TestCase):
                     "<p>Document Description</p>",
                     mimeType="text/html",
                     outputMimeType="text/html",
-                )
+                ),
             )
 
 
@@ -102,7 +102,7 @@ class GlossaryViewTestCase(BaseViewTestCase):
             {
                 "title": "First Term",
                 "definition": "<p>First Term Description</p>",
-                "variations": ['FTD', 'MFTD'],
+                "variations": ["FTD", "MFTD"],
                 "state": "private",
                 "image": None,
             }
@@ -113,7 +113,7 @@ class GlossaryViewTestCase(BaseViewTestCase):
             {
                 "title": "Second Term",
                 "definition": "<p>Second Term Description</p>",
-                "variations": ['STD', 'MSTD'],
+                "variations": ["STD", "MSTD"],
                 "state": "private",
                 "image": None,
             }
