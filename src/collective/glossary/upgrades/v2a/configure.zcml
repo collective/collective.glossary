@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.glossary">
+
+  <genericsetup:upgradeSteps
+      source="2"
+      destination="3"
+      profile="collective.glossary:default">
+
+      <genericsetup:upgradeStep
+          title="Initialize new fields"
+          description="Fill new definition field with old description field."
+          handler=".updateRichtextDefinition"
+          />
+
+  </genericsetup:upgradeSteps>
+
+</configure>
