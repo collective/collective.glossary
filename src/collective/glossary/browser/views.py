@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from collections import defaultdict
 from collective.glossary.interfaces import IGlossarySettings
 from plone import api
 from plone.i18n.normalizer.base import baseNormalize
@@ -134,15 +135,29 @@ class JsonView(BrowserView):
 
         catalog = api.portal.get_tool("portal_catalog")
 
+        terms = catalog(portal_type="Term")
+        terms_with_variations = defaultdict(list)
+        for term in terms:
+            obj = term.getObject()
+            terms_with_variations[term.Title].append(obj.definition.output)
+            for vrt in obj.variations:
+                terms_with_variations[vrt].append(obj.definition.output)
+
         items = []
-        for brain in catalog(portal_type="Term"):
+        for title in terms_with_variations:
+            if len(terms_with_variations[title]) > 1:
+                description = f"<ol>{''.join([f'<li>{el}</li>' for el in terms_with_variations[title]])}</ol>"
+            elif len(terms_with_variations[title]) == 1:
+                description = terms_with_variations[title][0]
+            else:
+                description = ''
+
             items.append(
                 {
-                    "term": brain.Title,
-                    "definition": brain.getObject().definition.output,
+                    "term": title,
+                    "description": description,
                 }
             )
-
         return items
 
     def __call__(self):

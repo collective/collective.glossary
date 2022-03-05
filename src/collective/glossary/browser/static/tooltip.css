@@ -12,8 +12,13 @@
     background: #000;
     background: rgba(0,0,0,.8);
 }
-#tooltip  strong {
+#tooltip strong {
     color: #c3e7fa;
+}
+#tooltip ol {
+    padding-left: 2rem;
+}
+#tooltip ol li {
 }
 
 @media only screen and (max-width: 800px)
