@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from plone import api
 from collective.glossary.logger import logger
+from plone import api
 from plone.app.textfield.value import RichTextValue
 
 
