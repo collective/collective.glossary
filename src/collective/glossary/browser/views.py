@@ -11,15 +11,14 @@ import icu
 import json
 
 
-def _catalog_counter_cachekey(method, self):
-    """Return a cachekey based on catalog updates."""
+def _user_cachekey(method, self):
+    """Return a cachekey for user."""
 
-    catalog = api.portal.get_tool("portal_catalog")
-    return str(catalog.getCounter())
+    current = api.user.get_current()
+    return current and current.id or 'anonymous'
 
 
 class TermView(BrowserView):
-
     """Default view for Term type"""
 
     def get_entry(self):
@@ -39,7 +38,7 @@ class GlossaryView(BrowserView):
 
     """Default view of Glossary type"""
 
-    @ram.cache(_catalog_counter_cachekey)
+    @ram.cache(_user_cachekey)
     def get_entries(self):
         """Get glossary entries and keep them in the desired format"""
 
@@ -57,8 +56,10 @@ class GlossaryView(BrowserView):
             image = scales.scale("image", scale="tile")  # 64x64
             item = {
                 "title": obj.title,
-                "description": obj.description,
+                "definition": obj.definition.output,
+                "variations": obj.variations,
                 "image": image,
+                "state": brain.review_state,
             }
             items[index].append(item)
 
@@ -75,10 +76,12 @@ class GlossaryView(BrowserView):
 
     def letters(self):
         """Return all letters sorted"""
+
         return sorted(self.get_entries())
 
     def terms(self, letter):
         """Return all terms of one letter"""
+
         return self.get_entries()[letter]
 
 
@@ -136,7 +139,7 @@ class JsonView(BrowserView):
     This view is used into an ajax call for
     """
 
-    @ram.cache(_catalog_counter_cachekey)
+    @ram.cache(_user_cachekey)
     def get_json_entries(self):
         """Get all itens and prepare in the desired format.
         Note: do not name it get_entries, otherwise caching is broken."""
@@ -148,7 +151,7 @@ class JsonView(BrowserView):
             items.append(
                 {
                     "term": brain.Title,
-                    "description": brain.Description,
+                    "description": brain.getObject().definition.output,
                 }
             )
 
