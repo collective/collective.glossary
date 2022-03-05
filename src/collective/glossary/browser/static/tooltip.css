@@ -1,17 +1,19 @@
-#tooltip
-{
+#tooltip {
     position: absolute;
     z-index: 100;
 
     box-sizing: border-box;
     padding: 15px;
 
-    text-align: center;
+    text-align: left;
 
     color: #fff;
     border-radius: 5px;
     background: #000;
     background: rgba(0,0,0,.8);
+}
+#tooltip  strong {
+    color: #c3e7fa;
 }
 
 @media only screen and (max-width: 800px)

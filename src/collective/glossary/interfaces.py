@@ -49,8 +49,27 @@ class ITerm(Interface):
 
     """A Term."""
 
+    # default fieldset
+
+    variations = schema.Tuple(
+        title=_(u"Variations"),
+        description=_(u"Enter the variations of the term, one per line."),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=(),
+        default=(),
+    )
+
+    definition = RichText(
+        title=_(u"Definition"),
+        description=_(u"Definition of Glossary Term."),
+        required=False,
+    )
+
     image = NamedBlobImage(
         title=_("Image"),
         description=_(""),
         required=False,
     )
+
+    # TODO description of description
