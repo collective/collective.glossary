@@ -17,9 +17,9 @@
 collective.glossary
 ===================
 
-A Dexterity-based content type to define a glossary and its terms.
+Two content types to define a glossary and its terms.
 
-The terms are defined as title / definition pairs. Where the title can have variations. The definiton can be formated richt text.
+The terms are defined as title / definition pairs. The title can have variations. The definiton is formated richt text.
 
 
 Translations
