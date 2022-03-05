@@ -2,6 +2,7 @@
 from collective.glossary.interfaces import IGlossarySettings
 from collective.glossary.testing import INTEGRATION_TESTING
 from plone import api
+from plone.app.textfield.value import RichTextValue
 from zope.publisher.browser import TestRequest
 
 import unittest
@@ -22,43 +23,47 @@ class BaseViewTestCase(unittest.TestCase):
                 "Glossary",
                 "g1",
                 title="Glossary",
-                description="Glossary Description",
+                definition=RichTextValue(
+                    "<p>Glossary Description</p>",
+                    mimeType="text/html",
+                    outputMimeType="text/html",
+                )
             )
             self.t1 = api.content.create(
                 self.g1,
                 "Term",
                 "t1",
                 title="First Term",
-                description="First Term Description",
+                variations=["FTD", "MFTD"],
+                definition=RichTextValue(
+                    "<p>First Term Description</p>",
+                    mimeType="text/html",
+                    outputMimeType="text/html",
+                )
             )
             self.t2 = api.content.create(
                 self.g1,
                 "Term",
                 "t2",
                 title="Second Term",
-                description="Second Term Description",
+                variations=["STD", "MSTD"],
+                definition=RichTextValue(
+                    "<p>Second Term Description</p>",
+                    mimeType="text/html",
+                    outputMimeType="text/html",
+                )
             )
             self.d1 = api.content.create(
                 self.portal,
                 "Document",
                 "d1",
                 title="Document",
-                description="Document Description",
+                definition=RichTextValue(
+                    "<p>Document Description</p>",
+                    mimeType="text/html",
+                    outputMimeType="text/html",
+                )
             )
-
-
-class TermViewTestCase(BaseViewTestCase):
-    def setUp(self):
-        super(TermViewTestCase, self).setUp()
-        self.view = api.content.get_view("view", self.t1, self.request)
-
-    def test_get_entry(self):
-        expected = {
-            "description": "First Term Description",
-            "image": None,
-            "title": "First Term",
-        }
-        self.assertEqual(self.view.get_entry(), expected)
 
 
 class GlossaryViewTestCase(BaseViewTestCase):
@@ -71,15 +76,19 @@ class GlossaryViewTestCase(BaseViewTestCase):
             "F": [
                 {
                     "image": None,
-                    "description": "First Term Description",
+                    "definition": "<p>First Term Description</p>",
+                    "variations": ["FTD", "MFTD"],
                     "title": "First Term",
+                    "state": "private",
                 }
             ],
             "S": [
                 {
                     "image": None,
-                    "description": "Second Term Description",
+                    "definition": "<p>Second Term Description</p>",
+                    "variations": ["STD", "MSTD"],
                     "title": "Second Term",
+                    "state": "private",
                 }
             ],
         }
@@ -88,38 +97,25 @@ class GlossaryViewTestCase(BaseViewTestCase):
     def test_letters(self):
         self.assertEqual(self.view.letters(), ["F", "S"])
 
-        with api.env.adopt_roles(["Manager"]):
-            self.ta1 = api.content.create(
-                self.g1,
-                "Term",
-                "ta1",
-                title="American",
-                description="American Term Description",
-            )
-            self.ta2 = api.content.create(
-                self.g1,
-                "Term",
-                "ta2",
-                title="Ásia",
-                description="Ásia Term Description",
-            )
-        self.assertEqual(self.view.letters(), ["A", "F", "S"])
-
     def test_terms(self):
         expected = [
             {
-                "image": None,
-                "description": "First Term Description",
                 "title": "First Term",
+                "definition": "<p>First Term Description</p>",
+                "variations": ['FTD', 'MFTD'],
+                "state": "private",
+                "image": None,
             }
         ]
         self.assertEqual(self.view.terms("F"), expected)
 
         expected = [
             {
-                "image": None,
-                "description": "Second Term Description",
                 "title": "Second Term",
+                "definition": "<p>Second Term Description</p>",
+                "variations": ['STD', 'MSTD'],
+                "state": "private",
+                "image": None,
             }
         ]
         self.assertEqual(self.view.terms("S"), expected)
@@ -187,8 +183,8 @@ class JsonViewTestCase(BaseViewTestCase):
 
     def test_get_json_entries(self):
         expected = [
-            {"description": "First Term Description", "term": "First Term"},
-            {"description": "Second Term Description", "term": "Second Term"},
+            {"definition": "<p>First Term Description</p>", "term": "First Term"},
+            {"definition": "<p>Second Term Description</p>", "term": "Second Term"},
         ]
         self.assertEqual(self.view.get_json_entries(), expected)
 
@@ -199,7 +195,7 @@ class JsonViewTestCase(BaseViewTestCase):
         result = self.view.request.response.getBody()
 
         expected = [
-            {"description": "First Term Description", "term": "First Term"},
-            {"description": "Second Term Description", "term": "Second Term"},
+            {"definition": "<p>First Term Description</p>", "term": "First Term"},
+            {"definition": "<p>Second Term Description</p>", "term": "Second Term"},
         ]
         self.assertEqual(json.loads(result), expected)
