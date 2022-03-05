@@ -21,18 +21,6 @@ def _user_cachekey(method, self):
 class TermView(BrowserView):
     """Default view for Term type"""
 
-    def get_entry(self):
-        """Get term in the desired format"""
-
-        scales = self.context.unrestrictedTraverse("@@images")
-        image = scales.scale("image", None)
-        item = {
-            "title": self.context.title,
-            "description": self.context.description,
-            "image": image,
-        }
-        return item
-
 
 class GlossaryView(BrowserView):
 
@@ -151,7 +139,7 @@ class JsonView(BrowserView):
             items.append(
                 {
                     "term": brain.Title,
-                    "description": brain.getObject().definition.output,
+                    "definition": brain.getObject().definition.output,
                 }
             )
 
