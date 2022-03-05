@@ -19,6 +19,8 @@ collective.glossary
 
 A Dexterity-based content type to define a glossary and its terms.
 
+The terms are defined as title / definition pairs. Where the title can have variations. The definiton can be formated richt text.
+
 
 Translations
 ------------
@@ -73,26 +75,27 @@ The project is licensed under the GPLv2.
 Screenshots
 -----------
 
-.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/glossary.png
+.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/glossary.jpg
     :align: center
     :height: 640px
     :width: 768px
 
     Create a Glossary.
 
-.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/usage.png
+.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/usage.jpf
     :align: center
     :height: 640px
     :width: 768px
 
     Use it!
 
-.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/controlpanel.png
+.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/controlpanel.jpg
     :align: center
     :height: 400px
     :width: 768px
 
-    The tooltip can be disabled in the control panel configlet.
+    - The tooltip can be disabled in the control panel configlet.
+    - Tooltips can be restricted to a selection of content types.
 
 Developer Notes
 ---------------
