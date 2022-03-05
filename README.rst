@@ -17,7 +17,10 @@
 collective.glossary
 ===================
 
-A Dexterity-based content type to define a glossary and its terms.
+collective.glossary is a Plone add-on product to define a glossary.
+
+The terms are defined as title / definition pairs. The title can have variants. The definiton is formated richt text.
+
 
 
 Translations
@@ -30,10 +33,6 @@ This product has been translated into
 
 Installation
 ------------
-
-Preparation: 
-
-PyICU https://pypi.org/project/PyICU/
 
 Install collective.glossary by adding it to your buildout::
 
@@ -73,26 +72,27 @@ The project is licensed under the GPLv2.
 Screenshots
 -----------
 
-.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/glossary.png
+.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/glossary.jpg
     :align: center
     :height: 640px
     :width: 768px
 
     Create a Glossary.
 
-.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/usage.png
+.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/usage.jpf
     :align: center
     :height: 640px
     :width: 768px
 
     Use it!
 
-.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/controlpanel.png
+.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/controlpanel.jpg
     :align: center
     :height: 400px
     :width: 768px
 
-    The tooltip can be disabled in the control panel configlet.
+    - The tooltip can be disabled in the control panel configlet.
+    - Tooltips can be restricted to a selection of content types.
 
 Developer Notes
 ---------------
