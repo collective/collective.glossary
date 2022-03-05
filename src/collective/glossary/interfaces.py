@@ -52,8 +52,8 @@ class ITerm(Interface):
     # default fieldset
 
     variations = schema.Tuple(
-        title=_(u"Variations"),
-        description=_(u"Enter the variations of the term, one per line."),
+        title=_("Variations"),
+        description=_("Enter the variations of the term, one per line."),
         required=False,
         value_type=schema.TextLine(),
         missing_value=(),
@@ -61,8 +61,8 @@ class ITerm(Interface):
     )
 
     definition = RichText(
-        title=_(u"Definition"),
-        description=_(u"Definition of Glossary Term."),
+        title=_("Definition"),
+        description=_("Definition of Glossary Term."),
         required=False,
     )
 

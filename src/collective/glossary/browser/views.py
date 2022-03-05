@@ -15,7 +15,7 @@ def _user_cachekey(method, self):
     """Return a cachekey for user."""
 
     current = api.user.get_current()
-    return current and current.id or 'anonymous'
+    return current and current.id or "anonymous"
 
 
 class TermView(BrowserView):
