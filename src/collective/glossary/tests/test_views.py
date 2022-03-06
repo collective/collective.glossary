@@ -79,7 +79,7 @@ class GlossaryViewTestCase(BaseViewTestCase):
                     "definition": "<p>First Term Description</p>",
                     "variants": ["FTD", "MFTD"],
                     "title": "First Term",
-                    'url': 'http://nohost/plone/g1/t1',
+                    "url": "http://nohost/plone/g1/t1",
                     "state": "private",
                 }
             ],
@@ -89,7 +89,7 @@ class GlossaryViewTestCase(BaseViewTestCase):
                     "definition": "<p>Second Term Description</p>",
                     "variants": ["STD", "MSTD"],
                     "title": "Second Term",
-                    'url': 'http://nohost/plone/g1/t2',
+                    "url": "http://nohost/plone/g1/t2",
                     "state": "private",
                 }
             ],
@@ -106,7 +106,7 @@ class GlossaryViewTestCase(BaseViewTestCase):
                 "definition": "<p>First Term Description</p>",
                 "variants": ["FTD", "MFTD"],
                 "state": "private",
-                'url': 'http://nohost/plone/g1/t1',
+                "url": "http://nohost/plone/g1/t1",
                 "image": None,
             }
         ]
@@ -118,7 +118,7 @@ class GlossaryViewTestCase(BaseViewTestCase):
                 "definition": "<p>Second Term Description</p>",
                 "variants": ["STD", "MSTD"],
                 "state": "private",
-                'url': 'http://nohost/plone/g1/t2',
+                "url": "http://nohost/plone/g1/t2",
                 "image": None,
             }
         ]
