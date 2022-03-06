@@ -17,9 +17,11 @@
 collective.glossary
 ===================
 
-collective.glossary is a Plone add-on product to define a glossary.
+collective.glossary is a Plone backend add-on product to define a glossary.
 
 The terms are defined as title / definition pairs. The title can have variants. The definiton is formated richt text.
+
+The add-on provides a REST API service @glossary_terms to fetch the terms of the glossary.
 
 
 

@@ -44,7 +44,6 @@ class GlossaryView(BrowserView):
                 items[k],
                 key=lambda term: term["title"],
             )
-
         return items
 
     def letters(self):
@@ -109,7 +108,7 @@ class GlossaryStateView(BrowserView):
 class JsonView(BrowserView):
     """Json view that return all glossary items in json format
 
-    This view is used into an ajax call for
+    This view is used for Plone Classic UI
     """
 
     def get_json_entries(self):
@@ -150,6 +149,12 @@ class JsonView(BrowserView):
             items,
             key=lambda vrt: vrt["term"],
         )
+
+        # get_json_entries
+        print("** get_json_entries. items")
+        import pprint
+        pp = pprint.PrettyPrinter(indent=2)
+        pp.pprint(items)
         return items
 
     def __call__(self):

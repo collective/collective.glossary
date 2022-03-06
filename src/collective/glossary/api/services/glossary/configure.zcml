@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml">
+
+  <plone:service
+    method="GET"
+    name="@glossary_terms"
+    for="collective.glossary.interfaces.IGlossary"
+    factory=".get.GetGlossaryTerms"
+    permission="zope.Public"
+    />
+
+</configure>

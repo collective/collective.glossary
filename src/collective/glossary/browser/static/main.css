@@ -28,7 +28,7 @@ body.portaltype-glossary #content-core .letter .terms .term {
     border-bottom: none;
     color: #333;
 }
-body.portaltype-glossary .letter .terms .term.private {
+body.portaltype-glossary #content-core .letter .terms .term.private {
     color: red;
 }
 body.portaltype-glossary #content-core .letter .terms .term img {

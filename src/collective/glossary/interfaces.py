@@ -82,6 +82,7 @@ class ITerm(Interface):
     description = schema.Text(
         title=_("Comment"),
         default="",
+        required=False,
     )
     form.omitted("description")
     form.no_omit(IEditForm, "description")

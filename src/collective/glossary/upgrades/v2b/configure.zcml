@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.glossary">
+
+  <genericsetup:upgradeSteps
+      source="3"
+      destination="4"
+      profile="collective.glossary:default">
+
+      <genericsetup:upgradeStep
+          title="Index variants etc"
+          description="Create catalog indexes."
+          handler=".updateCatalog"
+          />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

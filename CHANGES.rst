@@ -5,6 +5,7 @@ Changelog
 ----------
 
 - The terms are defined as title / definition pairs. The title can have variants. The definiton is formated richt text. @ksuess
+- REST API service @glossary_terms @ksuess
 
 
 1.0b2 (unreleased)
