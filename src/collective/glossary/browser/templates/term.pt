@@ -19,8 +19,12 @@
 
       <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-      <div class="variations" tal:condition="python:context.variations">
-        <span tal:content="python:', '.join(context.variations)">variations</span>
+      <div class="variants" tal:condition="python:context.variants">
+        <ul>
+          <tal:repeat tal:repeat="v context/variants">
+            <li tal:content="v">variant</li>
+          </tal:repeat>
+        </ul>
       </div>
 
       <div class="definition"
