@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collections import defaultdict
 from collective.glossary.interfaces import IGlossarySettings
 from collective.glossary.testing import INTEGRATION_TESTING
 from plone import api
@@ -34,7 +35,7 @@ class BaseViewTestCase(unittest.TestCase):
                 "Term",
                 "t1",
                 title="First Term",
-                variations=["FTD", "MFTD"],
+                variants=["FTD", "MFTD"],
                 definition=RichTextValue(
                     "<p>First Term Description</p>",
                     mimeType="text/html",
@@ -46,7 +47,7 @@ class BaseViewTestCase(unittest.TestCase):
                 "Term",
                 "t2",
                 title="Second Term",
-                variations=["STD", "MSTD"],
+                variants=["STD", "MSTD"],
                 definition=RichTextValue(
                     "<p>Second Term Description</p>",
                     mimeType="text/html",
@@ -77,8 +78,9 @@ class GlossaryViewTestCase(BaseViewTestCase):
                 {
                     "image": None,
                     "definition": "<p>First Term Description</p>",
-                    "variations": ["FTD", "MFTD"],
+                    "variants": ["FTD", "MFTD"],
                     "title": "First Term",
+                    'url': 'http://nohost/plone/g1/t1',
                     "state": "private",
                 }
             ],
@@ -86,13 +88,14 @@ class GlossaryViewTestCase(BaseViewTestCase):
                 {
                     "image": None,
                     "definition": "<p>Second Term Description</p>",
-                    "variations": ["STD", "MSTD"],
+                    "variants": ["STD", "MSTD"],
                     "title": "Second Term",
+                    'url': 'http://nohost/plone/g1/t2',
                     "state": "private",
                 }
             ],
         }
-        self.assertEqual(self.view.get_entries(), expected)
+        self.assertEqual(dict(self.view.get_entries()), expected)
 
     def test_letters(self):
         self.assertEqual(self.view.letters(), ["F", "S"])
@@ -102,8 +105,9 @@ class GlossaryViewTestCase(BaseViewTestCase):
             {
                 "title": "First Term",
                 "definition": "<p>First Term Description</p>",
-                "variations": ["FTD", "MFTD"],
+                "variants": ["FTD", "MFTD"],
                 "state": "private",
+                'url': 'http://nohost/plone/g1/t1',
                 "image": None,
             }
         ]
@@ -113,8 +117,9 @@ class GlossaryViewTestCase(BaseViewTestCase):
             {
                 "title": "Second Term",
                 "definition": "<p>Second Term Description</p>",
-                "variations": ["STD", "MSTD"],
+                "variants": ["STD", "MSTD"],
                 "state": "private",
+                'url': 'http://nohost/plone/g1/t2',
                 "image": None,
             }
         ]
@@ -183,8 +188,12 @@ class JsonViewTestCase(BaseViewTestCase):
 
     def test_get_json_entries(self):
         expected = [
-            {"definition": "<p>First Term Description</p>", "term": "First Term"},
-            {"definition": "<p>Second Term Description</p>", "term": "Second Term"},
+            {"term": "FTD", "description": "<p>First Term Description</p>"},
+            {"term": "First Term", "description": "<p>First Term Description</p>"},
+            {"term": "MFTD", "description": "<p>First Term Description</p>"},
+            {"term": "MSTD", "description": "<p>Second Term Description</p>"},
+            {"term": "STD", "description": "<p>Second Term Description</p>"},
+            {"term": "Second Term", "description": "<p>Second Term Description</p>"},
         ]
         self.assertEqual(self.view.get_json_entries(), expected)
 
@@ -195,7 +204,11 @@ class JsonViewTestCase(BaseViewTestCase):
         result = self.view.request.response.getBody()
 
         expected = [
-            {"definition": "<p>First Term Description</p>", "term": "First Term"},
-            {"definition": "<p>Second Term Description</p>", "term": "Second Term"},
+            {"term": "FTD", "description": "<p>First Term Description</p>"},
+            {"term": "First Term", "description": "<p>First Term Description</p>"},
+            {"term": "MFTD", "description": "<p>First Term Description</p>"},
+            {"term": "MSTD", "description": "<p>Second Term Description</p>"},
+            {"term": "STD", "description": "<p>Second Term Description</p>"},
+            {"term": "Second Term", "description": "<p>Second Term Description</p>"},
         ]
         self.assertEqual(json.loads(result), expected)
