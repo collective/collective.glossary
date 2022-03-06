@@ -2,7 +2,11 @@
 from collective.glossary import _
 from collective.glossary.config import DEFAULT_ENABLED_CONTENT_TYPES
 from plone.app.textfield import RichText
+from plone.autoform import directives as form
 from plone.namedfile.field import NamedBlobImage
+from plone.supermodel import model
+from z3c.form.interfaces import IAddForm
+from z3c.form.interfaces import IEditForm
 from zope import schema
 from zope.interface import Interface
 
@@ -39,21 +43,23 @@ class IGlossary(Interface):
     """A Glossary is a container for Terms."""
 
     text = RichText(
-        title=_("Body text"),
+        title=_("Text"),
         description=_(""),
         required=False,
     )
 
 
 class ITerm(Interface):
-
     """A Term."""
 
-    # default fieldset
+    title = schema.TextLine(
+        title=_("Glossary Term"),
+        required=True,
+    )
 
-    variations = schema.Tuple(
-        title=_("Variations"),
-        description=_("Enter the variations of the term, one per line."),
+    variants = schema.Tuple(
+        title=_("Variants"),
+        description=_("Enter the variants of the term, one per line."),
         required=False,
         value_type=schema.TextLine(),
         missing_value=(),
@@ -72,4 +78,12 @@ class ITerm(Interface):
         required=False,
     )
 
-    # TODO description of description
+    # kick description as comment to settings
+    model.fieldset("meta", label=_("Meta"), fields=["description"])
+    description = schema.Text(
+        title=_("Comment"),
+        default="",
+    )
+    form.omitted("description")
+    form.no_omit(IEditForm, "description")
+    form.no_omit(IAddForm, "description")
