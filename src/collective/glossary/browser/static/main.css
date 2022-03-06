@@ -20,10 +20,13 @@ body.portaltype-glossary .letter .header .title {
     color: #fff;
     background-color: #157bb1;
 }
-body.portaltype-glossary .letter .terms .term {
+body.portaltype-glossary #content-core .letter .terms .term {
     display: flex;
     width: 100%;
     margin-top: .5rem;
+    text-decoration: none;
+    border-bottom: none;
+    color: #333;
 }
 body.portaltype-glossary .letter .terms .term.private {
     color: red;
