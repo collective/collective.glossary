@@ -17,9 +17,10 @@
 collective.glossary
 ===================
 
-Two content types to define a glossary and its terms.
+collective.glossary is a Plone add-on product to define a glossary.
 
-The terms are defined as title / definition pairs. The title can have variations. The definiton is formated richt text.
+The terms are defined as title / definition pairs. The title can have variants. The definiton is formated richt text.
+
 
 
 Translations
@@ -32,10 +33,6 @@ This product has been translated into
 
 Installation
 ------------
-
-Preparation: 
-
-PyICU https://pypi.org/project/PyICU/
 
 Install collective.glossary by adding it to your buildout::
 
