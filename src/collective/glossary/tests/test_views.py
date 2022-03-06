@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from collections import defaultdict
 from collective.glossary.interfaces import IGlossarySettings
 from collective.glossary.testing import INTEGRATION_TESTING
 from plone import api
