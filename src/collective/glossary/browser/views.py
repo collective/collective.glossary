@@ -35,7 +35,7 @@ class GlossaryView(BrowserView):
                 "variants": obj.variants,
                 "image": image,
                 "state": brain.review_state,
-                'url': obj.absolute_url()
+                "url": obj.absolute_url(),
             }
             items[index].append(item)
 
@@ -133,7 +133,7 @@ class JsonView(BrowserView):
             elif len(terms_with_variants[title]) == 1:
                 description = terms_with_variants[title][0]
             else:
-                description = ''
+                description = ""
 
             items.append(
                 {
