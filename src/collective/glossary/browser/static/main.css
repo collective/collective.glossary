@@ -56,3 +56,20 @@ abbr[title] {
     cursor: help;
     border-bottom: 1px #333 dotted;
 }
+
+
+#tooltip {
+    text-align: left;
+    background-color: white;
+    color: rgb(44, 44, 44);
+    box-shadow: 0 3px 12px 0 rgba(153,153,153,0.3);
+    font-size: 90%;
+    font-weight: normal;
+}
+#tooltip:after /* triangle decoration */
+{
+    border-top: 10px solid white;
+}
+#tooltip ol {
+    padding-left: 2rem;
+}
