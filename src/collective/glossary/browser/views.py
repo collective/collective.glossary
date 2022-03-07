@@ -113,7 +113,11 @@ class JsonView(BrowserView):
     """
 
     def get_json_entries(self):
-        """Get all itens and prepare in the desired format.
+        """Get all terms.
+
+        Return list of term / description dictionaries ready for tooltips:
+        description is a collection of all found variants
+
         Note: do not name it get_entries, otherwise caching is broken."""
 
         catalog = api.portal.get_tool("portal_catalog")
@@ -151,5 +155,4 @@ class JsonView(BrowserView):
     def __call__(self):
         response = self.request.response
         response.setHeader("content-type", "application/json")
-
         return response.setBody(json.dumps(self.get_json_entries()))
