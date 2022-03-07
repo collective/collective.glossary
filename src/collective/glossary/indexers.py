@@ -6,7 +6,7 @@ from plone.indexer import indexer
 @indexer(ITerm)
 def variantsIndexer(context):
     variants = context.variants or []
-    return [context.title] + list(variants)
+    return list(variants)
 
 
 @indexer(ITerm)
