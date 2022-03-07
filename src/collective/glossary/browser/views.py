@@ -150,11 +150,6 @@ class JsonView(BrowserView):
             key=lambda vrt: vrt["term"],
         )
 
-        # get_json_entries
-        print("** get_json_entries. items")
-        import pprint
-        pp = pprint.PrettyPrinter(indent=2)
-        pp.pprint(items)
         return items
 
     def __call__(self):

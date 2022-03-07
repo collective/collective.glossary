@@ -9,6 +9,7 @@ from plone.restapi.services import Service
 
 class GetGlossaryTerms(Service):
     """@glossary_terms"""
+
     def _error(self, status, type, message):
         self.request.response.setStatus(status)
         return {"error": {"type": type, "message": message}}
@@ -28,7 +29,7 @@ class GetGlossaryTerms(Service):
                 "title": brain["Title"],
                 "terms": list(brain["variants"]),
                 "definition": brain["definition"] or "",
-                "@id": brain.getURL().replace(portal_url, ''),
+                "@id": brain.getURL().replace(portal_url, ""),
                 "description": brain.Description or "",
             }
             for brain in brains
@@ -36,7 +37,7 @@ class GetGlossaryTerms(Service):
         # Group by first letter
         items = defaultdict(list)
         for t in terms:
-            items[baseNormalize(t['title'])[0].upper()].append(t)
+            items[baseNormalize(t["title"])[0].upper()].append(t)
         # sort within letter
         for letter in items:
             items[letter] = sorted(
@@ -99,7 +100,4 @@ class GetTooltipTerms(Service):
             key=lambda vrt: vrt["term"].lower(),
         )
 
-        return {
-            "items": items,
-            "items_total": len(items)
-        }
+        return {"items": items, "items_total": len(items)}
