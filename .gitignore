@@ -25,3 +25,4 @@ src/plone.*
 var/
 pyvenv.cfg
 reports/
+annotate.txt
