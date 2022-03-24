@@ -26,32 +26,20 @@ msgstr ""
 msgid "A Term"
 msgstr ""
 
-#: ../interfaces.py:84
-msgid "Comment"
+#: ../interfaces.py:41
+msgid "Body text"
 msgstr ""
 
-#: ../interfaces.py:70
-msgid "Definition"
-msgstr ""
-
-#: ../interfaces.py:71
-msgid "Definition of Glossary Term."
-msgstr ""
-
-#: ../interfaces.py:25
+#: ../interfaces.py:21
 msgid "Enable tooltip."
 msgstr ""
 
-#: ../interfaces.py:24
+#: ../interfaces.py:20
 msgid "Enable tooltip?"
 msgstr ""
 
-#: ../interfaces.py:30
+#: ../interfaces.py:26
 msgid "Enabled Content Types"
-msgstr ""
-
-#: ../interfaces.py:62
-msgid "Enter the variants of the term, one per line."
 msgstr ""
 
 #: ../controlpanel.py:12
@@ -60,19 +48,11 @@ msgstr ""
 msgid "Glossary"
 msgstr ""
 
-#: ../interfaces.py:56
-msgid "Glossary Term"
-msgstr ""
-
-#: ../interfaces.py:76
+#: ../interfaces.py:52
 msgid "Image"
 msgstr ""
 
-#: ../interfaces.py:82
-msgid "Meta"
-msgstr ""
-
-#: ../interfaces.py:31
+#: ../interfaces.py:27
 msgid "Only objects of these content types will display glossary terms."
 msgstr "Only objects of these content types will display tooltips."
 
@@ -84,16 +64,8 @@ msgstr ""
 msgid "Term"
 msgstr ""
 
-#: ../interfaces.py:46
-msgid "Text"
-msgstr ""
-
 #: ../profiles.zcml:24
 msgid "Uninstall collective.glossary."
-msgstr ""
-
-#: ../interfaces.py:61
-msgid "Variants"
 msgstr ""
 
 #: ../profiles.zcml:24

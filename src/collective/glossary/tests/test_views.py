@@ -2,7 +2,6 @@
 from collective.glossary.interfaces import IGlossarySettings
 from collective.glossary.testing import INTEGRATION_TESTING
 from plone import api
-from plone.app.textfield.value import RichTextValue
 from zope.publisher.browser import TestRequest
 
 import unittest
@@ -23,47 +22,43 @@ class BaseViewTestCase(unittest.TestCase):
                 "Glossary",
                 "g1",
                 title="Glossary",
-                definition=RichTextValue(
-                    "<p>Glossary Description</p>",
-                    mimeType="text/html",
-                    outputMimeType="text/html",
-                ),
+                description="Glossary Description",
             )
             self.t1 = api.content.create(
                 self.g1,
                 "Term",
                 "t1",
                 title="First Term",
-                variants=["FTD", "MFTD"],
-                definition=RichTextValue(
-                    "<p>First Term Description</p>",
-                    mimeType="text/html",
-                    outputMimeType="text/html",
-                ),
+                description="First Term Description",
             )
             self.t2 = api.content.create(
                 self.g1,
                 "Term",
                 "t2",
                 title="Second Term",
-                variants=["STD", "MSTD"],
-                definition=RichTextValue(
-                    "<p>Second Term Description</p>",
-                    mimeType="text/html",
-                    outputMimeType="text/html",
-                ),
+                description="Second Term Description",
             )
             self.d1 = api.content.create(
                 self.portal,
                 "Document",
                 "d1",
                 title="Document",
-                definition=RichTextValue(
-                    "<p>Document Description</p>",
-                    mimeType="text/html",
-                    outputMimeType="text/html",
-                ),
+                description="Document Description",
             )
+
+
+class TermViewTestCase(BaseViewTestCase):
+    def setUp(self):
+        super(TermViewTestCase, self).setUp()
+        self.view = api.content.get_view("view", self.t1, self.request)
+
+    def test_get_entry(self):
+        expected = {
+            "description": "First Term Description",
+            "image": None,
+            "title": "First Term",
+        }
+        self.assertEqual(self.view.get_entry(), expected)
 
 
 class GlossaryViewTestCase(BaseViewTestCase):
@@ -76,50 +71,55 @@ class GlossaryViewTestCase(BaseViewTestCase):
             "F": [
                 {
                     "image": None,
-                    "definition": "<p>First Term Description</p>",
-                    "variants": ["FTD", "MFTD"],
+                    "description": "First Term Description",
                     "title": "First Term",
-                    "url": "http://nohost/plone/g1/t1",
-                    "state": "private",
                 }
             ],
             "S": [
                 {
                     "image": None,
-                    "definition": "<p>Second Term Description</p>",
-                    "variants": ["STD", "MSTD"],
+                    "description": "Second Term Description",
                     "title": "Second Term",
-                    "url": "http://nohost/plone/g1/t2",
-                    "state": "private",
                 }
             ],
         }
-        self.assertEqual(dict(self.view.get_entries()), expected)
+        self.assertEqual(self.view.get_entries(), expected)
 
     def test_letters(self):
         self.assertEqual(self.view.letters(), ["F", "S"])
 
+        with api.env.adopt_roles(["Manager"]):
+            self.ta1 = api.content.create(
+                self.g1,
+                "Term",
+                "ta1",
+                title="American",
+                description="American Term Description",
+            )
+            self.ta2 = api.content.create(
+                self.g1,
+                "Term",
+                "ta2",
+                title="Ásia",
+                description="Ásia Term Description",
+            )
+        self.assertEqual(self.view.letters(), ["A", "F", "S"])
+
     def test_terms(self):
         expected = [
             {
-                "title": "First Term",
-                "definition": "<p>First Term Description</p>",
-                "variants": ["FTD", "MFTD"],
-                "state": "private",
-                "url": "http://nohost/plone/g1/t1",
                 "image": None,
+                "description": "First Term Description",
+                "title": "First Term",
             }
         ]
         self.assertEqual(self.view.terms("F"), expected)
 
         expected = [
             {
-                "title": "Second Term",
-                "definition": "<p>Second Term Description</p>",
-                "variants": ["STD", "MSTD"],
-                "state": "private",
-                "url": "http://nohost/plone/g1/t2",
                 "image": None,
+                "description": "Second Term Description",
+                "title": "Second Term",
             }
         ]
         self.assertEqual(self.view.terms("S"), expected)
@@ -187,12 +187,8 @@ class JsonViewTestCase(BaseViewTestCase):
 
     def test_get_json_entries(self):
         expected = [
-            {"term": "FTD", "description": "<p>First Term Description</p>"},
-            {"term": "First Term", "description": "<p>First Term Description</p>"},
-            {"term": "MFTD", "description": "<p>First Term Description</p>"},
-            {"term": "MSTD", "description": "<p>Second Term Description</p>"},
-            {"term": "STD", "description": "<p>Second Term Description</p>"},
-            {"term": "Second Term", "description": "<p>Second Term Description</p>"},
+            {"description": "First Term Description", "term": "First Term"},
+            {"description": "Second Term Description", "term": "Second Term"},
         ]
         self.assertEqual(self.view.get_json_entries(), expected)
 
@@ -203,11 +199,7 @@ class JsonViewTestCase(BaseViewTestCase):
         result = self.view.request.response.getBody()
 
         expected = [
-            {"term": "FTD", "description": "<p>First Term Description</p>"},
-            {"term": "First Term", "description": "<p>First Term Description</p>"},
-            {"term": "MFTD", "description": "<p>First Term Description</p>"},
-            {"term": "MSTD", "description": "<p>Second Term Description</p>"},
-            {"term": "STD", "description": "<p>Second Term Description</p>"},
-            {"term": "Second Term", "description": "<p>Second Term Description</p>"},
+            {"description": "First Term Description", "term": "First Term"},
+            {"description": "Second Term Description", "term": "Second Term"},
         ]
         self.assertEqual(json.loads(result), expected)

@@ -1,12 +1,6 @@
 Changelog
 =========
 
-2.0.0.dev0
-----------
-
-- The terms are defined as title / definition pairs. The title can have variants. The definiton is formated richt text. @ksuess
-
-
 1.0b2 (unreleased)
 ------------------
 

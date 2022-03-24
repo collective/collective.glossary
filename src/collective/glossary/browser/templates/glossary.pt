@@ -28,11 +28,7 @@
             </div>
             <div class="terms">
               <tal:repeat repeat="item python:view.terms(letter)">
-                <a class="term"
-                  tal:attributes="
-                    class python:'term ' + item['state'];
-                    href python: item['url']
-                  ">
+                <div class="term">
                   <img tal:define="image item/image"
                       tal:condition="nocall:image"
                       tal:replace="structure image/tag" />
@@ -41,16 +37,13 @@
                       <span class="title"
                             tal:content="item/title">
                       </span>
-                      <span class="variants" tal:condition="python:item['variants']"> - 
-                        <span tal:content="python:', '.join(item['variants'])">variants</span>
-                      </span>
                       -
-                      <span class="definition"
-                            tal:content="structure python:item['definition']">
+                      <span class="description"
+                            tal:content="item/description">
                       </span>
                     </div>
                   </div>
-                </a>
+                </div>
               </tal:repeat>
             </div>
           </div>
