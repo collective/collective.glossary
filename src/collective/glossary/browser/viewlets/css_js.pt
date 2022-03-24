@@ -1,4 +1,6 @@
 <tal:def define="portal_url view/portal_url">
+    <link rel="stylesheet"
+        tal:attributes="href string:$portal_url/++resource++collective.glossary/main.css"/>
     <tal:condition tal:condition="context/@@glossary_state">
         <link rel="stylesheet"
             tal:attributes="href string:$portal_url/++resource++collective.glossary/tooltip.css"/>
@@ -10,7 +12,4 @@
         <script type="text/javascript"
             tal:attributes="src string:$portal_url/++resource++collective.glossary/main.js"></script>
     </tal:condition>
-    
-    <link rel="stylesheet"
-        tal:attributes="href string:$portal_url/++resource++collective.glossary/main.css"/>
 </tal:def>
