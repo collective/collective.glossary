@@ -14,8 +14,8 @@ long_description = "\n\n".join(
 
 setup(
     name="collective.glossary",
-    version="1.0b2",
-    description="A Dexterity-based content type to define a glossary and its terms.",
+    version="1.1dev0",
+    description="Content types to define a glossary and its terms",
     long_description=long_description,
     # Get more from https://pypi.org/classifiers/
     classifiers=[

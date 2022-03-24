@@ -11,7 +11,7 @@
 collective.glossary
 ===================
 
-Dexterity-based content types to define a glossary and its terms.
+Content types to define a glossary and its terms.
 
 
 Screenshots

@@ -1,8 +1,20 @@
 Changelog
 =========
 
-1.0b2 (unreleased)
-------------------
+1.1dev0 (unreleased)
+--------------------
+
+- Support Plone 5.2 (Python 2.7 and 3.6+).
+  [ksuess]
+- Switch to github workflow CI.
+  [ksuess]
+- Test with tox.
+  [ksuess]
+- Enhance layout of glossary and tooltip.
+  [ksuess]
+
+1.0b2
+-----
 
 - Drop support for Plone 5.0.
   [hvelarde]
