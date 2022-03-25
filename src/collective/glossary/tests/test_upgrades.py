@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective.glossary.testing import INTEGRATION_TESTING, IS_PLONE_5
-from plone import api
+from collective.glossary.testing import INTEGRATION_TESTING
 
 import unittest
 
@@ -47,38 +46,3 @@ class Upgrade1to2TestCase(UpgradeTestCaseBase):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
         self.assertGreaterEqual(int(version), int(self.to_version))
         self.assertEqual(self.total_steps, 4)
-
-    @unittest.skipIf(IS_PLONE_5, "Upgrade step not supported under Plone 5")
-    def test_update_resource_conditions(self):
-        # check if the upgrade step is registered
-        title = "Update resource conditions"
-        step = self.get_upgrade_step(title)
-        self.assertIsNotNone(step)
-
-        js_tool = api.portal.get_tool("portal_javascripts")
-        JS_IDS = (
-            "++resource++collective.glossary/tooltip.js",
-            "++resource++collective.glossary/jquery.glossarize.js",
-            "++resource++collective.glossary/main.js",
-        )
-        css_tool = api.portal.get_tool("portal_css")
-        CSS_IDS = ("++resource++collective.glossary/tooltip.css",)
-
-        # simulate state on previous version
-        for id_ in JS_IDS:
-            js = js_tool.getResource(id_)
-            js.setExpression("python:portal.restrictedTraverse('@@glossary_state')()")
-        for id_ in CSS_IDS:
-            css = css_tool.getResource(id_)
-            css.setExpression("python:portal.restrictedTraverse('@@glossary_state')()")
-
-        # run the upgrade step to validate the update
-        self.execute_upgrade_step(step)
-
-        # Check expected expression
-        for id_ in JS_IDS:
-            js = js_tool.getResource(id_)
-            self.assertEqual(js.getExpression(), "context/@@glossary_state")
-        for id_ in CSS_IDS:
-            css = css_tool.getResource(id_)
-            self.assertEqual(css.getExpression(), "context/@@glossary_state")
