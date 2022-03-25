@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1dev0 (unreleased)
+1.1.dev0 (unreleased)
 --------------------
 
 - Support Plone 5.2 (Python 2.7 and 3.6+).
