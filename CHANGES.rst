@@ -2,8 +2,10 @@ Changelog
 =========
 
 1.1.dev0 (unreleased)
---------------------
+---------------------
 
+- Support Plone 6
+  [ksuess]
 - Support Plone 5.2 (Python 2.7 and 3.6+).
   [ksuess]
 - Switch to github workflow CI.
