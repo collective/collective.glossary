@@ -1,30 +1,23 @@
-body.portaltype-glossary .letter
-{
+body.portaltype-glossary .letter {
     float: left;
 
     width: 100%;
-    margin-top: 1rem;
+    margin: 1rem 0 1rem 0;
 }
-body.portaltype-glossary .letter .header
-{
+body.portaltype-glossary .letter .header {
     float: left;
-
     width: 100%;
-
-    border-bottom: 1px solid #ccc;
-    background-color: #e6e6e6;
+    background-color: #70adce;
+    margin-bottom: 1rem;
 }
-body.portaltype-glossary .letter .header .title
-{
+body.portaltype-glossary .letter .header .title {
     font-size: 2.4em;
     font-weight: bold;
-
     float: left;
-
-    padding: .6rem .3rem;
-
+    width: 5rem;
+    text-align: center;
     color: #fff;
-    background-color: #033b7a;
+    background-color: #157bb1;
 }
 body.portaltype-glossary .letter .terms .term
 {
@@ -38,7 +31,12 @@ body.portaltype-glossary .letter .terms .term
     float: left;
 
     width: 100%;
-    margin-top: .5rem;
+    margin-top: .9rem;
+}
+body.portaltype-glossary .term img {
+    width: 60px;
+    height: auto;
+    margin-right: 10px;
 }
 body.portaltype-glossary .letter .terms .description-wrapper
 {

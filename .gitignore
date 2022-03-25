@@ -2,7 +2,6 @@
 *.mo
 *.pyc
 *~
-.coverage
 .installed.cfg
 .mr.developer.cfg
 .project
@@ -10,7 +9,6 @@
 .settings
 .vscode/
 bin/
-coverage/
 develop-eggs/
 dist/
 downloads/
@@ -25,3 +23,4 @@ src/plone.*
 var/
 pyvenv.cfg
 reports/
+annotate.txt

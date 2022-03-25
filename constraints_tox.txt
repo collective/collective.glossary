@@ -1,0 +1,3 @@
+# Remove version pin of Jinja2 as soon as flake8_html fixes deprecated import of Markup
+# from jinja2 import Markup
+Jinja2<=3.0.3

@@ -12,11 +12,10 @@ long_description = "\n\n".join(
     ]
 )
 
-
 setup(
     name="collective.glossary",
-    version="2.0.0.dev0",
-    description="A Dexterity-based content type to define a glossary and its terms.",
+    version="1.1.dev0",
+    description="Content types to define a glossary and its terms",
     long_description=long_description,
     # Get more from https://pypi.org/classifiers/
     classifiers=[
@@ -25,6 +24,7 @@ setup(
         "Framework :: Plone :: Addon",
         "Framework :: Plone :: 5.2",
         "Programming Language :: Python",
+        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
@@ -51,19 +51,14 @@ setup(
     python_requires=">=3.6",
     install_requires=[
         "setuptools",
-        # -*- Extra requirements: -*-
         "z3c.jbot",
         "plone.api>=1.8.4",
         "plone.restapi",
         "plone.app.dexterity",
-        "PyICU",
     ],
     extras_require={
         "test": [
             "plone.app.testing",
-            # Plone KGS does not use this version, because it would break
-            # Remove if your package shall be part of coredev.
-            # plone_coredev tests as of 2016-04-01.
             "plone.testing>=5.0.0",
             "plone.app.contenttypes",
             "plone.app.robotframework[debug]",
