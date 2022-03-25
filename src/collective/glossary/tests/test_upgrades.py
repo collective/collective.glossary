@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective.glossary.testing import INTEGRATION_TESTING, IS_PLONE_5
-from plone import api
+from collective.glossary.testing import INTEGRATION_TESTING
 
 import unittest
 
