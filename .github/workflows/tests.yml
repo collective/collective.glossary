@@ -51,7 +51,7 @@ jobs:
       - name: Xvfb
         run: Xvfb :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
       - name: Test with tox
-        run: tox
+        run: tox -r
         env:
           DISPLAY: :99
           PLONE-VERSION: ${{ matrix.plone-version }}
