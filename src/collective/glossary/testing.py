@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from plone import api
-from plone.app.testing import FunctionalTesting, IntegrationTesting, PloneSandboxLayer
+from plone.app.testing import (
+    FunctionalTesting,
+    IntegrationTesting,
+    PLONE_FIXTURE,
+    PloneSandboxLayer,
+)
 
-
-from plone.app.testing import PLONE_FIXTURE
 
 IS_PLONE_5 = api.env.plone_version().startswith("5")
 
