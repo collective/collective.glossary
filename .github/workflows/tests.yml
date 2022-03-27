@@ -1,4 +1,4 @@
-name: Python package
+name: Plone backend add-on
 
 on:
   push:
@@ -29,3 +29,5 @@ jobs:
           pip install -U selenium
       - name: Test with tox
         run: tox
+        env:
+          PLONE: ${{ matrix.plone-version }}
