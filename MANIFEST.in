@@ -2,6 +2,7 @@ include *.rst
 include *.sh
 include *.txt
 include tox.ini
+include *.GPL
 recursive-include docs *.png
 recursive-include docs *.py
 recursive-include docs *.rst
