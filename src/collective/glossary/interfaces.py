@@ -5,15 +5,14 @@ from plone.app.textfield import RichText
 from plone.namedfile.field import NamedBlobImage
 from zope import schema
 from zope.interface import Interface
+from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 
-class IGlossaryLayer(Interface):
-
+class IGlossaryLayer(IDefaultBrowserLayer):
     """A layer specific for this add-on product."""
 
 
 class IGlossarySettings(Interface):
-
     """Schema for the control panel form."""
 
     enable_tooltip = schema.Bool(
