@@ -19,8 +19,16 @@
 
       <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-      <div class="documentDescription"
-          tal:content="context/description">Description</div>
+      <div class="variants" tal:condition="python:context.variants">
+        <ul>
+          <tal:repeat tal:repeat="v context/variants">
+            <li tal:content="v">variant</li>
+          </tal:repeat>
+        </ul>
+      </div>
+
+      <div class="definition"
+          tal:content="structure python:context.definition.output">definition</div>
     </metal:main>
   </body>
 </html>
