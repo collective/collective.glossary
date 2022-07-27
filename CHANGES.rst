@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.1.dev0 (unreleased)
----------------------
+1.1 (2022-07-27)
+----------------
 
 - Support Plone 6
   [ksuess]
