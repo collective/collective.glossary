@@ -86,5 +86,5 @@ The project is licensed under the GPLv2.
 Supported versions
 ------------------
 
-Python 2.7, 3.6+
-Plone 5.2
+Python 3.7+
+Plone 5.2, Plone 6
