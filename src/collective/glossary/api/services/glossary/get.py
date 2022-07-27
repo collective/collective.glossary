@@ -83,9 +83,13 @@ class GetTooltipTerms(Service):
         terms_with_variants = defaultdict(list)
         for term in terms:
             obj = term.getObject()
-            terms_with_variants[term.Title].append(obj.definition.output)
+            terms_with_variants[term.Title].append(
+                obj.definition and obj.definition.output or ""
+            )
             for vrt in obj.variants:
-                terms_with_variants[vrt].append(obj.definition.output)
+                terms_with_variants[vrt].append(
+                    obj.definition and obj.definition.output or ""
+                )
 
         items = []
         for title in terms_with_variants:

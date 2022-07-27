@@ -28,7 +28,7 @@
       </div>
 
       <div class="definition"
-          tal:content="structure python:context.definition.output">definition</div>
+          tal:content="structure python:context.definition and context.definition.output or ''">definition</div>
     </metal:main>
   </body>
 </html>
