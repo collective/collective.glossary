@@ -25,7 +25,6 @@ Test CRUD
     Create Term  The Beatles  George
     Create Term  The Beatles  Ringo
     Check Terms  The Beatles  John  Paul  George  Ringo
-    Delete Glossary  The Beatles
 
 *** Keywords ***
 

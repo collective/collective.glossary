@@ -1,9 +1,5 @@
 name: tests
-
-on:
-  push:
-  pull_request:
-
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,7 +10,7 @@ jobs:
         plone-version: ["5.2", "6.0"]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       - name: Install system libraries
         run: sudo apt-get install libxml2-dev libxslt1-dev libjpeg-dev
       - name: Set up Python ${{ matrix.python-version }}
