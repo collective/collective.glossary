@@ -58,10 +58,16 @@ setup(
     ],
     extras_require={
         "test": [
-            "plone.app.testing",
+            # "plone.app.testing",
             "plone.testing>=5.0.0",
             "plone.app.contenttypes",
-            "plone.app.robotframework[debug]",
+            # "plone.app.robotframework[debug]",
+            # how easyform does it:
+            "plone.app.testing[robot]",
+            "plone.app.robotframework",
+            # "plone.app.contenttypes",
+            "robotframework-selenium2library",
+            "robotframework-selenium2screenshots",
         ],
     },
     entry_points="""

@@ -1,11 +1,11 @@
-name: Plone backend add-on
+name: tests
 
 on:
   push:
   pull_request:
 
 jobs:
-  test_plone:
+  build:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -15,8 +15,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: browser-actions/setup-geckodriver@latest
-      - run: geckodriver --version
       - name: Install system libraries
         run: sudo apt-get install libxml2-dev libxslt1-dev libjpeg-dev
       - name: Set up Python ${{ matrix.python-version }}
