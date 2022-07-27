@@ -6,7 +6,7 @@ Changelog
 
 - Support Plone 6
   [ksuess]
-- Support Plone 5.2 (Python 2.7 and 3.6+).
+- Support Plone 5.2 (Python 3.7+).
   [ksuess]
 - Switch to github workflow CI.
   [ksuess]
