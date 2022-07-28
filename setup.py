@@ -23,6 +23,7 @@ setup(
         "Framework :: Plone",
         "Framework :: Plone :: Addon",
         "Framework :: Plone :: 5.2",
+        "Framework :: Plone :: 6",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
@@ -49,6 +50,7 @@ setup(
     python_requires=">=3.7",
     install_requires=[
         "setuptools",
+        # -*- Extra requirements: -*-
         "z3c.jbot",
         "plone.api>=1.8.4",
         "plone.restapi",
@@ -56,8 +58,16 @@ setup(
     ],
     extras_require={
         "test": [
-            "plone.app.testing",
+            # "plone.app.testing",
             "plone.testing>=5.0.0",
+            "plone.app.contenttypes",
+            # "plone.app.robotframework[debug]",
+            # how easyform does it:
+            "plone.app.testing[robot]",
+            "plone.app.robotframework",
+            # "plone.app.contenttypes",
+            "robotframework-selenium2library",
+            "robotframework-selenium2screenshots",
         ],
     },
     entry_points="""

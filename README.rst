@@ -1,7 +1,12 @@
+.. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
+   If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
+   This text does not appear on pypi or github. It is a comment.
+
+
 .. image:: http://img.shields.io/pypi/v/collective.glossary.svg
     :target: https://pypi.python.org/pypi/collective.glossary
 
-.. image:: https://github.com/collective/collective.glossary/actions/workflows/tests.yml/badge.svg
+.. image:: https://github.com/collective/collective.glossary/actions/workflows/main.yml/badge.svg
     :alt: Github workflow status badge
 
 
@@ -9,35 +14,22 @@
 collective.glossary
 ===================
 
-Content types to define a glossary and its terms.
+collective.glossary is a Plone backend add-on product to define a glossary.
+
+The terms are defined as title / definition pairs. The title can have variants. The definiton is formated richt text.
+
+The add-on provides a REST API service @glossary_terms to fetch the terms of the glossary.
+
+The corresponding Volto add-on is `@rohberg/volto-slate-glossary <https://github.com/rohberg/volto-slate-glossary>`_.
 
 
-Screenshots
------------
 
-.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/glossary.png
-    :align: center
-    :height: 640px
-    :width: 768px
+Translations
+------------
 
-    Create a Glossary.
+This product has been translated into
 
-
-.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/controlpanel.png
-    :align: center
-    :height: 400px
-    :width: 768px
-
-    The tooltip can be restricted to content types and disabled in the control panel configlet.
-
-
-.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/usage.png
-    :align: center
-    :height: 640px
-    :width: 768px
-
-    Tooltip
-
+- german
 
 
 Installation
@@ -56,25 +48,19 @@ Install collective.glossary by adding it to your buildout::
 and then running ``bin/buildout``
 
 
-Translations
-------------
-
-This product has been translated into
-
-- german
-
-
 Contribute
 ----------
 
 - Issue Tracker: https://github.com/collective/collective.glossary/issues
 - Source Code: https://github.com/collective/collective.glossary
+- Documentation: https://docs.plone.org/foo/bar
 
 
 Support
 -------
 
-If you are having issues, please let us know: https://community.plone.org
+If you are having issues, please let us know.
+We have a mailing list located at: project@example.com
 
 
 License
@@ -83,8 +69,35 @@ License
 The project is licensed under the GPLv2.
 
 
-Supported versions
-------------------
 
-Python 3.7+
-Plone 5.2, Plone 6
+Screenshots
+-----------
+
+.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/glossary.png
+    :align: center
+    :height: 640px
+    :width: 768px
+
+    Create a Glossary.
+
+.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/usage.png
+    :align: center
+    :height: 640px
+    :width: 768px
+
+    Use it!
+
+.. figure:: https://raw.github.com/collective/collective.glossary/master/docs/controlpanel.png
+    :align: center
+    :height: 400px
+    :width: 768px
+
+    - The tooltip can be disabled in the control panel configlet.
+    - Tooltips can be restricted to a selection of content types.
+
+Developer Notes
+---------------
+
+The terms are loaded in a page using an AJAX call to a browser view that returns them as a JSON object.
+
+The tooltips will only be available in the default view of a content type instance.

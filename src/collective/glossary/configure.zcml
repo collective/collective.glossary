@@ -7,8 +7,10 @@
   <five:registerPackage package="." />
   <i18n:registerTranslations directory="locales" />
 
+  <include package="plone.restapi" />
   <include package="plone.app.dexterity" />
   
+  <include package=".api" />
   <include package=".browser" />
 
   <include file="profiles.zcml" />
@@ -24,5 +26,7 @@
       title="collective.glossary: Add Term"
       />
 
+  <adapter name="variants" factory=".indexers.variantsIndexer" />
+  <adapter name="definition" factory=".indexers.definitionIndexer" />
 
 </configure>

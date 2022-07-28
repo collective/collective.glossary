@@ -3,7 +3,7 @@ Using the development buildout
 
 Create a virtualenv in the package and install requirements with pip::
 
-    ./bootstrap.sh buildout.cfg
+    ./bootstrap.sh
 
 Run buildout::
 

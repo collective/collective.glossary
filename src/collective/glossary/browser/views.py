@@ -1,43 +1,21 @@
 # -*- coding: utf-8 -*-
 
+from collections import defaultdict
 from collective.glossary.interfaces import IGlossarySettings
 from plone import api
 from plone.i18n.normalizer.base import baseNormalize
-from plone.memoize import ram
 from Products.Five.browser import BrowserView
 
 import json
 
 
-def _catalog_counter_cachekey(method, self):
-    """Return a cachekey based on catalog updates."""
-
-    catalog = api.portal.get_tool("portal_catalog")
-    return str(catalog.getCounter())
-
-
 class TermView(BrowserView):
-
     """Default view for Term type"""
-
-    def get_entry(self):
-        """Get term in the desired format"""
-
-        scales = self.context.unrestrictedTraverse("@@images")
-        image = scales.scale("image", None)
-        item = {
-            "title": self.context.title,
-            "description": self.context.description,
-            "image": image,
-        }
-        return item
 
 
 class GlossaryView(BrowserView):
-
     """Default view of Glossary type"""
 
-    @ram.cache(_catalog_counter_cachekey)
     def get_entries(self):
         """Get glossary entries and keep them in the desired format"""
 
@@ -45,18 +23,19 @@ class GlossaryView(BrowserView):
         path = "/".join(self.context.getPhysicalPath())
         query = dict(portal_type="Term", path={"query": path, "depth": 1})
 
-        items = {}
+        items = defaultdict(list)
         for brain in catalog(**query):
             obj = brain.getObject()
             index = baseNormalize(obj.title)[0].upper()
-            if index not in items:
-                items[index] = []
             scales = obj.unrestrictedTraverse("@@images")
             image = scales.scale("image", scale="tile")  # 64x64
             item = {
                 "title": obj.title,
-                "description": obj.description,
+                "definition": obj.definition and obj.definition.output or "",
+                "variants": obj.variants,
                 "image": image,
+                "state": brain.review_state,
+                "url": obj.absolute_url(),
             }
             items[index].append(item)
 
@@ -65,15 +44,16 @@ class GlossaryView(BrowserView):
                 items[k],
                 key=lambda term: term["title"],
             )
-
         return items
 
     def letters(self):
         """Return all letters sorted"""
+
         return sorted(self.get_entries())
 
     def terms(self, letter):
         """Return all terms of one letter"""
+
         return self.get_entries()[letter]
 
 
@@ -128,29 +108,55 @@ class GlossaryStateView(BrowserView):
 class JsonView(BrowserView):
     """Json view that return all glossary items in json format
 
-    This view is used into an ajax call for
+    This view is used for Plone Classic UI
     """
 
-    @ram.cache(_catalog_counter_cachekey)
     def get_json_entries(self):
-        """Get all itens and prepare in the desired format.
+        """Get all terms.
+
+        Return list of term / description dictionaries ready for tooltips:
+        description is a collection of all found variants
+
         Note: do not name it get_entries, otherwise caching is broken."""
 
         catalog = api.portal.get_tool("portal_catalog")
 
+        terms = catalog(portal_type="Term")
+        terms_with_variants = defaultdict(list)
+        for term in terms:
+            obj = term.getObject()
+            terms_with_variants[term.Title].append(
+                obj.definition and obj.definition.output or ""
+            )
+            for vrt in obj.variants:
+                terms_with_variants[vrt].append(
+                    obj.definition and obj.definition.output or ""
+                )
+
         items = []
-        for brain in catalog(portal_type="Term"):
+        for title in terms_with_variants:
+            if len(terms_with_variants[title]) > 1:
+                description = f"<ol>{''.join([f'<li>{el}</li>' for el in terms_with_variants[title]])}</ol>"
+            elif len(terms_with_variants[title]) == 1:
+                description = terms_with_variants[title][0]
+            else:
+                description = ""
+
             items.append(
                 {
-                    "term": brain.Title,
-                    "description": brain.Description,
+                    "term": title,
+                    "description": description,
                 }
             )
+
+        items = sorted(
+            items,
+            key=lambda vrt: vrt["term"],
+        )
 
         return items
 
     def __call__(self):
         response = self.request.response
         response.setHeader("content-type", "application/json")
-
         return response.setBody(json.dumps(self.get_json_entries()))

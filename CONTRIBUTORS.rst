@@ -1,6 +1,8 @@
-Contributors
-============
+Share and Enjoy
+===============
+
+This package would not have been possible without the contribution of the following people:
 
 - Héctor Velarde
 - Rodrigo Ferreira de Souza
-- Katja Süss, Rohberg, k.suess@rohberg.ch, @ksuess
+- Katja Süss, Rohberg, @ksuess
