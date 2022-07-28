@@ -14,13 +14,17 @@
 collective.glossary
 ===================
 
-collective.glossary is a Plone backend add-on product to define a glossary.
+`collective.glossary`` is a Plone backend add-on product to define a glossary and provide tooltips on matching text.
 
-The terms are defined as title / definition pairs. The title can have variants. The definiton is formated richt text.
+- The terms are defined as title / definition pairs.
+- The term can have variants.
+- The definiton is richtext formated.
+- The tooltip can be disabled in glossary control panel.
+- Tooltips can be restricted to a selection of content types.
 
 The add-on provides a REST API service @glossary_terms to fetch the terms of the glossary.
 
-The corresponding Volto add-on is `@rohberg/volto-slate-glossary <https://github.com/rohberg/volto-slate-glossary>`_.
+`@rohberg/volto-slate-glossary <https://github.com/rohberg/volto-slate-glossary>`_ is the corresponding Volto add-on.
 
 
 
@@ -74,30 +78,14 @@ Screenshots
 -----------
 
 .. figure:: https://raw.github.com/collective/collective.glossary/master/docs/glossary.png
-    :align: center
-    :height: 640px
-    :width: 768px
+    :align: left
 
     Create a Glossary.
 
 .. figure:: https://raw.github.com/collective/collective.glossary/master/docs/usage.png
-    :align: center
-    :height: 640px
-    :width: 768px
+    :align: left
 
     Use it!
 
 .. figure:: https://raw.github.com/collective/collective.glossary/master/docs/controlpanel.png
-    :align: center
-    :height: 400px
-    :width: 768px
-
-    - The tooltip can be disabled in the control panel configlet.
-    - Tooltips can be restricted to a selection of content types.
-
-Developer Notes
----------------
-
-The terms are loaded in a page using an AJAX call to a browser view that returns them as a JSON object.
-
-The tooltips will only be available in the default view of a content type instance.
+    :align: left
