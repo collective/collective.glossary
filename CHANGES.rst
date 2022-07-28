@@ -1,13 +1,8 @@
 Changelog
 =========
 
-2.0.2 (unreleased)
-------------------
 
-- Nothing changed yet.
-
-
-2.0.1 (2022-07-28)
+2.0.1 (unreleased)
 ------------------
 
 - Add restapi services to fetch glossary terms and settings. @ksuess
