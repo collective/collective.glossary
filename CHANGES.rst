@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.2 (unreleased)
-----------------
+2.0.1 (2022-07-28)
+------------------
 
 - Add restapi services to fetch glossary terms and settings. @ksuess
 - Replace term description by richtext definition. @ksuess
