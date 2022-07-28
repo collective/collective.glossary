@@ -5,7 +5,7 @@ Changelog
 2.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Link to Support page.
 
 
 2.0.1 (2022-07-28)

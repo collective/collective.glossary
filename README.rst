@@ -60,6 +60,12 @@ Contribute
 - Documentation: https://docs.plone.org/foo/bar
 
 
+Support
+-------
+
+If you are having issues, please let us know: `community.plone.org <https://community.plone.org/>`_
+
+
 License
 -------
 
