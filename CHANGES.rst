@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.0.2 (unreleased)
+2.0.2 (2022-07-28)
 ------------------
 
 - Link to Support page.
