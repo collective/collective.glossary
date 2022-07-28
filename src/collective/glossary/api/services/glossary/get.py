@@ -104,4 +104,7 @@ class GetTooltipTerms(Service):
             key=lambda vrt: vrt["term"].lower(),
         )
 
-        return {"items": items, "items_total": len(items)}
+        return {
+            "items": items,
+            "items_total": len(items),
+        }
