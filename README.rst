@@ -9,9 +9,6 @@
 .. image:: https://github.com/collective/collective.glossary/actions/workflows/main.yml/badge.svg
     :alt: Github workflow status badge
 
-.. image:: https://img.shields.io/coveralls/collective/collective.glossary/master.svg
-    :target: https://coveralls.io/r/collective/collective.glossary
-
 
 ===================
 collective.glossary
