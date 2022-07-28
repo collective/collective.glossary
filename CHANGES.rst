@@ -4,7 +4,9 @@ Changelog
 1.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Add restapi services to fetch glossary terms and settings. @ksuess
+- Replace term description by richtext definition. @ksuess
+- Enrich term with variants. @ksuess
 
 
 1.1 (2022-07-27)
