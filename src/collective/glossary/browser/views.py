@@ -16,9 +16,8 @@ class TermView(BrowserView):
 class GlossaryView(BrowserView):
     """Default view of Glossary type"""
 
-    def get_entries(self):
+    def _get_entries(self):
         """Get glossary entries and keep them in the desired format"""
-
         catalog = api.portal.get_tool("portal_catalog")
         path = "/".join(self.context.getPhysicalPath())
         query = dict(portal_type="Term", path={"query": path, "depth": 1})
@@ -45,6 +44,13 @@ class GlossaryView(BrowserView):
                 key=lambda term: term["title"],
             )
         return items
+
+    def get_entries(self):
+        entries = getattr(self, "_entries", None)
+        if entries is None:
+            entries = self._get_entries()
+            self._entries = entries
+        return entries
 
     def letters(self):
         """Return all letters sorted"""

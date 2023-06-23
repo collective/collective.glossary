@@ -5,7 +5,7 @@ Changelog
 2.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Speed up glossary view by getting the entries only once.  [maurits]
 
 
 2.0.2 (2022-07-28)
