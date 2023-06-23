@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.0.3 (unreleased)
+2.0.3 (2023-06-23)
 ------------------
 
 - Speed up glossary view by getting the entries only once.  [maurits]
