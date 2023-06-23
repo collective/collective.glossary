@@ -24,4 +24,4 @@ jobs:
           pip install tox tox-gh-actions
           pip install -U selenium
       - name: Test with tox
-        run: tox -p auto
+        run: tox
