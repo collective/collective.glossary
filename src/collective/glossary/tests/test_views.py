@@ -9,7 +9,6 @@ import unittest
 
 
 class BaseViewTestCase(unittest.TestCase):
-
     layer = INTEGRATION_TESTING
 
     def setUp(self):

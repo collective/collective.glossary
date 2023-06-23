@@ -9,7 +9,6 @@ import unittest
 
 
 class GlossaryTypeTestCase(unittest.TestCase):
-
     layer = INTEGRATION_TESTING
 
     def setUp(self):

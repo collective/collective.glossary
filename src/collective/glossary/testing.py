@@ -24,7 +24,6 @@ IS_PLONE_5 = api.env.plone_version().startswith("5")
 
 
 class Fixture(PloneSandboxLayer):
-
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
