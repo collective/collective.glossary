@@ -11,7 +11,6 @@ import unittest
 
 
 class ControlPanelTestCase(unittest.TestCase):
-
     layer = INTEGRATION_TESTING
 
     def setUp(self):
@@ -39,7 +38,6 @@ class ControlPanelTestCase(unittest.TestCase):
 
 
 class RegistryTestCase(unittest.TestCase):
-
     layer = INTEGRATION_TESTING
 
     def setUp(self):
