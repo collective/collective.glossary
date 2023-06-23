@@ -14,6 +14,7 @@ recursive-include src *.po
 recursive-include src *.pot
 recursive-include src *.pt
 recursive-include src *.py
+recursive-include src *.robot
 recursive-include src *.sh
 recursive-include src *.xml
 recursive-include src *.zcml
