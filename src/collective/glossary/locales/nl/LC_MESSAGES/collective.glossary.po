@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Project-Id-Version: collective.glossary 1.0\n"
+"POT-Creation-Date: 2023-06-22 11:00 +0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9,64 +9,65 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: de\n"
-"Language-Name: Deutsch\n"
+"Language-Code: nl\n"
+"Language-Name: Nederlands\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.glossary\n"
+"X-Is-Fallback-For: nl-be nl-nl\n"
 
 #: ../profiles.zcml:15
 msgid "A Dexterity-based content type to define a glossary and its terms."
-msgstr ""
+msgstr "Een Dexterity-gebaseerd contenttype om een woordenboek met termen te definiëren."
 
 #: ../profiles/default/types/Glossary.xml
 msgid "A Glossary"
-msgstr "Ein Glossar"
+msgstr "Een woordenboek"
 
 #: ../profiles/default/types/Term.xml
 msgid "A Term"
-msgstr "Ein Glossareintrag"
+msgstr "Een term"
 
 #: ../interfaces.py:84
 msgid "Comment"
-msgstr "Kommentar"
+msgstr "Commentaar"
 
 #: ../interfaces.py:70
 msgid "Definition"
-msgstr ""
+msgstr "Definitie"
 
 #: ../interfaces.py:71
 msgid "Definition of Glossary Term."
-msgstr "Definition des Glossareintrags"
+msgstr "Definitie van een term in het woordenboek."
 
 #: ../interfaces.py:25
 msgid "Enable tooltip."
-msgstr "Tooltip einschalten."
+msgstr "Tooltips inschakelen op contenttypes."
 
 #: ../interfaces.py:24
 msgid "Enable tooltip?"
-msgstr "Tooltip einschalten?"
+msgstr "Tooltip inschakelen?"
 
 #: ../interfaces.py:30
 msgid "Enabled Content Types"
-msgstr ""
+msgstr "Contenttypes inschakelen"
 
 #: ../interfaces.py:62
 msgid "Enter the variants of the term, one per line."
-msgstr "Tragen Sie eine weitere Variante pro Ziele ein."
+msgstr "Geef varianten voor de term, eentje per regel."
 
 #: ../controlpanel.py:12
 #: ../profiles.zcml:15
 #: ../profiles/default/controlpanel.xml
 msgid "Glossary"
-msgstr "Glossar"
+msgstr "Woordenboek"
 
 #: ../interfaces.py:56
 msgid "Glossary Term"
-msgstr "Glossareintrag"
+msgstr "Woordenboek term"
 
 #: ../interfaces.py:76
 msgid "Image"
-msgstr "Bild"
+msgstr "Afbeelding"
 
 #: ../interfaces.py:82
 msgid "Meta"
@@ -74,23 +75,23 @@ msgstr "Meta"
 
 #: ../interfaces.py:31
 msgid "Only objects of these content types will display glossary terms."
-msgstr "Nur Content dieser Typen zeigt Tooltips."
+msgstr "Enkel objecten van de geselecteerde contenttypes zullen tooltips tonen."
 
 #: ../controlpanel.py:13
 msgid "Settings for the collective.glossary package"
-msgstr "Einstellungen für die collective.glossary Erweiterung"
+msgstr "Instellingen voor collective.glossary"
 
 #: ../profiles/default/types/Term.xml
 msgid "Term"
-msgstr "Glossareintrag"
+msgstr "Term"
 
 #: ../interfaces.py:46
 msgid "Text"
-msgstr "Text"
+msgstr "Tekst"
 
 #: ../profiles.zcml:24
 msgid "Uninstall collective.glossary."
-msgstr ""
+msgstr "collective.glossary deïnstalleren."
 
 #: ../interfaces.py:61
 msgid "Variants"
@@ -98,8 +99,9 @@ msgstr "Varianten"
 
 #: ../profiles.zcml:24
 msgid "collective.glossary: uninstall"
-msgstr ""
+msgstr "collective.glossary: deïnstallatie"
 
 #: ../browser/templates/glossary.pt:17
 msgid "This item does not have any body text, click the edit tab to change it."
-msgstr "Dieser Artikel hat keinen Text. Klicken Sie auf die Registerkarte "Bearbeiten", um ihn zu ändern."
+msgstr "Dit item heeft geen inhoudelijke tekst, klik bewerken om dit aan te passen."
+

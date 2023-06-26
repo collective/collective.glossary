@@ -106,3 +106,7 @@ msgstr ""
 #: ../profiles.zcml:24
 msgid "collective.glossary: uninstall"
 msgstr ""
+
+#: ../browser/templates/glossary.pt:17
+msgid "This item does not have any body text, click the edit tab to change it."
+msgstr ""
