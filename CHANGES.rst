@@ -5,7 +5,7 @@ Changelog
 2.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add Dutch translations, contributed by Flemish Enviroment Agency [fredvd].
 
 
 2.0.3 (2023-06-23)
