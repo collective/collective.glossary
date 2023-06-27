@@ -1,2 +1,4 @@
--c https://dist.plone.org/release/6.0-latest/constraints.txt
--r https://dist.plone.org/release/6.0-latest/requirements.txt
+pip==23.1.2
+setuptools==67.8.0
+wheel==0.40.0
+zc.buildout==3.0.1
