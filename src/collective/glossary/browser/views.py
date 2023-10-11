@@ -1,12 +1,24 @@
-# -*- coding: utf-8 -*-
-
 from collections import defaultdict
 from collective.glossary.interfaces import IGlossarySettings
+from functools import cached_property
 from plone import api
 from plone.i18n.normalizer.base import baseNormalize
 from Products.Five.browser import BrowserView
 
 import json
+import logging
+import os
+
+
+logger = logging.getLogger(__name__)
+
+# Maximum amount of entries before we show the A-Z toolbar:
+env_name = "COLLECTIVE_GLOSSARY_MAXIMUM_WITHOUT_AZ_TOOLBAR"
+try:
+    MAXIMUM_WITHOUT_AZ_TOOLBAR = int(os.environ.get(env_name))
+    logger.info("Using %d as maximum without AZ toolbar.", MAXIMUM_WITHOUT_AZ_TOOLBAR)
+except Exception:
+    MAXIMUM_WITHOUT_AZ_TOOLBAR = 30
 
 
 class TermView(BrowserView):
@@ -61,6 +73,28 @@ class GlossaryView(BrowserView):
         """Return all terms of one letter"""
 
         return self.get_entries()[letter]
+
+    @cached_property
+    def use_az_toolbar(self):
+        """Use the A-Z toolbar.
+
+        When there are many entries, we show an A-Z toolbar.
+        Initially no entries are shown.  Once you click on one of the letters,
+        the entries for this letter are shown.
+
+        For small glossaries this makes no sense, so we show them all.
+        You can override the default maximum with an environment variable.
+        To never show the toolbar, set this to a negative number (-1).
+        """
+        if MAXIMUM_WITHOUT_AZ_TOOLBAR < 0:
+            return False
+        total = 0
+        # Keep counting until we have reached the maximum.
+        for letter, entries in self.get_entries().items():
+            total += len(entries)
+            if total > MAXIMUM_WITHOUT_AZ_TOOLBAR:
+                return True
+        return False
 
 
 class GlossaryStateView(BrowserView):
