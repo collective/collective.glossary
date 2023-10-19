@@ -10,3 +10,6 @@ DEFAULT_ENABLED_CONTENT_TYPES = [
     "Link",
     "News Item",
 ]
+
+# maximum number of entries before we show the A-Z toolbar:
+DEFAULT_MAXIMUM_WITHOUT_AZ_TOOLBAR = 30

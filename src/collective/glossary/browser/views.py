@@ -7,18 +7,9 @@ from Products.Five.browser import BrowserView
 
 import json
 import logging
-import os
 
 
 logger = logging.getLogger(__name__)
-
-# Maximum amount of entries before we show the A-Z toolbar:
-env_name = "COLLECTIVE_GLOSSARY_MAXIMUM_WITHOUT_AZ_TOOLBAR"
-try:
-    MAXIMUM_WITHOUT_AZ_TOOLBAR = int(os.environ.get(env_name))
-    logger.info("Using %d as maximum without AZ toolbar.", MAXIMUM_WITHOUT_AZ_TOOLBAR)
-except Exception:
-    MAXIMUM_WITHOUT_AZ_TOOLBAR = 30
 
 
 class TermView(BrowserView):
@@ -86,13 +77,16 @@ class GlossaryView(BrowserView):
         You can override the default maximum with an environment variable.
         To never show the toolbar, set this to a negative number (-1).
         """
-        if MAXIMUM_WITHOUT_AZ_TOOLBAR < 0:
+        maximum_without_az_toolbar = api.portal.get_registry_record(
+            IGlossarySettings.__identifier__ + ".maximum_without_az_toolbar"
+        )
+        if maximum_without_az_toolbar < 0:
             return False
         total = 0
         # Keep counting until we have reached the maximum.
         for letter, entries in self.get_entries().items():
             total += len(entries)
-            if total > MAXIMUM_WITHOUT_AZ_TOOLBAR:
+            if total > maximum_without_az_toolbar:
                 return True
         return False
 

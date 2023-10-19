@@ -6,8 +6,7 @@ Changelog
 ------------------
 
 - Show A-Z toolbar and hide contents when there are more than 30 entries.
-  You can override the default with environment variable
-  ``COLLECTIVE_GLOSSARY_MAXIMUM_WITHOUT_AZ_TOOLBAR``.
+  You can configure this in the controlpanel.
   To never show the toolbar, set this to a negative number (-1).
   [ingo, maurits]
 

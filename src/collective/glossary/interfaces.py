@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.glossary import _
 from collective.glossary.config import DEFAULT_ENABLED_CONTENT_TYPES
+from collective.glossary.config import DEFAULT_MAXIMUM_WITHOUT_AZ_TOOLBAR
 from plone.app.textfield import RichText
 from plone.autoform import directives as form
 from plone.namedfile.field import NamedBlobImage
@@ -33,6 +34,12 @@ class IGlossarySettings(Interface):
         default=DEFAULT_ENABLED_CONTENT_TYPES,
         # we are going to list only the main content types in the widget
         value_type=schema.Choice(vocabulary="collective.glossary.PortalTypes"),
+    )
+
+    maximum_without_az_toolbar = schema.Int(
+        title=_("Maximum before showing A-Z toolbar"),
+        description=_("Maximum number of entries before we show the A-Z toolbar."),
+        default=DEFAULT_MAXIMUM_WITHOUT_AZ_TOOLBAR,
     )
 
 
