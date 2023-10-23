@@ -74,7 +74,7 @@ class GlossaryView(BrowserView):
         the entries for this letter are shown.
 
         For small glossaries this makes no sense, so we show them all.
-        You can override the default maximum with an environment variable.
+        You can override the default maximum in the control panel.
         To never show the toolbar, set this to a negative number (-1).
         """
         maximum_without_az_toolbar = api.portal.get_registry_record(
