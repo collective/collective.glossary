@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from collections import defaultdict
 from collective.glossary.config import DEFAULT_MAXIMUM_WITHOUT_AZ_TOOLBAR
 from collective.glossary.interfaces import IGlossarySettings
@@ -80,7 +81,7 @@ class GlossaryView(BrowserView):
         """
         maximum_without_az_toolbar = api.portal.get_registry_record(
             IGlossarySettings.__identifier__ + ".maximum_without_az_toolbar",
-            default=DEFAULT_MAXIMUM_WITHOUT_AZ_TOOLBAR
+            default=DEFAULT_MAXIMUM_WITHOUT_AZ_TOOLBAR,
         )
         if maximum_without_az_toolbar < 0:
             return False
