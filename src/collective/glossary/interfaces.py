@@ -6,7 +6,8 @@ from plone.app.textfield import RichText
 from plone.autoform import directives as form
 from plone.namedfile.field import NamedBlobImage
 from plone.supermodel import model
-from z3c.form.interfaces import IAddForm, IEditForm
+from z3c.form.interfaces import IAddForm
+from z3c.form.interfaces import IEditForm
 from zope import schema
 from zope.interface import Interface
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer

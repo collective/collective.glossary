@@ -3,7 +3,8 @@ from collective.glossary.interfaces import IGlossary
 from collective.glossary.testing import INTEGRATION_TESTING
 from plone import api
 from plone.dexterity.interfaces import IDexterityFTI
-from zope.component import createObject, queryUtility
+from zope.component import createObject
+from zope.component import queryUtility
 
 import unittest
 
