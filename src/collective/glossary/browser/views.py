@@ -78,7 +78,8 @@ class GlossaryView(BrowserView):
         To never show the toolbar, set this to a negative number (-1).
         """
         maximum_without_az_toolbar = api.portal.get_registry_record(
-            IGlossarySettings.__identifier__ + ".maximum_without_az_toolbar"
+            IGlossarySettings.__identifier__ + ".maximum_without_az_toolbar",
+            default=DEFAULT_MAXIMUM_WITHOUT_AZ_TOOLBAR
         )
         if maximum_without_az_toolbar < 0:
             return False
