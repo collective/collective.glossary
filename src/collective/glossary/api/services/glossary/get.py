@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from collections import defaultdict
+from collective.glossary.config import DEFAULT_MAXIMUM_WITHOUT_AZ_TOOLBAR
 from collective.glossary.interfaces import IGlossarySettings
 from plone import api
 from plone.i18n.normalizer.base import baseNormalize
@@ -55,6 +56,11 @@ class GetGlossaryTerms(Service):
                 name="enabled_content_types",
                 interface=IGlossarySettings,
                 default=[],
+            ),
+            "maximum_without_az_toolbar": api.portal.get_registry_record(
+                name="maximum_without_az_toolbar",
+                interface=IGlossarySettings,
+                default=DEFAULT_MAXIMUM_WITHOUT_AZ_TOOLBAR,
             ),
         }
 
