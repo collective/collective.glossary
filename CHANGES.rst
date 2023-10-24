@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.0.4 (unreleased)
+2.1.0 (unreleased)
 ------------------
 
 - Show A-Z toolbar and hide contents when there are more than 30 entries.
