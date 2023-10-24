@@ -102,4 +102,4 @@ msgstr ""
 
 #: ../browser/templates/glossary.pt:17
 msgid "This item does not have any body text, click the edit tab to change it."
-msgstr "Dieser Artikel hat keinen Text. Klicken Sie auf die Registerkarte "Bearbeiten", um ihn zu ändern."
+msgstr "Dieser Artikel hat keinen Text. Klicken Sie auf die Registerkarte 'Bearbeiten', um ihn zu ändern."
