@@ -4,7 +4,8 @@ from collective.glossary.interfaces import IGlossaryLayer
 from collective.glossary.testing import INTEGRATION_TESTING
 from plone.app.testing import logout
 from plone.registry.interfaces import IRegistry
-from zope.component import getMultiAdapter, getUtility
+from zope.component import getMultiAdapter
+from zope.component import getUtility
 from zope.interface import alsoProvides
 
 import unittest

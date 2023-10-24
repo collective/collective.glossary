@@ -21,40 +21,53 @@
           <div tal:content="structure text">The body</div>
         </div>
 
-        <tal:repeat repeat="letter view/letters">
-          <div class="letter">
-            <div class="header">
-              <div class="title" tal:content="letter"></div>
-            </div>
-            <div class="terms">
-              <tal:repeat repeat="item python:view.terms(letter)">
-                <a class="term"
-                  tal:attributes="
-                    class python:'term ' + item['state'];
-                    href python: item['url']
-                  ">
-                  <img tal:define="image item/image"
-                      tal:condition="nocall:image"
-                      tal:replace="structure image/tag" />
-                  <div class="description-wrapper">
-                    <div class="description">
-                      <span class="title"
-                            tal:content="item/title">
-                      </span>
-                      <span class="variants" tal:condition="python:item['variants']"> - 
-                        <span tal:content="python:', '.join(item['variants'])">variants</span>
-                      </span>
-                      -
-                      <span class="definition"
-                            tal:content="structure python:item['definition']">
-                      </span>
+        <nav id="navbar-glossary"
+             class="navbar d-flex justify-content-center glossary-nav"
+             tal:condition="view/use_az_toolbar">
+          <ul class="pagination" role="tablist">
+            <tal:repeat repeat="letter view/letters">
+              <li class="page-item"><button class="nav-link page-link" data-bs-toggle="pill" data-bs-target="#t${letter}" type="button" tal:content="letter" /></li>
+            </tal:repeat>
+          </ul>
+        </nav>
+
+        <div data-target="#navbar-glossary" data-offset="0" class="tab-content"
+             tal:define="extra_classes python:'' if view.use_az_toolbar else 'active show'">
+          <tal:repeat repeat="letter view/letters">
+            <div class="letter tab-pane fade ${extra_classes}" id="t${letter}" role="tabpanel" tabindex="0">
+              <div class="header">
+                <div class="title" tal:content="letter"></div>
+              </div>
+              <div class="terms">
+                <tal:repeat repeat="item python:view.terms(letter)">
+                  <a class="term"
+                    tal:attributes="
+                      class python:'term ' + item['state'];
+                      href python: item['url']
+                    ">
+                    <img tal:define="image item/image"
+                        tal:condition="nocall:image"
+                        tal:replace="structure image/tag" />
+                    <div class="description-wrapper">
+                      <div class="description">
+                        <span class="title"
+                              tal:content="item/title">
+                        </span>
+                        <span class="variants" tal:condition="python:item['variants']"> -
+                          <span tal:content="python:', '.join(item['variants'])">variants</span>
+                        </span>
+                        -
+                        <span class="definition"
+                              tal:content="structure python:item['definition']">
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </a>
-              </tal:repeat>
+                  </a>
+                </tal:repeat>
+              </div>
             </div>
-          </div>
-        </tal:repeat>
+          </tal:repeat>
+        </div>
       </metal:content-core>
     </metal:content-core>
   </body>

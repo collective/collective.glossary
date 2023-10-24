@@ -5,6 +5,11 @@ Changelog
 2.0.4 (unreleased)
 ------------------
 
+- Show A-Z toolbar and hide contents when there are more than 30 entries.
+  You can configure this in the controlpanel.
+  To never show the toolbar, set this to a negative number (-1).
+  [ingo, maurits]
+
 - Add Dutch translations, contributed by Flemish Environment Agency [fredvd].
 
 
