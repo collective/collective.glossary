@@ -8,7 +8,8 @@
   <body>
     <metal:content-core fill-slot="content-core"
         tal:define="text context/text/output | nothing">
-      <metal:content-core define-macro="content-core">
+      <metal:content-core define-macro="content-core"
+        tal:define="use_az_toolbar view/use_az_toolbar">
         <p tal:define="is_editable context/@@plone_context_state/is_editable"
            tal:condition="python:not text and is_editable"
            i18n:domain="collective.glossary"
@@ -23,7 +24,7 @@
 
         <nav id="navbar-glossary"
              class="navbar d-flex justify-content-center glossary-nav"
-             tal:condition="view/use_az_toolbar">
+             tal:condition="use_az_toolbar">
           <ul class="pagination" role="tablist">
             <tal:repeat repeat="letter view/letters">
               <li class="page-item"><button class="nav-link page-link" data-bs-toggle="pill" data-bs-target="#t${letter}" type="button" tal:content="letter" /></li>
@@ -32,7 +33,7 @@
         </nav>
 
         <div data-target="#navbar-glossary" data-offset="0" class="tab-content"
-             tal:define="extra_classes python:'' if view.use_az_toolbar else 'active show'">
+             tal:define="extra_classes python:'' if use_az_toolbar else 'active show'">
           <tal:repeat repeat="letter view/letters">
             <div class="letter tab-pane fade ${extra_classes}" id="t${letter}" role="tabpanel" tabindex="0">
               <div class="header">
