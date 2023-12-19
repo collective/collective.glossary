@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.1.1 (unreleased)
+2.1.1 (2023-12-19)
 ------------------
 
 - Restore Python 3.7 compatibility by not using ``functools.cached_property``.
