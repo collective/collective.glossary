@@ -2,7 +2,6 @@
 from collections import defaultdict
 from collective.glossary.config import DEFAULT_MAXIMUM_WITHOUT_AZ_TOOLBAR
 from collective.glossary.interfaces import IGlossarySettings
-from functools import cached_property
 from plone import api
 from plone.i18n.normalizer.base import baseNormalize
 from Products.Five.browser import BrowserView
@@ -67,7 +66,6 @@ class GlossaryView(BrowserView):
 
         return self.get_entries()[letter]
 
-    @cached_property
     def use_az_toolbar(self):
         """Use the A-Z toolbar.
 

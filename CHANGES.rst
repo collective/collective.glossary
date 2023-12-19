@@ -5,7 +5,10 @@ Changelog
 2.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Restore Python 3.7 compatibility by not using ``functools.cached_property``.
+  Note that Python 3.7 is end of life, and this add-on is not tested on it.
+  But this was an easy fix.
+  [maurits]
 
 
 2.1.0 (2023-10-24)
