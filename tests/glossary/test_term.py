@@ -18,7 +18,7 @@ class TestTermType:
 
     def test_adding_outside_glossary(self, portal):
         from plone.api.exc import InvalidParameterError
-        
+
         with pytest.raises(InvalidParameterError):
             api.content.create(portal, "Term", "test")
 

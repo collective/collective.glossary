@@ -36,6 +36,6 @@ class TestGlossaryType:
 
     def test_not_allowed_content_types(self):
         from plone.api.exc import InvalidParameterError
-        
+
         with pytest.raises(InvalidParameterError):
             api.content.create(self.g1, "Document", "test")

@@ -3,7 +3,6 @@ import pytest
 from collective.glossary.interfaces import IGlossarySettings
 from plone import api
 from plone.app.textfield.value import RichTextValue
-from zope.publisher.browser import TestRequest
 
 
 @pytest.fixture
@@ -56,7 +55,7 @@ def glossary_content(portal):
                 outputMimeType="text/html",
             ),
         )
-    
+
     return {
         "glossary": g1,
         "term1": t1,

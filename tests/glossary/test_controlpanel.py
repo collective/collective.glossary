@@ -4,7 +4,6 @@ from collective.glossary.interfaces import IBrowserLayer
 from plone import api
 from plone.app.testing import logout
 from plone.registry.interfaces import IRegistry
-from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.interface import alsoProvides
 
@@ -17,7 +16,7 @@ class TestControlPanel:
 
     def test_controlpanel_view_is_protected(self, portal):
         from AccessControl import Unauthorized
-        
+
         logout()
         with pytest.raises(Unauthorized):
             portal.restrictedTraverse("@@glossary-settings")
@@ -37,7 +36,7 @@ class TestRegistry:
 
     def test_enabled_content_types_record_in_registry(self, portal):
         from collective.glossary.config import DEFAULT_ENABLED_CONTENT_TYPES
-        
+
         registry = getUtility(IRegistry)
         settings = registry.forInterface(IGlossarySettings)
         assert hasattr(settings, "enabled_content_types")

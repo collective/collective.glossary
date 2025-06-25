@@ -23,7 +23,7 @@ class GlossaryView(BrowserView):
         """Get glossary entries and keep them in the desired format"""
         catalog = api.portal.get_tool("portal_catalog")
         path = "/".join(self.context.getPhysicalPath())
-        query = dict(portal_type="Term", path={"query": path, "depth": 1})
+        query = {"portal_type": "Term", "path": {"query": path, "depth": 1}}
 
         items = defaultdict(list)
         for brain in catalog(**query):
@@ -84,7 +84,7 @@ class GlossaryView(BrowserView):
             return False
         total = 0
         # Keep counting until we have reached the maximum.
-        for letter, entries in self.get_entries().items():
+        for _letter, entries in self.get_entries().items():
             total += len(entries)
             if total > maximum_without_az_toolbar:
                 return True
@@ -170,7 +170,11 @@ class JsonView(BrowserView):
         items = []
         for title in terms_with_variants:
             if len(terms_with_variants[title]) > 1:
-                description = f"<ol>{''.join([f'<li>{el}</li>' for el in terms_with_variants[title]])}</ol>"
+                items_html = ''.join([
+                    f'<li>{el}</li>'
+                    for el in terms_with_variants[title]
+                ])
+                description = f"<ol>{items_html}</ol>"
             elif len(terms_with_variants[title]) == 1:
                 description = terms_with_variants[title][0]
             else:

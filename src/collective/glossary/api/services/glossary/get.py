@@ -10,9 +10,9 @@ from plone.restapi.services import Service
 class GetGlossaryTerms(Service):
     """@glossary_terms"""
 
-    def _error(self, status, type, message):
+    def _error(self, status, ct, message):
         self.request.response.setStatus(status)
-        return {"error": {"type": type, "message": message}}
+        return {"error": {"type": ct, "message": message}}
 
     def reply(self):
         """Return dictionary of terms grouped by first letter.
@@ -73,9 +73,9 @@ class GetGlossaryTerms(Service):
 class GetTooltipTerms(Service):
     """Service @tooltip_terms"""
 
-    def _error(self, status, type, message):
+    def _error(self, status, ct, message):
         self.request.response.setStatus(status)
-        return {"error": {"type": type, "message": message}}
+        return {"error": {"type": ct, "message": message}}
 
     def reply(self):
         """Return list of terms.
