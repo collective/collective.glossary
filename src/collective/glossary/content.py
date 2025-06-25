@@ -8,11 +8,9 @@ from zope.interface import implementer
 
 @implementer(IGlossary)
 class Glossary(Container):
-
     """A Glossary is a container for Terms."""
 
 
 @implementer(ITerm)
 class Term(Item):
-
     """A Term."""
