@@ -1,17 +1,19 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    i18n_domain="collective.glossary">
+    i18n_domain="collective.glossary"
+    >
 
   <genericsetup:upgradeSteps
+      profile="collective.glossary:default"
       source="4"
       destination="5"
-      profile="collective.glossary:default">
+      >
 
-      <genericsetup:upgradeDepends
-          title="Re-apply registry to add record for maximum_without_az_toolbar"
-          import_steps="plone.app.registry"
-          />
+    <genericsetup:upgradeDepends
+        title="Re-apply registry to add record for maximum_without_az_toolbar"
+        import_steps="plone.app.registry"
+        />
 
   </genericsetup:upgradeSteps>
 

@@ -45,7 +45,6 @@ class IGlossarySettings(Interface):
 
 
 class IGlossary(Interface):
-
     """A Glossary is a container for Terms."""
 
     text = RichText(

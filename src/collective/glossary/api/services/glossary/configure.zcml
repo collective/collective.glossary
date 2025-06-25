@@ -1,22 +1,23 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:plone="http://namespaces.plone.org/plone"
-    xmlns:zcml="http://namespaces.zope.org/zcml">
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    >
 
   <plone:service
-    method="GET"
-    name="@glossary_terms"
-    for="zope.interface.Interface"
-    factory=".get.GetGlossaryTerms"
-    permission="zope.Public"
-    />
+      method="GET"
+      factory=".get.GetGlossaryTerms"
+      for="zope.interface.Interface"
+      permission="zope.Public"
+      name="@glossary_terms"
+      />
 
   <plone:service
-    method="GET"
-    name="@tooltip_terms"
-    for="zope.interface.Interface"
-    factory=".get.GetTooltipTerms"
-    permission="zope.Public"
-    />
+      method="GET"
+      factory=".get.GetTooltipTerms"
+      for="zope.interface.Interface"
+      permission="zope.Public"
+      name="@tooltip_terms"
+      />
 
 </configure>

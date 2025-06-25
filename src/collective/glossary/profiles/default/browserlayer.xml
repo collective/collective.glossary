@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <layers>
-  <layer
-      name="collective.glossary"
-      interface="collective.glossary.interfaces.IGlossaryLayer"
-      />
+  <layer interface="collective.glossary.interfaces.IGlossaryLayer"
+         name="collective.glossary"
+  />
 </layers>

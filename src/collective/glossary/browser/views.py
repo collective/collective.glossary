@@ -177,12 +177,10 @@ class JsonView(BrowserView):
             else:
                 description = ""
 
-            items.append(
-                {
-                    "term": title,
-                    "description": description,
-                }
-            )
+            items.append({
+                "term": title,
+                "description": description,
+            })
 
         items = sorted(
             items,

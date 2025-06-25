@@ -99,12 +99,10 @@ class GetTooltipTerms(Service):
 
         items = []
         for title in terms_with_variants:
-            items.append(
-                {
-                    "term": title,
-                    "definition": terms_with_variants[title],
-                }
-            )
+            items.append({
+                "term": title,
+                "definition": terms_with_variants[title],
+            })
         items = sorted(
             items,
             key=lambda vrt: vrt["term"].lower(),

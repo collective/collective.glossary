@@ -3,6 +3,7 @@
 
 For Plone 5 we need to install plone.app.contenttypes.
 """
+
 from plone import api
 from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
 from plone.app.testing import FunctionalTesting

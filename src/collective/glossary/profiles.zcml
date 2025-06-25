@@ -3,28 +3,32 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:zcml="http://namespaces.zope.org/zcml"
-    i18n_domain="collective.glossary">
+    i18n_domain="collective.glossary"
+    >
 
   <genericsetup:registerProfile
       name="default"
       title="Glossary"
-      directory="profiles/default"
       description="A Dexterity-based content type to define a glossary and its terms."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/default"
       i18n:attributes="title; description"
       />
 
   <genericsetup:registerProfile
       name="uninstall"
       title="collective.glossary: uninstall"
-      directory="profiles/uninstall"
       description="Uninstall collective.glossary."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/uninstall"
       i18n:attributes="title; description"
       />
 
   <include package=".upgrades" />
 
-  <utility factory=".setuphandlers.HiddenProfiles" name="collective.glossary" />
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="collective.glossary"
+      />
 
 </configure>

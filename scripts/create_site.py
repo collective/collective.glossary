@@ -46,8 +46,7 @@ site_id = "Plone"
 payload = {
     "title": "collective.glossary",
     "profile_id": _DEFAULT_PROFILE,
-
-"distribution_name": "volto",
+    "distribution_name": "volto",
     "setup_content": False,
     "default_language": "en",
     "portal_timezone": "UTC",
