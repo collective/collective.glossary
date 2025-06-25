@@ -15,7 +15,7 @@
       class=".viewlets.CssJS"
       template="css_js.pt"
       permission="zope2.View"
-      layer="collective.glossary.interfaces.IGlossaryLayer"
+      layer="collective.glossary.interfaces.IBrowserLayer"
       />
 
 </configure>

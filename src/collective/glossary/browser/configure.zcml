@@ -9,7 +9,7 @@
   <browser:resourceDirectory
       name="collective.glossary"
       directory="static"
-      layer="collective.glossary.interfaces.IGlossaryLayer"
+      layer="collective.glossary.interfaces.IBrowserLayer"
       />
 
   <browser:page
@@ -17,7 +17,7 @@
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       class="collective.glossary.controlpanel.GlossarySettingsControlPanel"
       permission="cmf.ManagePortal"
-      layer="collective.glossary.interfaces.IGlossaryLayer"
+      layer="collective.glossary.interfaces.IBrowserLayer"
       />
 
   <browser:page
@@ -26,7 +26,7 @@
       class=".views.GlossaryView"
       template="templates/glossary.pt"
       permission="zope2.View"
-      layer="collective.glossary.interfaces.IGlossaryLayer"
+      layer="collective.glossary.interfaces.IBrowserLayer"
       />
 
   <browser:page
@@ -35,7 +35,7 @@
       class=".views.TermView"
       template="templates/term.pt"
       permission="zope2.View"
-      layer="collective.glossary.interfaces.IGlossaryLayer"
+      layer="collective.glossary.interfaces.IBrowserLayer"
       />
 
   <browser:page
@@ -43,7 +43,7 @@
       for="*"
       class=".views.GlossaryStateView"
       permission="zope2.View"
-      layer="collective.glossary.interfaces.IGlossaryLayer"
+      layer="collective.glossary.interfaces.IBrowserLayer"
       />
 
   <browser:page
@@ -51,7 +51,7 @@
       for="plone.app.layout.navigation.interfaces.INavigationRoot"
       class=".views.JsonView"
       permission="zope2.View"
-      layer="collective.glossary.interfaces.IGlossaryLayer"
+      layer="collective.glossary.interfaces.IBrowserLayer"
       />
 
 </configure>

@@ -1,53 +1,49 @@
-"""Setup testing infrastructure.
-
-For Plone 5 we need to install plone.app.contenttypes.
-"""
-
-from plone import api
-from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
+from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
+from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
+from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
-from plone.testing import z2
+from plone.testing.zope import WSGI_SERVER_FIXTURE
 
-import pkg_resources
-
-
-try:
-    pkg_resources.get_distribution("plone.app.contenttypes")
-except pkg_resources.DistributionNotFound:
-    from plone.app.testing import PLONE_FIXTURE
-else:
-    from plone.app.contenttypes.testing import (
-        PLONE_APP_CONTENTTYPES_FIXTURE as PLONE_FIXTURE,
-    )
-
-IS_PLONE_5 = api.env.plone_version().startswith("5")
+import collective.glossary
 
 
-class Fixture(PloneSandboxLayer):
-    defaultBases = (PLONE_FIXTURE,)
+class Layer(PloneSandboxLayer):
+    defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
-        import collective.glossary
+        # Load any other ZCML that is required for your tests.
+        # The z3c.autoinclude feature is disabled in the Plone fixture base
+        # layer.
+        import plone.restapi
 
+        self.loadZCML(package=plone.restapi)
         self.loadZCML(package=collective.glossary)
 
     def setUpPloneSite(self, portal):
-        self.applyProfile(portal, "collective.glossary:default")
+        applyProfile(portal, "collective.glossary:default")
 
 
-FIXTURE = Fixture()
+FIXTURE = Layer()
 
 INTEGRATION_TESTING = IntegrationTesting(
-    bases=(FIXTURE,), name="collective.glossary:Integration"
+    bases=(FIXTURE,),
+    name="Collective.GlossaryLayer:IntegrationTesting",
 )
+
 
 FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(FIXTURE,), name="collective.glossary:Functional"
+    bases=(FIXTURE, WSGI_SERVER_FIXTURE),
+    name="Collective.GlossaryLayer:FunctionalTesting",
 )
 
-ROBOT_TESTING = FunctionalTesting(
-    bases=(FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE, z2.ZSERVER_FIXTURE),
-    name="collective.glossary:Robot",
+
+ACCEPTANCE_TESTING = FunctionalTesting(
+    bases=(
+        FIXTURE,
+        REMOTE_LIBRARY_BUNDLE_FIXTURE,
+        WSGI_SERVER_FIXTURE,
+    ),
+    name="Collective.GlossaryLayer:AcceptanceTesting",
 )

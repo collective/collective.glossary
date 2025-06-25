@@ -12,7 +12,7 @@ from zope.interface import Interface
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 
-class IGlossaryLayer(IDefaultBrowserLayer):
+class IBrowserLayer(IDefaultBrowserLayer):
     """Marker interface that defines a browser layer."""
 
 
