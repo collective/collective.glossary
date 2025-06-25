@@ -1,5 +1,0 @@
-===================
-collective.glossary
-===================
-
-User documentation

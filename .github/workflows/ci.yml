@@ -1,0 +1,52 @@
+name: "collective.glossary CI"
+
+on:
+  push:
+
+env:
+  python-version: "3.12"
+  plone-version: "6.1.1"
+
+jobs:
+  config:
+    runs-on: ubuntu-latest
+    outputs:
+      python-version: ${{ env.python-version }}
+      plone-version: ${{ env.plone-version }}
+    steps:
+      - name: Test vars
+        run: |
+          echo 'python-version=${{ env.python-version }}'
+          echo 'plone-version=${{ env.plone-version }}'
+
+  lint:
+    name: "Backend: Lint"
+    needs:
+      - config
+    uses: plone/meta/.github/workflows/backend-lint.yml@2.x
+    with:
+      python-version: ${{ needs.config.outputs.python-version }}
+      plone-version: ${{ needs.config.outputs.plone-version }}
+
+  test:
+    name: "Backend: Test"
+    needs:
+      - config
+    uses: plone/meta/.github/workflows/backend-pytest.yml@2.x
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12', '3.13']
+        plone-version: ['6.1-latest', '6.0-latest']
+    with:
+      python-version: ${{ matrix.python-version }}
+      plone-version: ${{ matrix.plone-version }}
+
+  coverage:
+    name: "Backend: Test Coverage"
+    uses: plone/meta/.github/workflows/backend-pytest-coverage.yml@2.x
+    needs:
+      - config
+      - test
+    with:
+      python-version: ${{ needs.config.outputs.python-version }}
+      plone-version: ${{ needs.config.outputs.plone-version }}
