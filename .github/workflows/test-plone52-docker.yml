@@ -1,0 +1,23 @@
+name: Test Plone 5.2
+on:
+  push:
+
+jobs:
+  test-plone52-docker:
+    name: "Backend: Test Plone 5.2 (Docker)"
+    runs-on: ubuntu-latest
+    container:
+      image: plone/plone-backend:5.2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install package in development mode
+        run: |
+          cd /plone/instance
+          pip install -e /github/workspace[test]
+
+      - name: Run tests
+        run: |
+          cd /plone/instance
+          python -m pytest /github/workspace/src/collective/glossary/tests/
