@@ -72,7 +72,7 @@ class TestGlossaryView:
         self.t1 = glossary_content["term1"]
         self.t2 = glossary_content["term2"]
         self.d1 = glossary_content["document"]
-        self.view = api.content.get_view("view", self.g1, request)
+        self.view = api.content.get_view(name="view", context=self.g1)
 
     def test_get_entries(self):
         expected = {
@@ -110,7 +110,7 @@ class TestGlossaryStateView:
         self.t1 = glossary_content["term1"]
         self.t2 = glossary_content["term2"]
         self.d1 = glossary_content["document"]
-        self.view = api.content.get_view("glossary_state", portal, request)
+        self.view = api.content.get_view(name="glossary_state", context=portal)
 
     def test_tooltip_is_enabled(self):
         name = IGlossarySettings.__identifier__ + ".enable_tooltip"
@@ -137,7 +137,7 @@ class TestJsonView:
         self.t1 = glossary_content["term1"]
         self.t2 = glossary_content["term2"]
         self.d1 = glossary_content["document"]
-        self.view = api.content.get_view("glossary", portal, request)
+        self.view = api.content.get_view("glossary", portal)
 
     def test_get_json_entries(self):
         expected = [

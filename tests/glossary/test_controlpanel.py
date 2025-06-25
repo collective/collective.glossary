@@ -1,6 +1,7 @@
 import pytest
 from collective.glossary.controlpanel import IGlossarySettings
 from collective.glossary.interfaces import IBrowserLayer
+from plone import api
 from plone.app.testing import logout
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
@@ -11,7 +12,7 @@ from zope.interface import alsoProvides
 class TestControlPanel:
     def test_controlpanel_has_view(self, portal, request):
         alsoProvides(request, IBrowserLayer)
-        view = getMultiAdapter((portal, request), name="glossary-settings")
+        view = api.content.get_view(name="glossary-settings", context=portal)
         assert view()
 
     def test_controlpanel_view_is_protected(self, portal):
