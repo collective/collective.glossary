@@ -170,7 +170,7 @@ class JsonView(BrowserView):
         items = []
         for title in terms_with_variants:
             if len(terms_with_variants[title]) > 1:
-                items_html = ''.join([
+                items_html = "".join([
                     f"<li>{el}</li>" for el in terms_with_variants[title]
                 ])
                 description = f"<ol>{items_html}</ol>"
