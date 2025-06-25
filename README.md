@@ -1,10 +1,18 @@
 # collective.glossary
 
-Content types to define a glossary and its terms
+Plone backend add-on to define a glossary and provide tooltips on matching text.
 
 ## Features
 
-TODO: List our awesome features
+- The terms are defined as title / definition pairs.
+- The term can have variants.
+- The definiton is richtext formated.
+- The tooltip can be disabled in glossary control panel.
+- Tooltips can be restricted to a selection of content types.
+
+The add-on provides a REST API service @glossary_terms to fetch the terms of the glossary.
+
+`@rohberg/volto-slate-glossary <https://github.com/rohberg/volto-slate-glossary>`_ is the corresponding Volto add-on.
 
 ## Installation
 
