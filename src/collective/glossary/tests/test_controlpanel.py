@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.glossary.controlpanel import IGlossarySettings
 from collective.glossary.interfaces import IGlossaryLayer
 from collective.glossary.testing import INTEGRATION_TESTING
@@ -44,7 +43,7 @@ class RegistryTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer["portal"]
         self.registry = getUtility(IRegistry)
-        self.settings = self.registry.forInterface(IGlossarySettings)  # noqa: P001
+        self.settings = self.registry.forInterface(IGlossarySettings)
 
     def test_enable_tooltip_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, "enable_tooltip"))

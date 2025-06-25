@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 from collections import defaultdict
 from collective.glossary.config import DEFAULT_MAXIMUM_WITHOUT_AZ_TOOLBAR
@@ -90,11 +89,11 @@ class GetTooltipTerms(Service):
         for term in terms:
             obj = term.getObject()
             terms_with_variants[term.Title].append(
-                obj.definition and obj.definition.output or ""
+                (obj.definition and obj.definition.output) or ""
             )
             for vrt in obj.variants:
                 terms_with_variants[vrt].append(
-                    obj.definition and obj.definition.output or ""
+                    (obj.definition and obj.definition.output) or ""
                 )
 
         items = []

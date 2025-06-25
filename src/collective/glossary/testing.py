@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Setup testing infrastructure.
 
 For Plone 5 we need to install plone.app.contenttypes.

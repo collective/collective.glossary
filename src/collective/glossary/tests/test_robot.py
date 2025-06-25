@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.glossary.testing import ROBOT_TESTING
 from plone.testing import layered
 

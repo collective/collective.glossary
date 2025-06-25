@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.glossary.interfaces import ITerm
 from plone.indexer import indexer
 

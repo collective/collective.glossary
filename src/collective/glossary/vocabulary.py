@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.vocabularies.types import ReallyUserFriendlyTypesVocabulary
 from zope.schema.vocabulary import SimpleVocabulary
 

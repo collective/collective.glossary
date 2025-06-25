@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 PROJECTNAME = "collective.glossary"
 
 # by default, all standard content types will be enabled

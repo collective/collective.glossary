@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 import os
 import pkg_resources
@@ -55,13 +54,7 @@ def _rebuild():
 
 
 def _sync():
-    cmd = "{0} sync --pot {1}/{2}.pot {3}*/LC_MESSAGES/{4}.po".format(
-        i18ndude,
-        locale_path,
-        domain,
-        locale_path,
-        domain,
-    )
+    cmd = f"{i18ndude} sync --pot {locale_path}/{domain}.pot {locale_path}*/LC_MESSAGES/{domain}.po"
     subprocess.call(
         cmd,
         shell=True,

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.glossary import _
 from collective.glossary.config import DEFAULT_ENABLED_CONTENT_TYPES
 from collective.glossary.config import DEFAULT_MAXIMUM_WITHOUT_AZ_TOOLBAR

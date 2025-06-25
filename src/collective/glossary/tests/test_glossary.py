@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.glossary.interfaces import IGlossary
 from collective.glossary.testing import INTEGRATION_TESTING
 from plone import api
