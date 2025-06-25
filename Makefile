@@ -25,6 +25,12 @@ endif
 
 BACKEND_FOLDER=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
+ifdef UV_PYTHON
+UV_PYTHON := $(UV_PYTHON)
+else
+UV_PYTHON := 3.10
+endif
+
 ifdef PLONE_VERSION
 PLONE_VERSION := $(PLONE_VERSION)
 else
@@ -53,7 +59,7 @@ requirements-mxdev.txt: pyproject.toml mx.ini ## Generate constraints file
 
 $(VENV_FOLDER): requirements-mxdev.txt ## Install dependencies
 	@echo "$(GREEN)==> Install environment$(RESET)"
-	@uv venv --python=3.12 $(VENV_FOLDER)
+	@uv venv --python=$(UV_PYTHON) $(VENV_FOLDER)
 	@uv pip install -r requirements-mxdev.txt
 
 .PHONY: sync
