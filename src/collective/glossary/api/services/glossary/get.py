@@ -83,9 +83,8 @@ class GetTooltipTerms(Service):
 
         Terms are all titles and variants with their list of definitions."""
 
-        catalog = api.portal.get_tool("portal_catalog")
+        terms = api.content.find(context=self.context, portal_type="Term")
 
-        terms = catalog(portal_type="Term")
         terms_with_variants = defaultdict(list)
         for term in terms:
             obj = term.getObject()

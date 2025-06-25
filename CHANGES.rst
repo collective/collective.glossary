@@ -5,7 +5,8 @@ Changelog
 2.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Service "@tooltip_terms" now returns terms in context. This supports multilingual sites.
+  [ksuess]
 
 
 2.1.1 (2023-12-19)
