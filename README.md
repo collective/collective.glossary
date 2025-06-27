@@ -9,29 +9,32 @@ Plone backend add-on to define a glossary and provide tooltips on matching text.
 - The definiton is richtext formated.
 - The tooltip can be disabled in glossary control panel.
 - Tooltips can be restricted to a selection of content types.
+- REST API service @glossary_terms to fetch the terms of a glossary.
 
-The add-on provides a REST API service @glossary_terms to fetch the terms of the glossary.
+[@rohberg/volto-slate-glossary](https://github.com/rohberg/volto-slate-glossary>) is the corresponding Volto add-on.
 
-`@rohberg/volto-slate-glossary <https://github.com/rohberg/volto-slate-glossary>`_ is the corresponding Volto add-on.
 
-## Installation
 
-Install collective.glossary with `pip`:
+## Screenshots
 
-```shell
-pip install collective.glossary
-```
+![Create a Glossary](https://raw.github.com/collective/collective.glossary/master/docs/glossary.png)
 
-And to create the Plone site:
+*Create a Glossary.*
 
-```shell
-make create-site
-```
+![Use it!](https://raw.github.com/collective/collective.glossary/master/docs/usage.png)
+
+*Use it!*
+
+![Control Panel](https://raw.github.com/collective/collective.glossary/master/docs/controlpanel.png)
+
+*Configure glossary settings in the control panel.*
+
 
 ## Contribute
 
 - [Issue tracker](https://github.com/collective/collective.glossary/issues)
 - [Source code](https://github.com/collective/collective.glossary/)
+- [pypi](https://pypi.org/project/collective.glossary/)
 
 ### Prerequisites ✅
 
@@ -57,38 +60,10 @@ make create-site
     ```
 
 
-### Add features using `plonecli` or `bobtemplates.plone`
-
-This package provides markers as strings (`<!-- extra stuff goes here -->`) that are compatible with [`plonecli`](https://github.com/plone/plonecli) and [`bobtemplates.plone`](https://github.com/plone/bobtemplates.plone).
-These markers act as hooks to add all kinds of subtemplates, including behaviors, control panels, upgrade steps, or other subtemplates from `plonecli`.
-
-To run `plonecli` with configuration to target this package, run the following command.
-
-```shell
-make add <template_name>
-```
-
-For example, you can add a content type to your package with the following command.
-
-```shell
-make add content_type
-```
-
-You can add a behavior with the following command.
-
-```shell
-make add behavior
-```
-
-```{seealso}
-You can check the list of available subtemplates in the [`bobtemplates.plone` `README.md` file](https://github.com/plone/bobtemplates.plone/?tab=readme-ov-file#provided-subtemplates).
-See also the documentation of [Mockup and Patternslib](https://6.docs.plone.org/classic-ui/mockup.html) for how to build the UI toolkit for Classic UI.
-```
-
 ## License
 
 The project is licensed under GPLv2.
 
-## Credits and acknowledgements 🙏
+## Acknowledgements
 
-Generated using [Cookieplone (0.9.7)](https://github.com/plone/cookieplone) and [cookieplone-templates (c7497ac)](https://github.com/plone/cookieplone-templates/commit/c7497ace6a6d52fd75e67047f652a801b03c12c4) on 2025-06-25 15:56:13.999992. A special thanks to all contributors and supporters!
+Generated using [Cookieplone (0.9.7)](https://github.com/plone/cookieplone) and [cookieplone-templates (c7497ac)](https://github.com/plone/cookieplone-templates/commit/c7497ace6a6d52fd75e67047f652a801b03c12c4) on 2025-06-25 15:56:13.999992.
