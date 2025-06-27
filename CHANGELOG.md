@@ -9,6 +9,13 @@
 
 <!-- towncrier release notes start -->
 
+## 3.0.1 (2025-06-27)
+
+
+### New features:
+
+- Service "@tooltip_terms" returns terms in context. This supports multilingual sites. @ksuess [#1017](https://github.com/collective/collective.glossary/issues/1017)
+
 ## 3.0.0 (2025-06-27)
 
 No significant changes.
