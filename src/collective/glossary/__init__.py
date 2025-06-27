@@ -1,5 +1,14 @@
-# -*- coding: utf-8 -*-
+"""Init and utils."""
+
 from zope.i18nmessageid import MessageFactory
 
+import logging
 
-_ = MessageFactory("collective.glossary")
+
+__version__ = "2.1.2a0"
+
+PACKAGE_NAME = "collective.glossary"
+
+_ = MessageFactory(PACKAGE_NAME)
+
+logger = logging.getLogger(PACKAGE_NAME)

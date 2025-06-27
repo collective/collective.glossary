@@ -1,25 +1,34 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="collective.glossary">
+      xml:lang="en"
+      i18n:domain="collective.glossary"
+>
   <body>
     <metal:main fill-slot="main">
 
-      <div tal:define="image nocall:context/image" tal:condition="nocall:image">
+      <div tal:define="
+             image nocall:context/image;
+           "
+           tal:condition="nocall:image"
+      >
         <img tal:replace="structure context/@@images/image/preview" />
       </div>
 
-      <div tal:replace="structure provider:plone.abovecontenttitle" />
+      <div tal:replace="structure provider:plone.abovecontenttitle"></div>
 
       <h1 class="documentFirstHeading"
-          tal:content="context/title">Title</h1>
+          tal:content="context/title"
+      >Title</h1>
 
-      <div tal:replace="structure provider:plone.belowcontenttitle" />
+      <div tal:replace="structure provider:plone.belowcontenttitle"></div>
 
-      <div class="variants" tal:condition="python:context.variants">
+      <div class="variants"
+           tal:condition="python:context.variants"
+      >
         <ul>
           <tal:repeat tal:repeat="v context/variants">
             <li tal:content="v">variant</li>
@@ -28,7 +37,8 @@
       </div>
 
       <div class="definition"
-          tal:content="structure python:context.definition and context.definition.output or ''">definition</div>
+           tal:content="structure python:context.definition and context.definition.output or ''"
+      >definition</div>
     </metal:main>
   </body>
 </html>

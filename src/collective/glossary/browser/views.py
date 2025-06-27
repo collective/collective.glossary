@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collections import defaultdict
 from collective.glossary.config import DEFAULT_MAXIMUM_WITHOUT_AZ_TOOLBAR
 from collective.glossary.interfaces import IGlossarySettings
@@ -24,7 +23,7 @@ class GlossaryView(BrowserView):
         """Get glossary entries and keep them in the desired format"""
         catalog = api.portal.get_tool("portal_catalog")
         path = "/".join(self.context.getPhysicalPath())
-        query = dict(portal_type="Term", path={"query": path, "depth": 1})
+        query = {"portal_type": "Term", "path": {"query": path, "depth": 1}}
 
         items = defaultdict(list)
         for brain in catalog(**query):
@@ -34,7 +33,7 @@ class GlossaryView(BrowserView):
             image = scales.scale("image", scale="tile")  # 64x64
             item = {
                 "title": obj.title,
-                "definition": obj.definition and obj.definition.output or "",
+                "definition": (obj.definition and obj.definition.output) or "",
                 "variants": obj.variants,
                 "image": image,
                 "state": brain.review_state,
@@ -85,7 +84,7 @@ class GlossaryView(BrowserView):
             return False
         total = 0
         # Keep counting until we have reached the maximum.
-        for letter, entries in self.get_entries().items():
+        for _letter, entries in self.get_entries().items():
             total += len(entries)
             if total > maximum_without_az_toolbar:
                 return True
@@ -161,28 +160,29 @@ class JsonView(BrowserView):
         for term in terms:
             obj = term.getObject()
             terms_with_variants[term.Title].append(
-                obj.definition and obj.definition.output or ""
+                (obj.definition and obj.definition.output) or ""
             )
             for vrt in obj.variants:
                 terms_with_variants[vrt].append(
-                    obj.definition and obj.definition.output or ""
+                    (obj.definition and obj.definition.output) or ""
                 )
 
         items = []
         for title in terms_with_variants:
             if len(terms_with_variants[title]) > 1:
-                description = f"<ol>{''.join([f'<li>{el}</li>' for el in terms_with_variants[title]])}</ol>"
+                items_html = "".join([
+                    f"<li>{el}</li>" for el in terms_with_variants[title]
+                ])
+                description = f"<ol>{items_html}</ol>"
             elif len(terms_with_variants[title]) == 1:
                 description = terms_with_variants[title][0]
             else:
                 description = ""
 
-            items.append(
-                {
-                    "term": title,
-                    "description": description,
-                }
-            )
+            items.append({
+                "term": title,
+                "description": description,
+            })
 
         items = sorted(
             items,

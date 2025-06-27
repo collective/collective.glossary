@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.glossary.logger import logger
 from plone import api
 

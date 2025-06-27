@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from collections import defaultdict
 from collective.glossary.config import DEFAULT_MAXIMUM_WITHOUT_AZ_TOOLBAR
 from collective.glossary.interfaces import IGlossarySettings
@@ -11,9 +9,9 @@ from plone.restapi.services import Service
 class GetGlossaryTerms(Service):
     """@glossary_terms"""
 
-    def _error(self, status, type, message):
+    def _error(self, status, ct, message):
         self.request.response.setStatus(status)
-        return {"error": {"type": type, "message": message}}
+        return {"error": {"type": ct, "message": message}}
 
     def reply(self):
         """Return dictionary of terms grouped by first letter.
@@ -74,9 +72,9 @@ class GetGlossaryTerms(Service):
 class GetTooltipTerms(Service):
     """Service @tooltip_terms"""
 
-    def _error(self, status, type, message):
+    def _error(self, status, ct, message):
         self.request.response.setStatus(status)
-        return {"error": {"type": type, "message": message}}
+        return {"error": {"type": ct, "message": message}}
 
     def reply(self):
         """Return list of terms.
@@ -90,21 +88,19 @@ class GetTooltipTerms(Service):
         for term in terms:
             obj = term.getObject()
             terms_with_variants[term.Title].append(
-                obj.definition and obj.definition.output or ""
+                (obj.definition and obj.definition.output) or ""
             )
             for vrt in obj.variants:
                 terms_with_variants[vrt].append(
-                    obj.definition and obj.definition.output or ""
+                    (obj.definition and obj.definition.output) or ""
                 )
 
         items = []
         for title in terms_with_variants:
-            items.append(
-                {
-                    "term": title,
-                    "definition": terms_with_variants[title],
-                }
-            )
+            items.append({
+                "term": title,
+                "definition": terms_with_variants[title],
+            })
         items = sorted(
             items,
             key=lambda vrt: vrt["term"].lower(),

@@ -1,20 +1,31 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="collective.glossary">
+      xml:lang="en"
+      i18n:domain="collective.glossary"
+>
   <body>
     <metal:content-core fill-slot="content-core"
-        tal:define="text context/text/output | nothing">
+                        tal:define="
+                          text context/text/output | nothing;
+                        "
+    >
       <metal:content-core define-macro="content-core"
-        tal:define="use_az_toolbar view/use_az_toolbar">
-        <p tal:define="is_editable context/@@plone_context_state/is_editable"
+                          tal:define="
+                            use_az_toolbar view/use_az_toolbar;
+                          "
+      >
+        <p class="discreet"
+           tal:define="
+             is_editable context/@@plone_context_state/is_editable;
+           "
            tal:condition="python:not text and is_editable"
            i18n:domain="collective.glossary"
            i18n:translate=""
-           class="discreet">
+        >
             This item does not have any body text, click the edit tab to change it.
         </p>
 
@@ -22,44 +33,72 @@
           <div tal:content="structure text">The body</div>
         </div>
 
-        <nav id="navbar-glossary"
-             class="navbar d-flex justify-content-center glossary-nav"
-             tal:condition="use_az_toolbar">
-          <ul class="pagination" role="tablist">
+        <nav class="navbar d-flex justify-content-center glossary-nav"
+             id="navbar-glossary"
+             tal:condition="use_az_toolbar"
+        >
+          <ul class="pagination"
+              role="tablist"
+          >
             <tal:repeat repeat="letter view/letters">
-              <li class="page-item"><button class="nav-link page-link" data-bs-toggle="pill" data-bs-target="#t${letter}" type="button" tal:content="letter" /></li>
+              <li class="page-item"><button class="nav-link page-link"
+                        type="button"
+                        data-bs-target="#t${letter}"
+                        data-bs-toggle="pill"
+                        tal:content="letter"
+                ></button></li>
             </tal:repeat>
           </ul>
         </nav>
 
-        <div data-target="#navbar-glossary" data-offset="0" class="tab-content"
-             tal:define="extra_classes python:'' if use_az_toolbar else 'active show'">
+        <div class="tab-content"
+             data-offset="0"
+             data-target="#navbar-glossary"
+             tal:define="
+               extra_classes python:'' if use_az_toolbar else 'active show';
+             "
+        >
           <tal:repeat repeat="letter view/letters">
-            <div class="letter tab-pane fade ${extra_classes}" id="t${letter}" role="tabpanel" tabindex="0">
+            <div class="letter tab-pane fade ${extra_classes}"
+                 id="t${letter}"
+                 role="tabpanel"
+                 tabindex="0"
+            >
               <div class="header">
-                <div class="title" tal:content="letter"></div>
+                <div class="title"
+                     tal:content="letter"
+                ></div>
               </div>
               <div class="terms">
                 <tal:repeat repeat="item python:view.terms(letter)">
                   <a class="term"
-                    tal:attributes="
-                      class python:'term ' + item['state'];
-                      href python: item['url']
-                    ">
-                    <img tal:define="image item/image"
-                        tal:condition="nocall:image"
-                        tal:replace="structure image/tag" />
+                     tal:attributes="
+                       class python:'term ' + item['state'];
+                       href python: item['url'];
+                     "
+                  >
+                    <img tal:define="
+                           image item/image;
+                         "
+                         tal:condition="nocall:image"
+                         tal:replace="structure image/tag"
+                    />
                     <div class="description-wrapper">
                       <div class="description">
                         <span class="title"
-                              tal:content="item/title">
+                              tal:content="item/title"
+                        >
                         </span>
-                        <span class="variants" tal:condition="python:item['variants']"> -
+                        <span class="variants"
+                              tal:condition="python:item['variants']"
+                        >
+                           -
                           <span tal:content="python:', '.join(item['variants'])">variants</span>
                         </span>
                         -
                         <span class="definition"
-                              tal:content="structure python:item['definition']">
+                              tal:content="structure python:item['definition']"
+                        >
                         </span>
                       </div>
                     </div>
