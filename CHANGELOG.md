@@ -8,3 +8,13 @@
 -->
 
 <!-- towncrier release notes start -->
+
+## 3.0.0a0 (2025-06-27)
+
+
+### Internal:
+
+- Add-on structure of Cookieplone backend add-on. @ksuess [#72](https://github.com/collective/collective.glossary/issues/72)
+
+## 2.1.2a0
+
