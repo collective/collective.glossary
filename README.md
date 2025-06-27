@@ -4,7 +4,6 @@
 [![Python versions](https://img.shields.io/pypi/pyversions/collective.glossary.svg)](https://pypi.org/project/collective.glossary/)
 [![Plone versions](https://img.shields.io/badge/Plone-5.2%20|%206.0%20|%206.1-blue.svg)](https://plone.org)
 [![CI](https://github.com/collective/collective.glossary/actions/workflows/ci.yml/badge.svg)](https://github.com/collective/collective.glossary/actions/workflows/ci.yml)
-[![Coverage Status](https://coveralls.io/repos/github/collective/collective.glossary/badge.svg?branch=main)](https://coveralls.io/github/collective/collective.glossary?branch=main)
 [![License](https://img.shields.io/pypi/l/collective.glossary.svg)](https://pypi.org/project/collective.glossary/)
 
 Plone backend add-on to define a glossary and provide tooltips on matching text.
