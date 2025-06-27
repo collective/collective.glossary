@@ -17,7 +17,7 @@ Plone backend add-on to define a glossary and provide tooltips on matching text.
 - Tooltips can be restricted to a selection of content types.
 - REST API service @glossary_terms to fetch the terms of a glossary.
 
-[@rohberg/volto-slate-glossary](https://github.com/rohberg/volto-slate-glossary>) is the corresponding Volto add-on.
+[@rohberg/volto-slate-glossary](https://github.com/rohberg/volto-slate-glossary) is the corresponding Volto add-on.
 
 ## Screenshots
 
