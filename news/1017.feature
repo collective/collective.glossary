@@ -1,0 +1,1 @@
+Service "@tooltip_terms" returns terms in context. This supports multilingual sites. @ksuess
