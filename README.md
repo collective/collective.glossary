@@ -1,5 +1,12 @@
 # collective.glossary
 
+[![PyPI version](https://badge.fury.io/py/collective.glossary.svg)](https://badge.fury.io/py/collective.glossary)
+[![Python versions](https://img.shields.io/pypi/pyversions/collective.glossary.svg)](https://pypi.org/project/collective.glossary/)
+[![Plone versions](https://img.shields.io/badge/Plone-5.2%20|%206.0%20|%206.1-blue.svg)](https://plone.org)
+[![CI](https://github.com/collective/collective.glossary/actions/workflows/ci.yml/badge.svg)](https://github.com/collective/collective.glossary/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/collective/collective.glossary/badge.svg?branch=main)](https://coveralls.io/github/collective/collective.glossary?branch=main)
+[![License](https://img.shields.io/pypi/l/collective.glossary.svg)](https://pypi.org/project/collective.glossary/)
+
 Plone backend add-on to define a glossary and provide tooltips on matching text.
 
 ## Features
@@ -12,8 +19,6 @@ Plone backend add-on to define a glossary and provide tooltips on matching text.
 - REST API service @glossary_terms to fetch the terms of a glossary.
 
 [@rohberg/volto-slate-glossary](https://github.com/rohberg/volto-slate-glossary>) is the corresponding Volto add-on.
-
-
 
 ## Screenshots
 
@@ -29,12 +34,11 @@ Plone backend add-on to define a glossary and provide tooltips on matching text.
 
 *Configure glossary settings in the control panel.*
 
-
 ## Contribute
 
 - [Issue tracker](https://github.com/collective/collective.glossary/issues)
 - [Source code](https://github.com/collective/collective.glossary/)
-- [pypi](https://pypi.org/project/collective.glossary/)
+- [PyPI](https://pypi.org/project/collective.glossary/)
 
 ### Prerequisites ✅
 
