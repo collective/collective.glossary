@@ -21,15 +21,15 @@ Plone backend add-on to define a glossary and provide tooltips on matching text.
 
 ## Screenshots
 
-![Create a Glossary](https://raw.github.com/collective/collective.glossary/master/docs/glossary.png)
+![Create a Glossary](https://raw.github.com/collective/collective.glossary/master/docs/docs/_static/glossary.png)
 
 *Create a Glossary.*
 
-![Use it!](https://raw.github.com/collective/collective.glossary/master/docs/usage.png)
+![Use it!](https://raw.github.com/collective/collective.glossary/master/docs/docs/_static/usage.png)
 
 *Use it!*
 
-![Control Panel](https://raw.github.com/collective/collective.glossary/master/docs/controlpanel.png)
+![Control Panel](https://raw.github.com/collective/collective.glossary/master/docs/docs/_static/controlpanel.png)
 
 *Configure glossary settings in the control panel.*
 
