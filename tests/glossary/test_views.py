@@ -74,24 +74,25 @@ class TestGlossaryView:
         self.view = api.content.get_view(name="view", context=self.g1)
 
     def test_get_entries(self):
+        portal_url = api.portal.get().absolute_url()
         expected = {
             "F": [
                 {
+                    "title": "First Term",
                     "image": None,
                     "definition": "<p>First Term Description</p>",
                     "variants": ["FTD", "MFTD"],
-                    "title": "First Term",
-                    "url": "http://nohost/plone/g1/t1",
+                    "url": f"{portal_url}/g1/t1",
                     "state": "private",
                 }
             ],
             "S": [
                 {
+                    "url": f"{portal_url}/g1/t2",
                     "image": None,
                     "definition": "<p>Second Term Description</p>",
                     "variants": ["STD", "MSTD"],
                     "title": "Second Term",
-                    "url": "http://nohost/plone/g1/t2",
                     "state": "private",
                 }
             ],
