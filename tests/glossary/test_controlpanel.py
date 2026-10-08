@@ -1,4 +1,3 @@
-import pytest
 from collective.glossary.controlpanel import IGlossarySettings
 from collective.glossary.interfaces import IBrowserLayer
 from plone import api
@@ -6,6 +5,8 @@ from plone.app.testing import logout
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
 from zope.interface import alsoProvides
+
+import pytest
 
 
 class TestControlPanel:

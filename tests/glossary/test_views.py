@@ -1,8 +1,9 @@
-import json
-import pytest
 from collective.glossary.interfaces import IGlossarySettings
 from plone import api
 from plone.app.textfield.value import RichTextValue
+
+import json
+import pytest
 
 
 @pytest.fixture
