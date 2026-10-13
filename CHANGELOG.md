@@ -9,6 +9,15 @@
 
 <!-- towncrier release notes start -->
 
+## 3.0.2 (2026-10-13)
+
+
+### Bug fixes:
+
+- Add `IGlossaryLayer` as copy of `IBrowserLayer`.
+  This is needed for backwards compatibility with sites that started on version 2 or earlier.
+  @mauritsvanrees [#75](https://github.com/collective/collective.glossary/issues/75)
+
 ## 3.0.1 (2025-06-27)
 
 
