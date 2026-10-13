@@ -16,6 +16,12 @@ class IBrowserLayer(IDefaultBrowserLayer):
     """Marker interface that defines a browser layer."""
 
 
+# Before the refactoring for version 3.0.0, the layer had a different name.
+# We must keep the old name for backwards compatibility.
+# See https://github.com/collective/collective.glossary/issues/75
+IGlossaryLayer = IBrowserLayer
+
+
 class IGlossarySettings(Interface):
     """Schema for the control panel form."""
 

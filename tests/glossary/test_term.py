@@ -1,9 +1,10 @@
-import pytest
 from collective.glossary.interfaces import ITerm
 from plone import api
 from plone.dexterity.interfaces import IDexterityFTI
 from zope.component import createObject
 from zope.component import queryUtility
+
+import pytest
 
 
 class TestTermType:
