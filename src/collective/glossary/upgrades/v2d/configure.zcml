@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.glossary"
+    >
+
+  <genericsetup:upgradeStep
+      title="Cache the glossary terms with plone.app.caching"
+      description="Maps the collective.glossary.terms ruleset to terseCaching with s-maxage=300, when plone.app.caching is installed."
+      profile="collective.glossary:default"
+      source="5"
+      destination="6"
+      handler="collective.glossary.setuphandlers.setup_caching"
+      />
+
+</configure>

@@ -19,6 +19,25 @@ Plone backend add-on to define a glossary and provide tooltips on matching text.
 
 [@rohberg/volto-slate-glossary](https://github.com/rohberg/volto-slate-glossary) is the corresponding Volto add-on.
 
+## Caching
+
+Volto fetches `@tooltip_terms` on every page view, while the terms rarely change.
+Both REST API services, `@tooltip_terms` and `@glossary_terms`, therefore use the caching ruleset *Glossary terms* (`collective.glossary.terms`) of [plone.app.caching](https://github.com/plone/plone.app.caching).
+
+When plone.app.caching is installed, installing or upgrading collective.glossary maps this ruleset to *Terse caching*, with these settings:
+
+| Setting | Value | Header |
+| --- | --- | --- |
+| Maximum age | 10 seconds | `max-age=10` |
+| Shared maximum age | 300 seconds | `s-maxage=300` |
+
+A caching proxy such as Varnish then keeps the terms for 5 minutes, and a changed term reaches visitors within 5 minutes.
+Change the settings in *Site Setup* > *Caching*, on the *Caching operations* tab, for the *Glossary terms* ruleset.
+
+Installed plone.app.caching after collective.glossary?
+Apply the `collective.glossary:caching` profile in the ZMI, under `portal_setup` > *Import*, or map the *Glossary terms* ruleset yourself in the caching control panel.
+Without a mapping, the services send no `Cache-Control` header, and caching proxies do not cache them.
+
 ## Screenshots
 
 ![Create a Glossary](https://raw.github.com/collective/collective.glossary/master/docs/docs/_static/glossary.png)

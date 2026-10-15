@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<registry>
+
+  <!-- Needs the registry records of plone.app.caching:default. -->
+  <record name="plone.caching.interfaces.ICacheSettings.operationMapping">
+    <value purge="False">
+      <element key="collective.glossary.terms">plone.app.caching.terseCaching</element>
+    </value>
+  </record>
+
+  <!-- 10 seconds in the browser, 5 minutes in a caching proxy. -->
+  <record name="plone.app.caching.terseCaching.collective.glossary.terms.maxage">
+    <field ref="plone.app.caching.terseCaching.maxage" />
+    <value>10</value>
+  </record>
+  <record name="plone.app.caching.terseCaching.collective.glossary.terms.smaxage">
+    <field ref="plone.app.caching.terseCaching.smaxage" />
+    <value>300</value>
+  </record>
+
+</registry>
