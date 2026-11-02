@@ -9,6 +9,15 @@
 
 <!-- towncrier release notes start -->
 
+## 3.1.0 (2026-11-02)
+
+
+### New features:
+
+- Cache the `@tooltip_terms` and `@glossary_terms` services with plone.app.caching: they use the new *Glossary terms* ruleset, which installing or upgrading maps to terse caching with `s-maxage=300` when plone.app.caching is installed.
+  Volto fetches `@tooltip_terms` on every page view; a caching proxy now keeps it for 5 minutes.
+  @jladage [#77](https://github.com/collective/collective.glossary/issues/77)
+
 ## 3.0.2 (2026-10-13)
 
 
