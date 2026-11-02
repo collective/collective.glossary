@@ -1,8 +1,23 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:cache="http://namespaces.zope.org/cache"
     xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:zcml="http://namespaces.zope.org/zcml"
     >
+
+  <include
+      package="z3c.caching"
+      file="meta.zcml"
+      />
+
+  <!-- The terms rarely change, but Volto fetches @tooltip_terms on every
+       page view.  The caching profile maps this ruleset to terseCaching with
+       s-maxage=300, see the README. -->
+  <cache:rulesetType
+      name="collective.glossary.terms"
+      title="Glossary terms"
+      description="The terms of the glossaries, as returned by the @glossary_terms and @tooltip_terms services."
+      />
 
   <plone:service
       method="GET"
@@ -11,6 +26,10 @@
       permission="zope.Public"
       name="@glossary_terms"
       />
+  <cache:ruleset
+      for=".get.GetGlossaryTerms"
+      ruleset="collective.glossary.terms"
+      />
 
   <plone:service
       method="GET"
@@ -18,6 +37,10 @@
       for="zope.interface.Interface"
       permission="zope.Public"
       name="@tooltip_terms"
+      />
+  <cache:ruleset
+      for=".get.GetTooltipTerms"
+      ruleset="collective.glossary.terms"
       />
 
 </configure>

@@ -12,6 +12,16 @@
       description="A Dexterity-based content type to define a glossary and its terms."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       directory="profiles/default"
+      post_handler=".setuphandlers.post_install"
+      i18n:attributes="title; description"
+      />
+
+  <genericsetup:registerProfile
+      name="caching"
+      title="collective.glossary: caching"
+      description="Cache the glossary terms for 5 minutes with plone.app.caching. Applied by the default profile when plone.app.caching is installed."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/caching"
       i18n:attributes="title; description"
       />
 

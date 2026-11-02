@@ -3,4 +3,5 @@
   <include package=".v2a" />
   <include package=".v2b" />
   <include package=".v2c" />
+  <include package=".v2d" />
 </configure>
